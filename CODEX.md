@@ -115,7 +115,7 @@ Codex 修改胎温高度 v3 时，必须优先保证：
 当前参考固件：
 
 ```text
-nice_racechrono_fast_clean_v3.ino.ino
+tire_temp_height_node_racechrono_fast_clean_v3.ino
 ```
 
 该固件启动日志明确：

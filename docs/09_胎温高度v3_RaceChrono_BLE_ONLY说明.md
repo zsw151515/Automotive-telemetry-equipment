@@ -1,6 +1,6 @@
 # 09 胎温高度 v3 RaceChrono BLE ONLY 固件说明
 
-本文件记录当前用户最满意的一版胎温高度节点 v3 固件方向：`nice_racechrono_fast_clean_v3.ino.ino`。
+本文件记录当前用户最满意的一版胎温高度节点 v3 固件方向：`tire_temp_height_node_racechrono_fast_clean_v3.ino`。
 
 ## 1. 当前结论
 
@@ -287,7 +287,7 @@ BLE only. No WiFi, no ESP-NOW, no central display link.
 用户当前最满意的一版固件文件名：
 
 ```text
-nice_racechrono_fast_clean_v3.ino.ino
+tire_temp_height_node_racechrono_fast_clean_v3.ino
 ```
 
 该文件应作为胎温高度 v3 RaceChrono BLE only 的重要参考版本。

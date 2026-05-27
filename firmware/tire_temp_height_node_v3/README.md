@@ -14,7 +14,7 @@
 
 ```text
 当前状态：当前主线 / 用户最满意版本方向
-参考固件：nice_racechrono_fast_clean_v3.ino.ino
+参考固件：tire_temp_height_node_racechrono_fast_clean_v3.ino
 ```
 
 ## 当前软件定位
