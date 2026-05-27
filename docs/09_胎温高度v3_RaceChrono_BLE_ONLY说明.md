@@ -295,5 +295,5 @@ tire_temp_height_node_racechrono_fast_clean_v3.ino
 后续如果上传到仓库，建议放到：
 
 ```text
-firmware/tire_temp_height_node_v3/nice_racechrono_fast_clean_v3.ino
+firmware/tire_temp_height_node_v3/tire_temp_height_node_racechrono_fast_clean_v3.ino
 ```
