@@ -1,44 +1,58 @@
 # Automotive Telemetry Equipment
 
-汽车赛道遥测设备项目，主要用于赛道场景下的轮胎温度、悬挂高度、刹车温度、车内显示和 RaceChrono Pro 数据记录。
+汽车赛道遥测设备项目，主要用于赛道场景下的轮胎温度、悬挂高度、刹车盘温度、卡钳温度、车内显示和 RaceChrono Pro 数据记录。
 
 本仓库目标不是做一个临时 Demo，而是沉淀一套可以长期维护、可交付、可复现、方便 Codex/ChatGPT 协助修改的工程项目。
 
+## 当前项目主线
+
+当前项目重点维护两条主线：
+
+1. **胎温高度节点 v3**
+2. **break_temp_alarm_display_12V_RS485**
+
+同时保留两个参考/独立版本：
+
+1. **brake_temp_12v_max31856**：热电偶测卡钳，当前未接入报警显示
+2. **胎温高度节点 v2**：历史测试板，仅作参考
+
 ## 项目目标
 
-本项目当前围绕以下设备展开：
+### 1. 胎温高度节点 v3（当前主线）
 
-1. **胎温高度节点 v2 / v3**
-   - ESP32 / ESP32-C3 主控
-   - MLX90640 红外阵列测温
-   - VL53L1X 悬挂高度 / 离地距离测量
-   - BLE 连接 RaceChrono Pro
-   - ESP-NOW 发送数据到中控显示
+- ESP32 / ESP32-C3 主控
+- MLX90640 红外阵列测温
+- VL53L1X 悬挂高度 / 离地距离测量
+- BLE 连接 RaceChrono Pro
+- 可扩展 ESP-NOW 发送数据到中控显示
+- 单按键电源控制
+- 锂电池供电
+- Type-C 烧录 / 充电
+- 面向客户交付前的稳定性优化
 
-2. **胎温高度节点 v3 量产候选硬件**
-   - 单按键电源控制
-   - 锂电池供电
-   - Type-C 烧录 / 充电
-   - 面向客户交付前的稳定性优化
+### 2. break_temp_alarm_display_12V_RS485（当前主线）
 
-3. **12V 刹车温度节点**
-   - 汽车 12V 供电
-   - MAX31856 + K 型热电偶
-   - 目标用于赛道刹车盘 / 卡钳附近温度监测
-   - 支持 RS485 发送到车内报警显示中控
-   - 必须支持 RaceChrono Pro BLE 数据记录
+- 使用 RS485 通信方式的红外测温传感器
+- 测量目标：**刹车盘温度**
+- 车内 OLED / TFT 报警显示
+- 显示刹车盘温度和 `ALM` 报警阈值
+- SET / UP / DOWN 按键设置报警阈值
+- 蜂鸣器超温报警
+- 必须支持 RaceChrono Pro BLE 数据发送
+- 注意：该版本不是 MAX31856 热电偶版本
 
-4. **12V RS485 刹车报警显示中控**
-   - 通过 RS485 读取刹车温度节点
-   - OLED / TFT 显示刹车温度和 ALM 报警阈值
-   - SET / UP / DOWN 按键设置报警阈值
-   - 蜂鸣器超温报警
-   - 小屏幕版本优先大字体、少信息、明确 FAIL 状态
+### 3. brake_temp_12v_max31856（独立采集/测试版本）
 
-5. **中控显示模块**
-   - ESP32 TFT / OLED 显示
-   - 显示轮胎温度、刹车温度、报警阈值、连接状态等
-   - 重点要求车内可读性、低延迟、稳定显示
+- 使用 MAX31856 + K 型热电偶
+- 测量目标：**卡钳温度**
+- 当前还没有接入报警显示
+- 不等同于 `break_temp_alarm_display_12V_RS485`
+- 重点关注热电偶输入、MAX31856 fault、电源噪声和 EMI
+
+### 4. 胎温高度节点 v2（历史测试板）
+
+- 历史验证板，仅保留为参考资料
+- 不作为当前项目主线继续扩展
 
 ## 最高优先级
 
@@ -71,16 +85,15 @@ Automotive-telemetry-equipment/
 │  ├─ 07_Git与Codex协作流程.md
 │  └─ 08_12V_RS485刹车节点说明.md
 ├─ firmware/
-│  ├─ tire_temp_height_node_v2/
-│  ├─ tire_temp_height_node_v3/
-│  ├─ brake_temp_12v_max31856/
-│  ├─ brake_temp_12v_rs485_racechrono_node/
-│  ├─ brake_temp_alarm_display_12v_rs485/
+│  ├─ tire_temp_height_node_v2/                  # 历史参考
+│  ├─ tire_temp_height_node_v3/                  # 当前主线
+│  ├─ brake_temp_12v_max31856/                   # 独立热电偶卡钳测温版本
+│  ├─ brake_temp_alarm_display_12v_rs485/        # 当前 RS485 红外刹车盘报警显示 + RaceChrono 主线
 │  └─ central_display/
 └─ hardware/
-   ├─ tire_temp_height_v2/
-   ├─ tire_temp_height_v3/
-   └─ brake_temp_12v_rs485/
+   ├─ tire_temp_height_v2/                       # 历史参考
+   ├─ tire_temp_height_v3/                       # 当前主线
+   └─ brake_temp_12v_rs485/                      # 当前 RS485 红外刹车盘报警显示系统硬件资料
 ```
 
 ## 当前建议
@@ -88,7 +101,7 @@ Automotive-telemetry-equipment/
 - 所有固件文件放入 `firmware/` 对应目录。
 - 所有原理图、Gerber、BOM、3D 文件放入 `hardware/` 对应目录。
 - 让 Codex 修改代码前，先要求它阅读 `CODEX.md` / `AGENTS.md` / `docs/`。
-- 修改 12V RS485 刹车节点前，必须阅读 `docs/08_12V_RS485刹车节点说明.md`。
+- 修改 `break_temp_alarm_display_12V_RS485` 前，必须阅读 `docs/08_12V_RS485刹车节点说明.md`。
 - 每次让 Codex 改代码时，都要求它输出完整 `.ino` 文件，不要只给片段补丁。
 
 ## 重要原则
@@ -98,7 +111,9 @@ Automotive-telemetry-equipment/
 尤其是：
 
 - RaceChrono BLE 协议相关逻辑不要随便重构。
-- 12V RS485 刹车节点必须保留 RaceChrono BLE 数据发送能力，除非明确要求移除。
+- `break_temp_alarm_display_12V_RS485` 必须保留 RaceChrono BLE 数据发送能力，除非明确要求移除。
+- `break_temp_alarm_display_12V_RS485` 使用 RS485 红外测温传感器测刹车盘，不要混入 MAX31856 热电偶卡钳测温逻辑。
+- `brake_temp_12v_max31856` 是独立热电偶卡钳测温版本，目前还没有接入报警显示。
 - RS485 读取、OLED 显示、蜂鸣器报警不能阻塞 RaceChrono BLE。
 - 传感器初始化和失败重试逻辑不要为了简洁删除。
 - 电源控制、长按关机、按键识别逻辑必须保守修改。
