@@ -8,6 +8,7 @@
 hardware/
 ├─ tire_temp_height_v2/                       # 历史参考
 ├─ tire_temp_height_v3/                       # 当前胎温高度主线
+├─ brake_temp_12v_max31856/                   # 独立热电偶卡钳测温版本
 ├─ brake_temp_12v_rs485/                      # 初代RS485红外刹车盘版本，不带显示报警，非重点
 └─ brake_temp_alarm_display_12v_rs485/        # 当前刹车节点板重点硬件
 ```
@@ -19,7 +20,7 @@ brake_temp_12v_max31856
 = MAX31856 + K 型热电偶
 = 测卡钳温度
 = 当前未接入报警显示
-= 如后续需要，可单独创建 hardware/brake_temp_12v_max31856/
+= 独立采集 / 测试版本
 
 brake_temp_12v_rs485
 = RS485 红外测温传感器
