@@ -2,7 +2,7 @@
   Brake Temperature Node 12V MAX31856 v3
   ESP32-C3 + MAX31856 + RaceChrono BLE DIY CAN
 
-  Hardware: break_temp_12V_MAX31856 2026-05-22
+  Hardware: brake_temp_12V_MAX31856 2026-05-22
   MCU: ESP32-C3 module
   Thermocouple IC: MAX31856MUD+
   Thermocouple type: K-type
@@ -653,7 +653,7 @@ void setup() {
   Serial.println("==================================================");
   Serial.println("Brake Temp Node 12V MAX31856 v3");
   Serial.println("ESP32-C3 + MAX31856 + RaceChrono BLE DIY CAN");
-  Serial.println("Hardware: break_temp_12V_MAX31856 2026-05-22");
+  Serial.println("Hardware: brake_temp_12V_MAX31856 2026-05-22");
   Serial.println("NO BUTTON FUNCTION / 12V ACC AUTO BOOT");
   Serial.println("==================================================");
 

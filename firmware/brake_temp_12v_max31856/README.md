@@ -4,7 +4,7 @@
 
 这是一个独立的 12V MAX31856 热电偶采集版本。
 
-它和 `break_temp_alarm_display_12V_RS485` 不是同一个版本，不能混淆。
+它和 `brake_temp_alarm_display_12V_RS485` 不是同一个版本，不能混淆。
 
 ## 测量目标
 
@@ -39,7 +39,7 @@
 
 ## Codex 修改规则
 
-- 不要把本版本当成 `break_temp_alarm_display_12V_RS485`。
+- 不要把本版本当成 `brake_temp_alarm_display_12V_RS485`。
 - 不要把卡钳温度写成刹车盘温度。
 - 不要加入 RS485 红外测温传感器逻辑，除非用户明确要求。
 - 不要擅自接入报警显示架构，除非用户明确要求。

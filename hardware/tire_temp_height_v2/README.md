@@ -7,7 +7,7 @@
 当前项目主线不再侧重 v2，后续开发重点是：
 
 1. 胎温高度节点 v3
-2. break_temp_alarm_display_12V_RS485 / 12V RS485 + RaceChrono 刹车温度系统
+2. brake_temp_alarm_display_12V_RS485 / 12V RS485 + RaceChrono 刹车温度系统
 
 ## v2 保留价值
 

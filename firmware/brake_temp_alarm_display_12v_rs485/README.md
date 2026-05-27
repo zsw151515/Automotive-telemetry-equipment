@@ -1,8 +1,8 @@
-# break_temp_alarm_display_12V_RS485 固件
+# brake_temp_alarm_display_12V_RS485 固件
 
 ## 定位
 
-本目录用于当前主线之一：`break_temp_alarm_display_12V_RS485`。
+本目录用于当前主线之一：`brake_temp_alarm_display_12V_RS485`。
 
 它和 `brake_temp_12v_max31856` 不是同一个版本，不能混淆。
 

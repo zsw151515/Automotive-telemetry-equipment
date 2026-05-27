@@ -1,6 +1,6 @@
 /*
   Brake Temp Node 12V RS485 Alarm Display
-  Board: break_temp_alarm_display_12V_RS485
+  Board: brake_temp_alarm_display_12V_RS485
   MCU: ESP32-C3
   Display: HS13L03W2C01 / SH1106 128x64 I2C OLED
   RS485: SP3485, Modbus RTU master
