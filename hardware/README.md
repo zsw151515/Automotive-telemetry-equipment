@@ -2,13 +2,36 @@
 
 本目录用于存放原理图、PCB、Gerber、BOM、3D 文件和硬件说明。
 
-## 目录规划
+## 当前目录规划
 
 ```text
 hardware/
-├─ tire_temp_height_v2/
-├─ tire_temp_height_v3/
-└─ brake_temp_12v_rs485/
+├─ tire_temp_height_v2/                       # 历史参考
+├─ tire_temp_height_v3/                       # 当前胎温高度主线
+├─ brake_temp_12v_rs485/                      # 初代RS485红外刹车盘版本，不带显示报警，非重点
+└─ brake_temp_alarm_display_12v_rs485/        # 当前刹车节点板重点硬件
+```
+
+## 刹车节点硬件版本边界
+
+```text
+brake_temp_12v_max31856
+= MAX31856 + K 型热电偶
+= 测卡钳温度
+= 当前未接入报警显示
+= 如后续需要，可单独创建 hardware/brake_temp_12v_max31856/
+
+brake_temp_12v_rs485
+= RS485 红外测温传感器
+= 测刹车盘温度
+= 不带显示报警
+= 初代版本，不是当前重点
+
+brake_temp_alarm_display_12v_rs485
+= RS485 红外测温传感器
+= 测刹车盘温度
+= 带显示、ALM、按键、蜂鸣器、RaceChrono
+= 当前刹车节点板重点推进版本
 ```
 
 ## 放置规则
