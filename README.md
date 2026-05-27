@@ -8,7 +8,7 @@
 
 当前项目重点维护两条主线：
 
-1. **胎温高度节点 v3**
+1. **胎温高度节点 v3 RaceChrono BLE only**
 2. **break_temp_alarm_display_12V_RS485**
 
 同时保留两个参考/独立版本：
@@ -21,14 +21,24 @@
 ### 1. 胎温高度节点 v3（当前主线）
 
 - ESP32 / ESP32-C3 主控
-- MLX90640 红外阵列测温
+- MLX90640 红外阵列测轮胎温度
 - VL53L1X 悬挂高度 / 离地距离测量
-- BLE 连接 RaceChrono Pro
-- 可扩展 ESP-NOW 发送数据到中控显示
+- RaceChrono / RejsaRubberTrac compatible BLE only
+- 不再向中控发送胎温数据
+- 不再使用 ESP-NOW / WiFi / UDP / TCP 作为胎温主链路
 - 单按键电源控制
 - 锂电池供电
 - Type-C 烧录 / 充电
 - 面向客户交付前的稳定性优化
+
+胎温高度 v3 当前最高优先级：
+
+```text
+RaceChrono 数据准确
+热力分布跟手
+温度不过度抖动
+BLE 连接稳定
+```
 
 ### 2. break_temp_alarm_display_12V_RS485（当前主线）
 
@@ -61,10 +71,11 @@
 1. 稳定开机
 2. 稳定传感器初始化
 3. 稳定 BLE 连接 RaceChrono Pro
-4. 稳定 RS485 通信和本地报警显示
-5. 真实赛道环境抗震、抗干扰、抗掉线
-6. 代码可读、可维护、可回退
-7. 客户交付可靠性
+4. 胎温高度 v3 的 RaceChrono 热力分布跟手且温度不过度抖动
+5. 稳定 RS485 通信和本地报警显示
+6. 真实赛道环境抗震、抗干扰、抗掉线
+7. 代码可读、可维护、可回退
+8. 客户交付可靠性
 
 不追求花哨功能，不为了理论最优牺牲稳定性。
 
@@ -83,10 +94,11 @@ Automotive-telemetry-equipment/
 │  ├─ 05_已知硬件问题与排查记录.md
 │  ├─ 06_测试与交付检查清单.md
 │  ├─ 07_Git与Codex协作流程.md
-│  └─ 08_12V_RS485刹车节点说明.md
+│  ├─ 08_12V_RS485刹车节点说明.md
+│  └─ 09_胎温高度v3_RaceChrono_BLE_ONLY说明.md
 ├─ firmware/
 │  ├─ tire_temp_height_node_v2/                  # 历史参考
-│  ├─ tire_temp_height_node_v3/                  # 当前主线
+│  ├─ tire_temp_height_node_v3/                  # 当前 RaceChrono BLE only 主线
 │  ├─ brake_temp_12v_max31856/                   # 独立热电偶卡钳测温版本
 │  ├─ brake_temp_alarm_display_12v_rs485/        # 当前 RS485 红外刹车盘报警显示 + RaceChrono 主线
 │  └─ central_display/
@@ -101,6 +113,7 @@ Automotive-telemetry-equipment/
 - 所有固件文件放入 `firmware/` 对应目录。
 - 所有原理图、Gerber、BOM、3D 文件放入 `hardware/` 对应目录。
 - 让 Codex 修改代码前，先要求它阅读 `CODEX.md` / `AGENTS.md` / `docs/`。
+- 修改胎温高度 v3 前，必须阅读 `docs/09_胎温高度v3_RaceChrono_BLE_ONLY说明.md`。
 - 修改 `break_temp_alarm_display_12V_RS485` 前，必须阅读 `docs/08_12V_RS485刹车节点说明.md`。
 - 每次让 Codex 改代码时，都要求它输出完整 `.ino` 文件，不要只给片段补丁。
 
@@ -110,7 +123,10 @@ Automotive-telemetry-equipment/
 
 尤其是：
 
+- 胎温高度 v3 当前只向 RaceChrono 发送数据，不再向中控发送胎温数据。
+- 不要重新加入 ESP-NOW 胎温发送、中控胎温发送、WiFi / UDP / TCP 胎温链路。
 - RaceChrono BLE 协议相关逻辑不要随便重构。
+- 胎温清洗、ROI 跟踪、trimmed mean、rate limit、adaptive low-pass、spike gate 这些平衡“跟手”和“抖动”的逻辑不要随意删除。
 - `break_temp_alarm_display_12V_RS485` 必须保留 RaceChrono BLE 数据发送能力，除非明确要求移除。
 - `break_temp_alarm_display_12V_RS485` 使用 RS485 红外测温传感器测刹车盘，不要混入 MAX31856 热电偶卡钳测温逻辑。
 - `brake_temp_12v_max31856` 是独立热电偶卡钳测温版本，目前还没有接入报警显示。
