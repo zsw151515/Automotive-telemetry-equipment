@@ -30,6 +30,51 @@ RS485 通信方式的红外测温传感器
 - 传感器或通信失败时显示 FAIL
 - 必须支持 RaceChrono Pro BLE 数据发送
 
+## 当前固件行为记录
+
+当前固件文件：
+
+```text
+hyundai_n_brake_temp_alarm_display_12V_RS485.ino
+```
+
+当前定位：
+
+```text
+V1.5 Thermal Load Alarm + RaceChrono BLE
+```
+
+关键行为：
+
+- 显示仍使用 V1.4 Hyundai N OLED 开机动画，未改动画代码。
+- 屏幕主数字显示当前有效刹车盘温度最大值。
+- 报警不只看瞬时盘面温度，而是使用 `Tfast / Tcore / Dose` 热负荷模型，减少单次温度尖峰误报。
+- RS485 失败时不会把温度显示或发送为正常 `0°C`。
+- RS485 候选寄存器探测按轮次逐个尝试，避免传感器断开时一次轮询阻塞太久。
+- 按键提示蜂鸣改为非阻塞，不应造成 OLED 刷新或 RaceChrono 发送明显停顿。
+- RaceChrono 使用 BLE DIY CAN-Bus API，设备名为 `N BrakeTemp`。
+- RaceChrono 默认发送节奏为约 150ms 一轮，兼顾流畅和 BLE 稳定。
+
+RaceChrono DIY CAN PIDs：
+
+```text
+0x100 Brake FL        int16 BE, 温度 x10 C，0x7FFF 表示无效
+0x101 Brake FR        int16 BE, 温度 x10 C，0x7FFF 表示无效
+0x102 Brake Display   int16 BE, 屏幕显示温度 x10 C
+0x103 Brake Fast      int16 BE, Tfast x10 C
+0x104 Brake Core      int16 BE, Tcore x10 C
+0x105 Brake Dose      uint16 BE, Dose x10
+0x106 Brake State     uint8, 0 OK / 1 WARN / 2 ALARM / 3 FAIL
+0x107 Brake Alarm     uint16 BE, ALM C
+```
+
+蜂鸣器逻辑：
+
+- `SET` 长按切换的是 FAIL / WARN 提示蜂鸣。
+- 真正 `ALARM` 状态仍会强制蜂鸣，除非用户使用 `UP + DOWN` 长按进入 60 秒静音。
+- 60 秒静音结束后，如果仍处于 ALARM，会再次蜂鸣。
+- RaceChrono 断开不影响本地报警显示和蜂鸣器逻辑。
+
 ## 当前状态
 
 ```text

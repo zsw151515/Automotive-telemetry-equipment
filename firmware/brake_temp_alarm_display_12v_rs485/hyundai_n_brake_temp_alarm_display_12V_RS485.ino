@@ -101,7 +101,7 @@
 // 如果后续传感器读数不稳定，可以改成 50。
 #define MODBUS_TIMEOUT_MS 20
 
-#define SENSOR_POLL_INTERVAL_MS 300
+#define SENSOR_POLL_INTERVAL_MS 100
 #define SENSOR_STALE_MS 2500
 #define DISPLAY_REFRESH_MS 100
 #define BOOT_ANIMATION_ENABLE 1
@@ -162,8 +162,8 @@
 #define RC_BLE_CAN_MAIN_UUID "0001"
 #define RC_BLE_CAN_FILTER_UUID "0002"
 
-#define RC_SEND_INTERVAL_MS 200
-#define RC_DEFAULT_NOTIFY_MS 200
+#define RC_SEND_INTERVAL_MS 150
+#define RC_DEFAULT_NOTIFY_MS 150
 #define RC_MAX_FILTERS 12
 
 #define RC_PID_BRAKE_FL      0x100
@@ -261,12 +261,13 @@ struct BrakeSensor {
   uint16_t failCount;
 
   int preferredCandidate;
+  int probeCandidate;
   int16_t lastRaw;
 };
 
 BrakeSensor sensors[2] = {
-  {"FL", SENSOR_FL_ADDR, ENABLE_FL, NAN, false, 0, 0, -1, 0},
-  {"FR", SENSOR_FR_ADDR, ENABLE_FR, NAN, false, 0, 0, -1, 0},
+  {"FL", SENSOR_FL_ADDR, ENABLE_FL, NAN, false, 0, 0, -1, 0, 0},
+  {"FR", SENSOR_FR_ADDR, ENABLE_FR, NAN, false, 0, 0, -1, 0, 0},
 };
 
 struct ButtonState {
@@ -369,6 +370,7 @@ uint32_t muteUntilMs = 0;
 uint32_t lastAdjustMs = 0;
 uint32_t savedNoticeUntilMs = 0;
 uint32_t buzzerNoticeUntilMs = 0;
+uint32_t beepUntilMs = 0;
 
 // Thermal model runtime
 float tempFastC = NAN;
@@ -425,6 +427,14 @@ static void buzzerSet(bool on) {
 
 static void shortBeep(uint16_t ms) {
   if (!buzzerEnabled) return;
+  uint32_t until = millis() + ms;
+  if (until > beepUntilMs) {
+    beepUntilMs = until;
+  }
+}
+
+static void startupBeep(uint16_t ms) {
+  if (!buzzerEnabled) return;
   buzzerSet(true);
   delay(ms);
   buzzerSet(false);
@@ -462,6 +472,13 @@ static uint32_t readU32BE(const uint8_t *buf) {
          ((uint32_t)buf[1] << 16) |
          ((uint32_t)buf[2] << 8) |
          ((uint32_t)buf[3]);
+}
+
+static uint32_t readU32LE(const uint8_t *buf) {
+  return ((uint32_t)buf[3] << 24) |
+         ((uint32_t)buf[2] << 16) |
+         ((uint32_t)buf[1] << 8) |
+         ((uint32_t)buf[0]);
 }
 
 // ================================================================
@@ -590,7 +607,7 @@ static bool modbusReadOneRegister(uint8_t addr,
     if (c >= 0) {
       resp[n++] = (uint8_t)c;
     } else {
-      delay(1);
+      delay(0);
     }
   }
 
@@ -635,13 +652,17 @@ static bool readBrakeTemperature(BrakeSensor &s, float &tempCOut, int16_t &rawOu
     }
   }
 
-  for (int i = 0; i < MODBUS_CANDIDATE_COUNT; i++) {
-    if (i == s.preferredCandidate) continue;
+  int i = s.probeCandidate;
+  if (i < 0 || i >= MODBUS_CANDIDATE_COUNT) {
+    i = 0;
+  }
 
-    if (tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
-      s.preferredCandidate = i;
-      return true;
-    }
+  s.probeCandidate = (i + 1) % MODBUS_CANDIDATE_COUNT;
+
+  if (i != s.preferredCandidate &&
+      tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
+    s.preferredCandidate = i;
+    return true;
   }
 
   return false;
@@ -1001,16 +1022,21 @@ class RaceChronoFilterCallbacks : public BLECharacteristicCallbacks {
     }
 
     if (cmd == 0x02 && len >= 7) {
-      // Allow one PID. RaceChrono API encodes filter values big-endian.
+      // Allow one PID. Add BE and LE parsed values to avoid silent no-data
+      // if an app/version encodes filter PIDs differently.
       uint16_t intervalMs = readU16BE((const uint8_t *)&value[1]);
-      uint32_t pid = readU32BE((const uint8_t *)&value[3]);
+      uint32_t pidBE = readU32BE((const uint8_t *)&value[3]);
+      uint32_t pidLE = readU32LE((const uint8_t *)&value[3]);
 
       if (intervalMs == 0) intervalMs = RC_DEFAULT_NOTIFY_MS;
       rcAllowAll = false;
-      rcAddFilter(pid, intervalMs);
+      rcAddFilter(pidBE, intervalMs);
+      rcAddFilter(pidLE, intervalMs);
 
-      Serial.print("[BLE] CAN filter: allow PID 0x");
-      Serial.print(pid, HEX);
+      Serial.print("[BLE] CAN filter: allow PID BE=0x");
+      Serial.print(pidBE, HEX);
+      Serial.print(" LE=0x");
+      Serial.print(pidLE, HEX);
       Serial.print(", interval=");
       Serial.print(intervalMs);
       Serial.println("ms");
@@ -1225,9 +1251,7 @@ static void handleButtons(uint32_t now) {
     Serial.println(buzzerEnabled ? "ON" : "OFF");
 
     if (buzzerEnabled) {
-      buzzerSet(true);
-      delay(80);
-      buzzerSet(false);
+      shortBeep(80);
     }
   }
 
@@ -1258,6 +1282,11 @@ static void updateBuzzer(uint32_t now) {
   // B:OFF 只屏蔽 FAIL / WARN，不屏蔽真正超温 ALARM。
   if (!buzzerEnabled && systemState != STATE_ALARM) {
     buzzerSet(false);
+    return;
+  }
+
+  if (beepUntilMs != 0 && now < beepUntilMs) {
+    buzzerSet(true);
     return;
   }
 
@@ -1715,10 +1744,10 @@ void setup() {
 #endif
 
   ledSet(true);
-  shortBeep(60);
+  startupBeep(60);
   delay(80);
   ledSet(false);
-  shortBeep(40);
+  startupBeep(40);
 
   delay(500);
   startupMs = millis();
