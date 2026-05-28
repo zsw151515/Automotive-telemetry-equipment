@@ -485,175 +485,6 @@ static void saveSettings() {
 }
 
 // ================================================================
-// BLE RaceChrono DIY CAN
-// ================================================================
-
-static bool pidAllowed(uint32_t pid) {
-  if (filterAllowAll) return true;
-  if (!filterDenyAllReceived && allowedPidCount == 0) return true;
-
-  for (uint8_t i = 0; i < allowedPidCount; i++) {
-    if (allowedPids[i] == pid) return true;
-  }
-
-  return false;
-}
-
-static void addAllowedPid(uint32_t pid) {
-  for (uint8_t i = 0; i < allowedPidCount; i++) {
-    if (allowedPids[i] == pid) return;
-  }
-
-  if (allowedPidCount < 16) {
-    allowedPids[allowedPidCount++] = pid;
-  }
-}
-
-class ServerCallbacks : public BLEServerCallbacks {
-  void onConnect(BLEServer *server) override {
-    (void)server;
-    bleConnected = true;
-    bleRestartAdvertisingPending = false;
-    Serial.println("[BLE] RaceChrono connected");
-  }
-
-  void onDisconnect(BLEServer *server) override {
-    (void)server;
-    bleConnected = false;
-    bleRestartAdvertisingPending = true;
-    Serial.println("[BLE] disconnected");
-  }
-};
-
-class FilterCallbacks : public BLECharacteristicCallbacks {
-  void onWrite(BLECharacteristic *characteristic) override {
-    String value = characteristic->getValue();
-    const uint8_t *d = (const uint8_t *)value.c_str();
-    size_t n = value.length();
-
-    if (n < 1) return;
-
-    const uint8_t cmd = d[0];
-
-    if (cmd == 0) {
-      filterAllowAll = false;
-      filterDenyAllReceived = true;
-      allowedPidCount = 0;
-      Serial.println("[BLE] CAN filter: deny all");
-      return;
-    }
-
-    if (cmd == 1) {
-      filterAllowAll = true;
-      filterDenyAllReceived = false;
-      allowedPidCount = 0;
-      Serial.println("[BLE] CAN filter: allow all");
-      return;
-    }
-
-    if (cmd == 2 && n >= 7) {
-      uint16_t interval = readU16BE(&d[1]);
-      uint32_t pidBE = readU32BE(&d[3]);
-      uint32_t pidLE = readU32LE(&d[3]);
-
-      addAllowedPid(pidBE);
-      addAllowedPid(pidLE);
-      filterAllowAll = false;
-      filterDenyAllReceived = true;
-
-      Serial.print("[BLE] CAN filter: allow PID BE=0x");
-      Serial.print(pidBE, HEX);
-      Serial.print(" LE=0x");
-      Serial.print(pidLE, HEX);
-      Serial.print(" interval=");
-      Serial.println(interval);
-      return;
-    }
-  }
-};
-
-static void bleSendCanPacket(uint32_t pid, const uint8_t *payload, uint8_t payloadLen) {
-#if ENABLE_BLE_RACECHRONO
-  if (!bleConnected || canMainChar == nullptr) return;
-  if (!pidAllowed(pid)) return;
-  if (payloadLen > 16) payloadLen = 16;
-
-  uint8_t packet[20];
-  packet[0] = (uint8_t)(pid & 0xFF);
-  packet[1] = (uint8_t)((pid >> 8) & 0xFF);
-  packet[2] = (uint8_t)((pid >> 16) & 0xFF);
-  packet[3] = (uint8_t)((pid >> 24) & 0xFF);
-
-  for (uint8_t i = 0; i < payloadLen; i++) {
-    packet[4 + i] = payload[i];
-  }
-
-  canMainChar->setValue(packet, 4 + payloadLen);
-  canMainChar->notify();
-#else
-  (void)pid;
-  (void)payload;
-  (void)payloadLen;
-#endif
-}
-
-static void setupBleRaceChrono() {
-#if ENABLE_BLE_RACECHRONO
-  Serial.println("[BLE] init RaceChrono DIY CAN");
-
-  BLEDevice::init(BLE_DEVICE_NAME);
-  BLEDevice::setMTU(64);
-
-  bleServer = BLEDevice::createServer();
-  bleServer->setCallbacks(new ServerCallbacks());
-
-  BLEService *service = bleServer->createService(UUID_RC_SERVICE);
-
-  canMainChar = service->createCharacteristic(
-    UUID_RC_CAN_MAIN,
-    BLECharacteristic::PROPERTY_READ |
-    BLECharacteristic::PROPERTY_NOTIFY
-  );
-  canMainChar->addDescriptor(new BLE2902());
-
-  canFilterChar = service->createCharacteristic(
-    UUID_RC_CAN_FILTER,
-    BLECharacteristic::PROPERTY_WRITE
-  );
-  canFilterChar->setCallbacks(new FilterCallbacks());
-
-  service->start();
-
-  BLEAdvertising *adv = BLEDevice::getAdvertising();
-  adv->addServiceUUID(UUID_RC_SERVICE);
-  adv->setScanResponse(true);
-  adv->setMinPreferred(0x06);
-  adv->setMinPreferred(0x12);
-
-  BLEDevice::startAdvertising();
-
-  Serial.print("[BLE] advertising name: ");
-  Serial.println(BLE_DEVICE_NAME);
-  Serial.println("[BLE] Service UUID: 0x1FF8, CAN main: 0x0001, filter: 0x0002");
-  Serial.print("[BLE] BrakeDiscTempMax PID: 0x");
-  Serial.println(PID_BRAKE_DISC_TEMP_MAX, HEX);
-  Serial.print("[BLE] BrakeDiscTempFL  PID: 0x");
-  Serial.println(PID_BRAKE_DISC_TEMP_FL, HEX);
-  Serial.print("[BLE] BrakeDiscTempFR  PID: 0x");
-  Serial.println(PID_BRAKE_DISC_TEMP_FR, HEX);
-#endif
-}
-
-static void handleBleAdvertising() {
-#if ENABLE_BLE_RACECHRONO
-  if (!bleRestartAdvertisingPending) return;
-  bleRestartAdvertisingPending = false;
-  BLEDevice::startAdvertising();
-  Serial.println("[BLE] advertising restarted");
-#endif
-}
-
-// ================================================================
 // RS485 / Modbus
 // ================================================================
 
@@ -759,7 +590,7 @@ static bool modbusReadOneRegister(uint8_t addr,
     if (c >= 0) {
       resp[n++] = (uint8_t)c;
     } else {
-      delay(0);
+      delay(1);
     }
   }
 
@@ -792,33 +623,6 @@ static bool tryReadTempWithCandidate(uint8_t addr,
   return true;
 }
 
-static bool applyTemperatureFilter(BrakeSensor &s, float rawC, float &filteredOut) {
-  if (!isfinite(rawC)) return false;
-
-  if (!s.hasFiltered || !isfinite(s.filteredTempC)) {
-    s.filteredTempC = rawC;
-    s.hasFiltered = true;
-  } else {
-    float delta = rawC - s.filteredTempC;
-
-    if (fabsf(delta) > TEMP_SPIKE_GATE_C) {
-      Serial.print("[RS485] ");
-      Serial.print(s.name);
-      Serial.print(" spike rejected raw=");
-      Serial.print(rawC, 1);
-      Serial.print("C filt=");
-      Serial.print(s.filteredTempC, 1);
-      Serial.println("C");
-      return false;
-    }
-
-    s.filteredTempC += delta * TEMP_FILTER_ALPHA;
-  }
-
-  filteredOut = s.filteredTempC;
-  return true;
-}
-
 static bool readBrakeTemperature(BrakeSensor &s, float &tempCOut, int16_t &rawOut) {
   if (!s.enabled) return false;
 
@@ -831,14 +635,13 @@ static bool readBrakeTemperature(BrakeSensor &s, float &tempCOut, int16_t &rawOu
     }
   }
 
-  int i = s.probeCandidate;
-  if (i < 0 || i >= MODBUS_CANDIDATE_COUNT) i = 0;
-  s.probeCandidate = (i + 1) % MODBUS_CANDIDATE_COUNT;
+  for (int i = 0; i < MODBUS_CANDIDATE_COUNT; i++) {
+    if (i == s.preferredCandidate) continue;
 
-  if (i != s.preferredCandidate &&
-      tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
-    s.preferredCandidate = i;
-    return true;
+    if (tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
+      s.preferredCandidate = i;
+      return true;
+    }
   }
 
   return false;
@@ -870,21 +673,11 @@ static void pollSensors(uint32_t now) {
   bool ok = readBrakeTemperature(s, t, raw);
 
   if (ok) {
-    float filtered = NAN;
-
-    if (applyTemperatureFilter(s, t, filtered)) {
-      s.tempC = filtered;
-      s.lastRaw = raw;
-      s.ok = true;
-      s.lastOkMs = now;
-      s.failCount = 0;
-      s.sampleCounter++;
-    } else {
-      s.failCount++;
-      if (s.lastOkMs == 0 || (now - s.lastOkMs) > SENSOR_STALE_MS) {
-        s.ok = false;
-      }
-    }
+    s.tempC = t;
+    s.lastRaw = raw;
+    s.ok = true;
+    s.lastOkMs = now;
+    s.failCount = 0;
   } else {
     s.failCount++;
 
