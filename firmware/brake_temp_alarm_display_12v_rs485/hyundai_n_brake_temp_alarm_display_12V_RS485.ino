@@ -1,30 +1,36 @@
+
 /*
   Brake Temp Node 12V RS485 Alarm Display
   Board: brake_temp_alarm_display_12V_RS485
   MCU: ESP32-C3
   Display: HS13L03W2C01 / SH1106 128x64 I2C OLED
   RS485: SP3485, Modbus RTU master
+  RaceChrono: BLE DIY CAN-Bus API
 
-  Version: V1.4 Hyundai N OLED Boot Animation
-  Date: 2026-05-26
+  Version: V1.5 Thermal Load Alarm + RaceChrono BLE
+  Date: 2026-05-28
 
-  Display V1.4:
-    - No top title
-    - No FL / FR label
-    - No FAIL text in header
-    - No MAX label
+  Main changes from V1.4:
+    - Instant disc surface temperature is used for display only.
+    - Alarm uses thermal load model:
+        Tfast = fast surface filter
+        Tcore = slow heat-soak estimate
+        Dose  = accumulated thermal load
+      ALARM now means "must cool down", not "momentary rotor surface touched ALM".
+    - RaceChrono BLE DIY CAN output added.
+    - B:OFF only mutes FAIL/WARN. Real ALARM still forces buzzer unless UP+DOWN mute is active.
+
+  Display:
     - Large single temperature number only
     - Top sensor online status
     - ALM display retained
-    - SET / UP / DOWN logic retained
-    - Hyundai N style startup animation retained in monochrome OLED form
-    - FAIL / sensor disconnected buzzer beep disabled
+    - Hyundai N style startup animation retained exactly from V1.4
 
   Key behavior:
     UP short / hold      -> ALM +10C
     DOWN short / hold    -> ALM -10C
     SET short            -> Save ALM to NVS
-    SET long             -> Toggle buzzer enable
+    SET long             -> Toggle buzzer enable for FAIL/WARN
     UP + DOWN hold 1s    -> Mute buzzer for 60s
 
   Hardware:
@@ -40,11 +46,15 @@
     LED_STAT      -> GPIO2, active LOW
     KEY_DOWN      -> GPIO3
 
-  Notes:
-    - LED_STAT is active LOW.
-    - BUZZER_CTRL is active HIGH.
-    - Keys are active LOW.
-    - RS485_DE HIGH = transmit, LOW = receive.
+  RaceChrono DIY CAN PIDs:
+    0x100 Brake FL        payload[0..1] int16 big-endian, temp x10 C, 0x7FFF invalid
+    0x101 Brake FR        payload[0..1] int16 big-endian, temp x10 C, 0x7FFF invalid
+    0x102 Brake Display   payload[0..1] int16 big-endian, shown temp x10 C
+    0x103 Brake Fast      payload[0..1] int16 big-endian, Tfast x10 C
+    0x104 Brake Core      payload[0..1] int16 big-endian, Tcore x10 C
+    0x105 Brake Dose      payload[0..1] uint16 big-endian, Dose x10
+    0x106 Brake State     payload[0]=0 OK, 1 WARN, 2 ALARM, 3 FAIL
+    0x107 Brake Alarm     payload[0..1] uint16 big-endian, ALM C
 */
 
 #include <Arduino.h>
@@ -52,6 +62,11 @@
 #include <U8g2lib.h>
 #include <Preferences.h>
 #include <math.h>
+
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
 
 // ================================================================
 // User configuration
@@ -81,8 +96,6 @@
 #define MIN_ALARM_TEMP_C 100
 #define MAX_ALARM_TEMP_C 900
 #define ALARM_STEP_C 10
-#define ALARM_HYSTERESIS_C 30
-#define WARN_MARGIN_C 50
 
 // 调试阶段没插传感器时，20ms 不会卡按键。
 // 如果后续传感器读数不稳定，可以改成 50。
@@ -100,6 +113,67 @@
 #define KEY_LONG_PRESS_MS 900
 #define KEY_REPEAT_START_MS 450
 #define KEY_REPEAT_INTERVAL_MS 150
+
+// ================================================================
+// Thermal Load Alarm V1.5
+// ================================================================
+
+// ALM 不再代表刹车盘表面瞬时报警线，而代表“热浸透核心温度报警线”。
+#define WARN_CORE_MARGIN_C 40
+
+// 快速表面滤波时间常数。越小越跟手。
+#define FAST_TEMP_TAU_SEC 0.8f
+
+// 热浸透模型：升温比降温快，模拟刹车皮/卡钳/油液被持续热浸透。
+#define CORE_HEAT_TAU_SEC 8.0f
+#define CORE_COOL_TAU_SEC 18.0f
+
+// 热负荷从 ALM - 80C 开始累积。
+#define DOSE_START_OFFSET_C 80
+
+// 热负荷报警阈值。路试后可以按实际刹车皮/赛道调整。
+#define THERMAL_DOSE_WARN 10.0f
+#define THERMAL_DOSE_ALARM 20.0f
+#define THERMAL_DOSE_MAX 99.0f
+
+// Core 达到 ALM 后必须持续这么久才真正报警，避免单次重刹误报。
+#define ALARM_CORE_HOLD_MS 8000
+
+// 极端峰值保护：盘面温度非常高且持续时，强制报警。
+#define PEAK_CRITICAL_TEMP_C 780
+#define PEAK_CRITICAL_HOLD_MS 3000
+
+// 高峰值 + 已热浸透，提前报警。
+#define PEAK_WITH_SOAK_TEMP_C 700
+#define PEAK_WITH_SOAK_CORE_MARGIN_C 20
+#define PEAK_WITH_SOAK_HOLD_MS 5000
+
+// 报警解除必须 core 和 dose 都降下来。
+#define CORE_ALARM_RELEASE_MARGIN_C 50
+#define DOSE_RELEASE_VALUE 8.0f
+
+// ================================================================
+// RaceChrono BLE DIY CAN configuration
+// ================================================================
+
+#define ENABLE_RACECHRONO_BLE 1
+#define RC_BLE_DEVICE_NAME "N BrakeTemp"
+#define RC_BLE_SERVICE_UUID "00001ff8-0000-1000-8000-00805f9b34fb"
+#define RC_BLE_CAN_MAIN_UUID "0001"
+#define RC_BLE_CAN_FILTER_UUID "0002"
+
+#define RC_SEND_INTERVAL_MS 200
+#define RC_DEFAULT_NOTIFY_MS 200
+#define RC_MAX_FILTERS 12
+
+#define RC_PID_BRAKE_FL      0x100
+#define RC_PID_BRAKE_FR      0x101
+#define RC_PID_BRAKE_DISPLAY 0x102
+#define RC_PID_BRAKE_FAST    0x103
+#define RC_PID_BRAKE_CORE    0x104
+#define RC_PID_BRAKE_DOSE    0x105
+#define RC_PID_BRAKE_STATE   0x106
+#define RC_PID_BRAKE_ALARM   0x107
 
 // ================================================================
 // Pin mapping
@@ -122,6 +196,7 @@ static const uint8_t PIN_KEY_DOWN    = 3;
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 HardwareSerial RS485Bus(1);
 Preferences prefs;
+
 
 static const uint8_t HYUNDAI_N_LOGO_W = 64;
 static const uint8_t HYUNDAI_N_LOGO_H = 28;
@@ -268,6 +343,13 @@ ButtonState btnSet;
 ButtonState btnUp;
 ButtonState btnDown;
 
+struct RaceChronoPidFilter {
+  uint32_t pid = 0;
+  uint16_t intervalMs = RC_DEFAULT_NOTIFY_MS;
+  uint32_t lastSentMs = 0;
+  bool used = false;
+};
+
 // ================================================================
 // Runtime variables
 // ================================================================
@@ -287,6 +369,31 @@ uint32_t muteUntilMs = 0;
 uint32_t lastAdjustMs = 0;
 uint32_t savedNoticeUntilMs = 0;
 uint32_t buzzerNoticeUntilMs = 0;
+
+// Thermal model runtime
+float tempFastC = NAN;
+float tempCoreC = NAN;
+float thermalDose = 0.0f;
+
+uint32_t lastThermalUpdateMs = 0;
+uint32_t coreOverAlarmSinceMs = 0;
+uint32_t peakCriticalSinceMs = 0;
+uint32_t peakWithSoakSinceMs = 0;
+bool thermalAlarmLatched = false;
+
+#if ENABLE_RACECHRONO_BLE
+BLEServer *rcServer = nullptr;
+BLECharacteristic *rcCanMainCharacteristic = nullptr;
+BLECharacteristic *rcCanFilterCharacteristic = nullptr;
+BLEAdvertising *rcAdvertising = nullptr;
+
+bool rcBleConnected = false;
+bool rcAllowAll = true;
+uint16_t rcDefaultNotifyMs = RC_DEFAULT_NOTIFY_MS;
+RaceChronoPidFilter rcFilters[RC_MAX_FILTERS];
+uint32_t rcLastSendMs = 0;
+uint32_t rcNotifyCount = 0;
+#endif
 
 // ================================================================
 // Basic helpers
@@ -323,6 +430,40 @@ static void shortBeep(uint16_t ms) {
   buzzerSet(false);
 }
 
+static int16_t tempToI16x10(float t, bool valid) {
+  if (!valid || isnan(t)) {
+    return 0x7FFF;
+  }
+
+  float scaled = t * 10.0f;
+  if (scaled > 32766.0f) scaled = 32766.0f;
+  if (scaled < -32768.0f) scaled = -32768.0f;
+
+  return (int16_t)lroundf(scaled);
+}
+
+static void writeI16BE(uint8_t *buf, int16_t v) {
+  uint16_t u = (uint16_t)v;
+  buf[0] = (uint8_t)(u >> 8);
+  buf[1] = (uint8_t)(u & 0xFF);
+}
+
+static void writeU16BE(uint8_t *buf, uint16_t v) {
+  buf[0] = (uint8_t)(v >> 8);
+  buf[1] = (uint8_t)(v & 0xFF);
+}
+
+static uint16_t readU16BE(const uint8_t *buf) {
+  return ((uint16_t)buf[0] << 8) | buf[1];
+}
+
+static uint32_t readU32BE(const uint8_t *buf) {
+  return ((uint32_t)buf[0] << 24) |
+         ((uint32_t)buf[1] << 16) |
+         ((uint32_t)buf[2] << 8) |
+         ((uint32_t)buf[3]);
+}
+
 // ================================================================
 // Settings
 // ================================================================
@@ -341,6 +482,175 @@ static void saveSettings() {
   prefs.putBool("buzzer", buzzerEnabled);
   settingsDirty = false;
   savedNoticeUntilMs = millis() + 2500;
+}
+
+// ================================================================
+// BLE RaceChrono DIY CAN
+// ================================================================
+
+static bool pidAllowed(uint32_t pid) {
+  if (filterAllowAll) return true;
+  if (!filterDenyAllReceived && allowedPidCount == 0) return true;
+
+  for (uint8_t i = 0; i < allowedPidCount; i++) {
+    if (allowedPids[i] == pid) return true;
+  }
+
+  return false;
+}
+
+static void addAllowedPid(uint32_t pid) {
+  for (uint8_t i = 0; i < allowedPidCount; i++) {
+    if (allowedPids[i] == pid) return;
+  }
+
+  if (allowedPidCount < 16) {
+    allowedPids[allowedPidCount++] = pid;
+  }
+}
+
+class ServerCallbacks : public BLEServerCallbacks {
+  void onConnect(BLEServer *server) override {
+    (void)server;
+    bleConnected = true;
+    bleRestartAdvertisingPending = false;
+    Serial.println("[BLE] RaceChrono connected");
+  }
+
+  void onDisconnect(BLEServer *server) override {
+    (void)server;
+    bleConnected = false;
+    bleRestartAdvertisingPending = true;
+    Serial.println("[BLE] disconnected");
+  }
+};
+
+class FilterCallbacks : public BLECharacteristicCallbacks {
+  void onWrite(BLECharacteristic *characteristic) override {
+    String value = characteristic->getValue();
+    const uint8_t *d = (const uint8_t *)value.c_str();
+    size_t n = value.length();
+
+    if (n < 1) return;
+
+    const uint8_t cmd = d[0];
+
+    if (cmd == 0) {
+      filterAllowAll = false;
+      filterDenyAllReceived = true;
+      allowedPidCount = 0;
+      Serial.println("[BLE] CAN filter: deny all");
+      return;
+    }
+
+    if (cmd == 1) {
+      filterAllowAll = true;
+      filterDenyAllReceived = false;
+      allowedPidCount = 0;
+      Serial.println("[BLE] CAN filter: allow all");
+      return;
+    }
+
+    if (cmd == 2 && n >= 7) {
+      uint16_t interval = readU16BE(&d[1]);
+      uint32_t pidBE = readU32BE(&d[3]);
+      uint32_t pidLE = readU32LE(&d[3]);
+
+      addAllowedPid(pidBE);
+      addAllowedPid(pidLE);
+      filterAllowAll = false;
+      filterDenyAllReceived = true;
+
+      Serial.print("[BLE] CAN filter: allow PID BE=0x");
+      Serial.print(pidBE, HEX);
+      Serial.print(" LE=0x");
+      Serial.print(pidLE, HEX);
+      Serial.print(" interval=");
+      Serial.println(interval);
+      return;
+    }
+  }
+};
+
+static void bleSendCanPacket(uint32_t pid, const uint8_t *payload, uint8_t payloadLen) {
+#if ENABLE_BLE_RACECHRONO
+  if (!bleConnected || canMainChar == nullptr) return;
+  if (!pidAllowed(pid)) return;
+  if (payloadLen > 16) payloadLen = 16;
+
+  uint8_t packet[20];
+  packet[0] = (uint8_t)(pid & 0xFF);
+  packet[1] = (uint8_t)((pid >> 8) & 0xFF);
+  packet[2] = (uint8_t)((pid >> 16) & 0xFF);
+  packet[3] = (uint8_t)((pid >> 24) & 0xFF);
+
+  for (uint8_t i = 0; i < payloadLen; i++) {
+    packet[4 + i] = payload[i];
+  }
+
+  canMainChar->setValue(packet, 4 + payloadLen);
+  canMainChar->notify();
+#else
+  (void)pid;
+  (void)payload;
+  (void)payloadLen;
+#endif
+}
+
+static void setupBleRaceChrono() {
+#if ENABLE_BLE_RACECHRONO
+  Serial.println("[BLE] init RaceChrono DIY CAN");
+
+  BLEDevice::init(BLE_DEVICE_NAME);
+  BLEDevice::setMTU(64);
+
+  bleServer = BLEDevice::createServer();
+  bleServer->setCallbacks(new ServerCallbacks());
+
+  BLEService *service = bleServer->createService(UUID_RC_SERVICE);
+
+  canMainChar = service->createCharacteristic(
+    UUID_RC_CAN_MAIN,
+    BLECharacteristic::PROPERTY_READ |
+    BLECharacteristic::PROPERTY_NOTIFY
+  );
+  canMainChar->addDescriptor(new BLE2902());
+
+  canFilterChar = service->createCharacteristic(
+    UUID_RC_CAN_FILTER,
+    BLECharacteristic::PROPERTY_WRITE
+  );
+  canFilterChar->setCallbacks(new FilterCallbacks());
+
+  service->start();
+
+  BLEAdvertising *adv = BLEDevice::getAdvertising();
+  adv->addServiceUUID(UUID_RC_SERVICE);
+  adv->setScanResponse(true);
+  adv->setMinPreferred(0x06);
+  adv->setMinPreferred(0x12);
+
+  BLEDevice::startAdvertising();
+
+  Serial.print("[BLE] advertising name: ");
+  Serial.println(BLE_DEVICE_NAME);
+  Serial.println("[BLE] Service UUID: 0x1FF8, CAN main: 0x0001, filter: 0x0002");
+  Serial.print("[BLE] BrakeDiscTempMax PID: 0x");
+  Serial.println(PID_BRAKE_DISC_TEMP_MAX, HEX);
+  Serial.print("[BLE] BrakeDiscTempFL  PID: 0x");
+  Serial.println(PID_BRAKE_DISC_TEMP_FL, HEX);
+  Serial.print("[BLE] BrakeDiscTempFR  PID: 0x");
+  Serial.println(PID_BRAKE_DISC_TEMP_FR, HEX);
+#endif
+}
+
+static void handleBleAdvertising() {
+#if ENABLE_BLE_RACECHRONO
+  if (!bleRestartAdvertisingPending) return;
+  bleRestartAdvertisingPending = false;
+  BLEDevice::startAdvertising();
+  Serial.println("[BLE] advertising restarted");
+#endif
 }
 
 // ================================================================
@@ -449,7 +759,7 @@ static bool modbusReadOneRegister(uint8_t addr,
     if (c >= 0) {
       resp[n++] = (uint8_t)c;
     } else {
-      delay(1);
+      delay(0);
     }
   }
 
@@ -482,6 +792,33 @@ static bool tryReadTempWithCandidate(uint8_t addr,
   return true;
 }
 
+static bool applyTemperatureFilter(BrakeSensor &s, float rawC, float &filteredOut) {
+  if (!isfinite(rawC)) return false;
+
+  if (!s.hasFiltered || !isfinite(s.filteredTempC)) {
+    s.filteredTempC = rawC;
+    s.hasFiltered = true;
+  } else {
+    float delta = rawC - s.filteredTempC;
+
+    if (fabsf(delta) > TEMP_SPIKE_GATE_C) {
+      Serial.print("[RS485] ");
+      Serial.print(s.name);
+      Serial.print(" spike rejected raw=");
+      Serial.print(rawC, 1);
+      Serial.print("C filt=");
+      Serial.print(s.filteredTempC, 1);
+      Serial.println("C");
+      return false;
+    }
+
+    s.filteredTempC += delta * TEMP_FILTER_ALPHA;
+  }
+
+  filteredOut = s.filteredTempC;
+  return true;
+}
+
 static bool readBrakeTemperature(BrakeSensor &s, float &tempCOut, int16_t &rawOut) {
   if (!s.enabled) return false;
 
@@ -494,13 +831,14 @@ static bool readBrakeTemperature(BrakeSensor &s, float &tempCOut, int16_t &rawOu
     }
   }
 
-  for (int i = 0; i < MODBUS_CANDIDATE_COUNT; i++) {
-    if (i == s.preferredCandidate) continue;
+  int i = s.probeCandidate;
+  if (i < 0 || i >= MODBUS_CANDIDATE_COUNT) i = 0;
+  s.probeCandidate = (i + 1) % MODBUS_CANDIDATE_COUNT;
 
-    if (tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
-      s.preferredCandidate = i;
-      return true;
-    }
+  if (i != s.preferredCandidate &&
+      tryReadTempWithCandidate(s.addr, MODBUS_CANDIDATES[i], tempCOut, rawOut)) {
+    s.preferredCandidate = i;
+    return true;
   }
 
   return false;
@@ -532,11 +870,21 @@ static void pollSensors(uint32_t now) {
   bool ok = readBrakeTemperature(s, t, raw);
 
   if (ok) {
-    s.tempC = t;
-    s.lastRaw = raw;
-    s.ok = true;
-    s.lastOkMs = now;
-    s.failCount = 0;
+    float filtered = NAN;
+
+    if (applyTemperatureFilter(s, t, filtered)) {
+      s.tempC = filtered;
+      s.lastRaw = raw;
+      s.ok = true;
+      s.lastOkMs = now;
+      s.failCount = 0;
+      s.sampleCounter++;
+    } else {
+      s.failCount++;
+      if (s.lastOkMs == 0 || (now - s.lastOkMs) > SENSOR_STALE_MS) {
+        s.ok = false;
+      }
+    }
   } else {
     s.failCount++;
 
@@ -551,7 +899,7 @@ static void pollSensors(uint32_t now) {
 }
 
 // ================================================================
-// Alarm logic
+// Temperature / Alarm logic
 // ================================================================
 
 static float getDisplayTemp(bool &anyOkOut) {
@@ -584,29 +932,151 @@ static bool hasAnySensorFail() {
   return false;
 }
 
+static void resetThermalModel(uint32_t now) {
+  tempFastC = NAN;
+  tempCoreC = NAN;
+  thermalDose = 0.0f;
+  lastThermalUpdateMs = now;
+  coreOverAlarmSinceMs = 0;
+  peakCriticalSinceMs = 0;
+  peakWithSoakSinceMs = 0;
+  thermalAlarmLatched = false;
+}
+
+static void updateThermalModel(uint32_t now) {
+  bool anyOk = false;
+  float rawT = getDisplayTemp(anyOk);
+
+  if (!anyOk || isnan(rawT)) {
+    resetThermalModel(now);
+    return;
+  }
+
+  if (lastThermalUpdateMs == 0 || isnan(tempFastC) || isnan(tempCoreC)) {
+    lastThermalUpdateMs = now;
+    tempFastC = rawT;
+    tempCoreC = rawT;
+    thermalDose = 0.0f;
+    return;
+  }
+
+  float dt = (now - lastThermalUpdateMs) / 1000.0f;
+  lastThermalUpdateMs = now;
+
+  if (dt <= 0.0f || dt > 2.0f) {
+    dt = 0.1f;
+  }
+
+  // 快速滤波，跟随刹车盘表面变化。
+  float alphaFast = dt / (FAST_TEMP_TAU_SEC + dt);
+  tempFastC += alphaFast * (rawT - tempFastC);
+
+  // 慢速热浸透模型：升温较快，降温较慢。
+  float tauCore = (rawT > tempCoreC) ? CORE_HEAT_TAU_SEC : CORE_COOL_TAU_SEC;
+  float alphaCore = dt / (tauCore + dt);
+  tempCoreC += alphaCore * (rawT - tempCoreC);
+
+  // 热负荷积分：只在 ALM - 80°C 以上开始累积。
+  float doseStartC = (float)(alarmTempC - DOSE_START_OFFSET_C);
+
+  if (tempCoreC > doseStartC) {
+    float intensity = (tempCoreC - doseStartC) / (float)DOSE_START_OFFSET_C;
+
+    if (intensity < 0.0f) intensity = 0.0f;
+    if (intensity > 2.5f) intensity = 2.5f;
+
+    thermalDose += intensity * dt;
+  } else {
+    // 冷却时热负荷慢慢消退。
+    thermalDose -= dt * 0.7f;
+  }
+
+  if (thermalDose < 0.0f) thermalDose = 0.0f;
+  if (thermalDose > THERMAL_DOSE_MAX) thermalDose = THERMAL_DOSE_MAX;
+}
+
 static void updateAlarmState(uint32_t now) {
   bool anyOk = false;
-  float displayT = getDisplayTemp(anyOk);
+  float rawT = getDisplayTemp(anyOk);
   bool anyFail = hasAnySensorFail();
 
-  if (!anyOk) {
+  if (!anyOk || isnan(rawT) || isnan(tempFastC) || isnan(tempCoreC)) {
     alarmLatched = false;
+    thermalAlarmLatched = false;
     systemState = STATE_FAIL;
     return;
   }
 
-  if (!alarmLatched && displayT >= (float)alarmTempC) {
+  // 1. Core 温度达到 ALM，必须持续一段时间才报警。
+  if (tempCoreC >= (float)alarmTempC) {
+    if (coreOverAlarmSinceMs == 0) {
+      coreOverAlarmSinceMs = now;
+    }
+  } else {
+    coreOverAlarmSinceMs = 0;
+  }
+
+  bool coreSustainedAlarm =
+      (coreOverAlarmSinceMs != 0 &&
+       (now - coreOverAlarmSinceMs) >= ALARM_CORE_HOLD_MS);
+
+  // 2. 极端表面峰值保护。
+  if (tempFastC >= (float)PEAK_CRITICAL_TEMP_C) {
+    if (peakCriticalSinceMs == 0) {
+      peakCriticalSinceMs = now;
+    }
+  } else {
+    peakCriticalSinceMs = 0;
+  }
+
+  bool peakCriticalAlarm =
+      (peakCriticalSinceMs != 0 &&
+       (now - peakCriticalSinceMs) >= PEAK_CRITICAL_HOLD_MS);
+
+  // 3. 表面温度很高，并且 core 已经接近 ALM。
+  if (tempFastC >= (float)PEAK_WITH_SOAK_TEMP_C &&
+      tempCoreC >= (float)(alarmTempC - PEAK_WITH_SOAK_CORE_MARGIN_C)) {
+    if (peakWithSoakSinceMs == 0) {
+      peakWithSoakSinceMs = now;
+    }
+  } else {
+    peakWithSoakSinceMs = 0;
+  }
+
+  bool peakWithSoakAlarm =
+      (peakWithSoakSinceMs != 0 &&
+       (now - peakWithSoakSinceMs) >= PEAK_WITH_SOAK_HOLD_MS);
+
+  // 4. 热负荷积分报警。
+  bool doseAlarm = thermalDose >= THERMAL_DOSE_ALARM;
+
+  if (coreSustainedAlarm || peakCriticalAlarm || peakWithSoakAlarm || doseAlarm) {
+    thermalAlarmLatched = true;
     alarmLatched = true;
   }
 
-  if (alarmLatched && displayT <= (float)(alarmTempC - ALARM_HYSTERESIS_C)) {
-    alarmLatched = false;
-    muteUntilMs = 0;
+  // 解除报警需要 core 和 dose 都降下来，避免刚降一点就解除。
+  if (thermalAlarmLatched) {
+    bool coreReleased = tempCoreC <= (float)(alarmTempC - CORE_ALARM_RELEASE_MARGIN_C);
+    bool doseReleased = thermalDose <= DOSE_RELEASE_VALUE;
+    bool peakReleased = tempFastC < (float)(alarmTempC - 20);
+
+    if (coreReleased && doseReleased && peakReleased) {
+      thermalAlarmLatched = false;
+      alarmLatched = false;
+      muteUntilMs = 0;
+    }
   }
 
-  if (alarmLatched) {
+  if (thermalAlarmLatched) {
     systemState = STATE_ALARM;
-  } else if (displayT >= (float)(alarmTempC - WARN_MARGIN_C)) {
+    return;
+  }
+
+  bool warnByCore = tempCoreC >= (float)(alarmTempC - WARN_CORE_MARGIN_C);
+  bool warnByDose = thermalDose >= THERMAL_DOSE_WARN;
+
+  if (warnByCore || warnByDose) {
     systemState = STATE_WARN;
   } else if (anyFail) {
     systemState = STATE_FAIL;
@@ -614,6 +1084,269 @@ static void updateAlarmState(uint32_t now) {
     systemState = STATE_OK;
   }
 }
+
+// ================================================================
+// RaceChrono BLE DIY CAN
+// ================================================================
+
+#if ENABLE_RACECHRONO_BLE
+
+static void rcClearFilters() {
+  for (int i = 0; i < RC_MAX_FILTERS; i++) {
+    rcFilters[i].used = false;
+    rcFilters[i].pid = 0;
+    rcFilters[i].intervalMs = RC_DEFAULT_NOTIFY_MS;
+    rcFilters[i].lastSentMs = 0;
+  }
+}
+
+static RaceChronoPidFilter *rcFindFilter(uint32_t pid) {
+  for (int i = 0; i < RC_MAX_FILTERS; i++) {
+    if (rcFilters[i].used && rcFilters[i].pid == pid) {
+      return &rcFilters[i];
+    }
+  }
+  return nullptr;
+}
+
+static RaceChronoPidFilter *rcAddFilter(uint32_t pid, uint16_t intervalMs) {
+  RaceChronoPidFilter *existing = rcFindFilter(pid);
+  if (existing != nullptr) {
+    existing->intervalMs = intervalMs;
+    return existing;
+  }
+
+  for (int i = 0; i < RC_MAX_FILTERS; i++) {
+    if (!rcFilters[i].used) {
+      rcFilters[i].used = true;
+      rcFilters[i].pid = pid;
+      rcFilters[i].intervalMs = intervalMs;
+      rcFilters[i].lastSentMs = 0;
+      return &rcFilters[i];
+    }
+  }
+
+  return nullptr;
+}
+
+static bool rcShouldSendPid(uint32_t pid, uint32_t now) {
+  if (rcAllowAll) {
+    // rcBleUpdate() already limits the global send period.
+    // In allow-all mode we want every telemetry PID to be sent in the same update burst.
+    (void)pid;
+    (void)now;
+    return true;
+  }
+
+  RaceChronoPidFilter *f = rcFindFilter(pid);
+  if (f == nullptr) {
+    return false;
+  }
+
+  uint16_t interval = f->intervalMs;
+  if (interval == 0) interval = RC_DEFAULT_NOTIFY_MS;
+
+  if ((now - f->lastSentMs) >= interval) {
+    f->lastSentMs = now;
+    return true;
+  }
+
+  return false;
+}
+
+class RaceChronoServerCallbacks : public BLEServerCallbacks {
+  void onConnect(BLEServer *server) override {
+    (void)server;
+    rcBleConnected = true;
+    Serial.println("[BLE] RaceChrono connected");
+  }
+
+  void onDisconnect(BLEServer *server) override {
+    (void)server;
+    rcBleConnected = false;
+    Serial.println("[BLE] RaceChrono disconnected, advertising restarted");
+    BLEDevice::startAdvertising();
+  }
+};
+
+class RaceChronoFilterCallbacks : public BLECharacteristicCallbacks {
+  void onWrite(BLECharacteristic *characteristic) override {
+    auto value = characteristic->getValue();
+    size_t len = value.length();
+
+    if (len < 1) {
+      return;
+    }
+
+    uint8_t cmd = (uint8_t)value[0];
+
+    Serial.print("[BLE] Filter cmd: ");
+    for (size_t i = 0; i < len; i++) {
+      Serial.printf("%02X ", (uint8_t)value[i]);
+    }
+    Serial.println();
+
+    if (cmd == 0x00 && len == 1) {
+      // Deny all
+      rcAllowAll = false;
+      rcClearFilters();
+      Serial.println("[BLE] CAN filter: deny all");
+      return;
+    }
+
+    if (cmd == 0x01 && len >= 3) {
+      // Allow all
+      rcAllowAll = true;
+      rcDefaultNotifyMs = readU16BE((const uint8_t *)&value[1]);
+      if (rcDefaultNotifyMs == 0) rcDefaultNotifyMs = RC_DEFAULT_NOTIFY_MS;
+      rcClearFilters();
+
+      Serial.print("[BLE] CAN filter: allow all, interval=");
+      Serial.print(rcDefaultNotifyMs);
+      Serial.println("ms");
+      return;
+    }
+
+    if (cmd == 0x02 && len >= 7) {
+      // Allow one PID. RaceChrono API encodes filter values big-endian.
+      uint16_t intervalMs = readU16BE((const uint8_t *)&value[1]);
+      uint32_t pid = readU32BE((const uint8_t *)&value[3]);
+
+      if (intervalMs == 0) intervalMs = RC_DEFAULT_NOTIFY_MS;
+      rcAllowAll = false;
+      rcAddFilter(pid, intervalMs);
+
+      Serial.print("[BLE] CAN filter: allow PID 0x");
+      Serial.print(pid, HEX);
+      Serial.print(", interval=");
+      Serial.print(intervalMs);
+      Serial.println("ms");
+      return;
+    }
+  }
+};
+
+static void rcStartAdvertising() {
+  rcAdvertising = BLEDevice::getAdvertising();
+  rcAdvertising->addServiceUUID(RC_BLE_SERVICE_UUID);
+  rcAdvertising->setScanResponse(true);
+  rcAdvertising->setMinPreferred(0x06);
+  rcAdvertising->setMaxPreferred(0x12);
+  rcAdvertising->start();
+}
+
+static void rcBleBegin() {
+  Serial.println("[BLE] Init RaceChrono BLE DIY CAN");
+
+  BLEDevice::init(RC_BLE_DEVICE_NAME);
+
+#if defined(ESP_PWR_LVL_P9)
+  BLEDevice::setPower(ESP_PWR_LVL_P9);
+#endif
+
+  rcServer = BLEDevice::createServer();
+  rcServer->setCallbacks(new RaceChronoServerCallbacks());
+
+  BLEService *service = rcServer->createService(RC_BLE_SERVICE_UUID);
+
+  rcCanMainCharacteristic = service->createCharacteristic(
+      RC_BLE_CAN_MAIN_UUID,
+      BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_NOTIFY);
+  rcCanMainCharacteristic->addDescriptor(new BLE2902());
+
+  rcCanFilterCharacteristic = service->createCharacteristic(
+      RC_BLE_CAN_FILTER_UUID,
+      BLECharacteristic::PROPERTY_WRITE);
+  rcCanFilterCharacteristic->setCallbacks(new RaceChronoFilterCallbacks());
+
+  service->start();
+
+  rcClearFilters();
+  rcAllowAll = true;
+  rcDefaultNotifyMs = RC_DEFAULT_NOTIFY_MS;
+
+  rcStartAdvertising();
+
+  Serial.print("[BLE] Advertising name: ");
+  Serial.println(RC_BLE_DEVICE_NAME);
+}
+
+static void rcSendCanFrame(uint32_t pid, const uint8_t *payload, uint8_t payloadLen) {
+  if (!rcBleConnected || rcCanMainCharacteristic == nullptr) {
+    return;
+  }
+
+  if (payloadLen > 16) {
+    payloadLen = 16;
+  }
+
+  uint8_t frame[20];
+
+  // Packet ID is little-endian per RaceChrono CAN-Bus main characteristic.
+  frame[0] = (uint8_t)(pid & 0xFF);
+  frame[1] = (uint8_t)((pid >> 8) & 0xFF);
+  frame[2] = (uint8_t)((pid >> 16) & 0xFF);
+  frame[3] = (uint8_t)((pid >> 24) & 0xFF);
+
+  for (uint8_t i = 0; i < payloadLen; i++) {
+    frame[4 + i] = payload[i];
+  }
+
+  rcCanMainCharacteristic->setValue(frame, 4 + payloadLen);
+  rcCanMainCharacteristic->notify();
+  rcNotifyCount++;
+}
+
+static void rcSendI16TempPid(uint32_t pid, float tempC, bool valid, uint32_t now) {
+  if (!rcShouldSendPid(pid, now)) return;
+
+  uint8_t payload[2];
+  writeI16BE(payload, tempToI16x10(tempC, valid));
+  rcSendCanFrame(pid, payload, sizeof(payload));
+}
+
+static void rcSendU16Pid(uint32_t pid, uint16_t value, uint32_t now) {
+  if (!rcShouldSendPid(pid, now)) return;
+
+  uint8_t payload[2];
+  writeU16BE(payload, value);
+  rcSendCanFrame(pid, payload, sizeof(payload));
+}
+
+static void rcSendU8Pid(uint32_t pid, uint8_t value, uint32_t now) {
+  if (!rcShouldSendPid(pid, now)) return;
+
+  uint8_t payload[1] = {value};
+  rcSendCanFrame(pid, payload, sizeof(payload));
+}
+
+static void rcBleUpdate(uint32_t now) {
+  if (!rcBleConnected) {
+    return;
+  }
+
+  if ((now - rcLastSendMs) < RC_SEND_INTERVAL_MS) {
+    return;
+  }
+
+  rcLastSendMs = now;
+
+  bool anyOk = false;
+  float displayT = getDisplayTemp(anyOk);
+
+  rcSendI16TempPid(RC_PID_BRAKE_FL, sensors[0].tempC, sensors[0].enabled && sensors[0].ok, now);
+  rcSendI16TempPid(RC_PID_BRAKE_FR, sensors[1].tempC, sensors[1].enabled && sensors[1].ok, now);
+  rcSendI16TempPid(RC_PID_BRAKE_DISPLAY, displayT, anyOk, now);
+  rcSendI16TempPid(RC_PID_BRAKE_FAST, tempFastC, !isnan(tempFastC), now);
+  rcSendI16TempPid(RC_PID_BRAKE_CORE, tempCoreC, !isnan(tempCoreC), now);
+
+  uint16_t dose10 = (uint16_t)clampInt((int)lroundf(thermalDose * 10.0f), 0, 65535);
+  rcSendU16Pid(RC_PID_BRAKE_DOSE, dose10, now);
+  rcSendU8Pid(RC_PID_BRAKE_STATE, (uint8_t)systemState, now);
+  rcSendU16Pid(RC_PID_BRAKE_ALARM, (uint16_t)alarmTempC, now);
+}
+
+#endif
 
 // ================================================================
 // Button handling
@@ -627,6 +1360,15 @@ static void adjustAlarmTemp(int delta, uint32_t now) {
     settingsDirty = true;
     lastAdjustMs = now;
     savedNoticeUntilMs = 0;
+
+    // ALM 调整后重置热模型，避免旧 dose 按旧阈值继续影响报警。
+    thermalDose = 0.0f;
+    thermalAlarmLatched = false;
+    alarmLatched = false;
+    coreOverAlarmSinceMs = 0;
+    peakCriticalSinceMs = 0;
+    peakWithSoakSinceMs = 0;
+
     shortBeep(12);
 
     Serial.print("[KEY] Alarm temp changed: ");
@@ -686,7 +1428,7 @@ static void handleButtons(uint32_t now) {
     saveSettings();
     buzzerNoticeUntilMs = now + 1500;
 
-    Serial.print("[KEY] Buzzer toggled: ");
+    Serial.print("[KEY] Buzzer toggled for FAIL/WARN: ");
     Serial.println(buzzerEnabled ? "ON" : "OFF");
 
     if (buzzerEnabled) {
@@ -715,7 +1457,13 @@ static void updateBuzzer(uint32_t now) {
   bool inStartupGrace = (now - startupMs) < 3000;
   bool muted = (muteUntilMs != 0 && now < muteUntilMs);
 
-  if (!buzzerEnabled || inStartupGrace || muted) {
+  if (inStartupGrace || muted) {
+    buzzerSet(false);
+    return;
+  }
+
+  // B:OFF 只屏蔽 FAIL / WARN，不屏蔽真正超温 ALARM。
+  if (!buzzerEnabled && systemState != STATE_ALARM) {
     buzzerSet(false);
     return;
   }
@@ -769,6 +1517,8 @@ static void updateLed(uint32_t now) {
 
 // ================================================================
 // OLED drawing - Large single temperature UI
+// Boot animation block is intentionally kept identical to V1.4.
+// Do not modify HYUNDAI_N_LOGO_XBM / drawBootAnimationFrame unless requested.
 // ================================================================
 
 static void drawBootScreen();
@@ -788,9 +1538,16 @@ static const char *sensorOnlineText(const BrakeSensor &s) {
 
 static void drawSensorStatusBar() {
   char status[24];
+#if ENABLE_RACECHRONO_BLE
+  snprintf(status, sizeof(status), "FL:%s FR:%s BLE:%s",
+           sensorOnlineText(sensors[0]),
+           sensorOnlineText(sensors[1]),
+           rcBleConnected ? "ON" : "--");
+#else
   snprintf(status, sizeof(status), "FL:%s FR:%s",
            sensorOnlineText(sensors[0]),
            sensorOnlineText(sensors[1]));
+#endif
 
   u8g2.setFont(u8g2_font_5x8_tf);
   u8g2.drawStr(3, 8, status);
@@ -934,7 +1691,6 @@ static void drawLargeTemp(uint32_t now) {
 
     snprintf(tempBuf, sizeof(tempBuf), "%d", tempInt);
 
-    // 大数字
     u8g2.setFont(u8g2_font_logisoso42_tn);
     int numW = u8g2.getStrWidth(tempBuf);
 
@@ -943,17 +1699,20 @@ static void drawLargeTemp(uint32_t now) {
 
     u8g2.drawStr(x, 50, tempBuf);
 
-    // 小 C
     u8g2.setFont(u8g2_font_9x15B_tf);
     u8g2.drawStr(x + numW + 3, 47, "C");
   } else {
-    // 不显示 FAIL，只显示 ----
     drawCenteredText("----", u8g2_font_logisoso32_tn, 45);
   }
 
-  // 底部保留 ALM 和设置状态
-  char bottom[24];
-  snprintf(bottom, sizeof(bottom), "ALM:%d", alarmTempC);
+  // 底部保留 ALM 和设置状态。用小字显示热负荷，便于路试标定。
+  char bottom[28];
+
+  if (!isnan(tempCoreC)) {
+    snprintf(bottom, sizeof(bottom), "ALM:%d D:%02d", alarmTempC, (int)thermalDose);
+  } else {
+    snprintf(bottom, sizeof(bottom), "ALM:%d", alarmTempC);
+  }
 
   u8g2.setFont(u8g2_font_6x10_tf);
   u8g2.drawStr(0, 63, bottom);
@@ -994,7 +1753,7 @@ static void drawBootScreen() {
   u8g2.drawStr(10, 36, "12V RS485");
 
   u8g2.setFont(u8g2_font_5x8_tf);
-  u8g2.drawStr(5, 55, "Hyundai N Display V1.4");
+  u8g2.drawStr(5, 55, "Thermal BLE V1.5");
 
   u8g2.sendBuffer();
 }
@@ -1050,6 +1809,17 @@ static void printDebug(uint32_t now) {
     Serial.print("----");
   }
 
+  Serial.print(" Tfast=");
+  if (!isnan(tempFastC)) Serial.print(tempFastC, 1);
+  else Serial.print("nan");
+
+  Serial.print(" Tcore=");
+  if (!isnan(tempCoreC)) Serial.print(tempCoreC, 1);
+  else Serial.print("nan");
+
+  Serial.print(" Dose=");
+  Serial.print(thermalDose, 1);
+
   Serial.print(" STATE=");
   Serial.print(stateText(systemState));
 
@@ -1059,6 +1829,13 @@ static void printDebug(uint32_t now) {
 
   Serial.print(" BUZZ=");
   Serial.print(buzzerEnabled ? "ON" : "OFF");
+
+#if ENABLE_RACECHRONO_BLE
+  Serial.print(" BLE=");
+  Serial.print(rcBleConnected ? "ON" : "--");
+  Serial.print(" N=");
+  Serial.print(rcNotifyCount);
+#endif
 
   if (settingsDirty) {
     Serial.print(" DIRTY");
@@ -1096,11 +1873,12 @@ void setup() {
 
   Serial.println();
   Serial.println("==================================================");
-  Serial.println("Brake Temp Node 12V RS485 Alarm Display V1.4");
-  Serial.println("Hyundai N OLED UI + Boot Animation");
+  Serial.println("Brake Temp Node 12V RS485 Alarm Display V1.5");
+  Serial.println("Hyundai N OLED UI + Thermal Load Alarm + RaceChrono BLE");
   Serial.println("ESP32-C3 + SP3485 + SH1106 OLED + Buzzer + Keys");
   Serial.println("Default protocol: Modbus RTU, 9600, 8N1");
   Serial.println("FL addr=0x01, FR addr=0x02");
+  Serial.println("RaceChrono BLE DIY CAN enabled");
   Serial.println("==================================================");
   Serial.print("PIN_RS485_DE    = GPIO"); Serial.println(PIN_RS485_DE);
   Serial.print("PIN_OLED_SCL    = GPIO"); Serial.println(PIN_OLED_SCL);
@@ -1120,7 +1898,7 @@ void setup() {
   Serial.print(alarmTempC);
   Serial.println(" C");
 
-  Serial.print("[SET] Buzzer = ");
+  Serial.print("[SET] Buzzer for FAIL/WARN = ");
   Serial.println(buzzerEnabled ? "ON" : "OFF");
 
   Wire.begin(PIN_OLED_SDA, PIN_OLED_SCL);
@@ -1139,6 +1917,10 @@ void setup() {
 
   rs485ReceiveMode();
 
+#if ENABLE_RACECHRONO_BLE
+  rcBleBegin();
+#endif
+
   ledSet(true);
   shortBeep(60);
   delay(80);
@@ -1154,9 +1936,13 @@ void loop() {
 
   handleButtons(now);
   pollSensors(now);
+  updateThermalModel(now);
   updateAlarmState(now);
   updateBuzzer(now);
   updateLed(now);
   updateDisplay(now);
+#if ENABLE_RACECHRONO_BLE
+  rcBleUpdate(now);
+#endif
   printDebug(now);
 }
