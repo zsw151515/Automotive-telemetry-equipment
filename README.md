@@ -95,6 +95,12 @@ Automotive-telemetry-equipment/
 ├─ README.md
 ├─ CODEX.md
 ├─ AGENTS.md
+├─ scripts/
+│  ├─ compile_arduino.ps1                  # Arduino / ESP32 固件编译检查
+│  ├─ check_docs_consistency.py            # 文档版本边界一致性检查
+│  └─ check_pdf_metadata.py                # 原理图 PDF 文件名和 Title 检查
+├─ .github/
+│  └─ workflows/project-checks.yml         # GitHub Actions 自动检查
 ├─ docs/
 │  ├─ 01_项目背景.md
 │  ├─ 02_硬件版本说明.md
@@ -127,6 +133,23 @@ Automotive-telemetry-equipment/
 - 修改胎温高度 v3 前，必须阅读 `docs/09_胎温高度v3_RaceChrono_BLE_ONLY说明.md`。
 - 修改刹车节点前，必须先确认目标版本是 `brake_temp_12v_max31856`、`brake_temp_12v_rs485`，还是当前主线 `brake_temp_alarm_display_12v_rs485`。
 - 每次让 Codex 改代码时，都要求它输出完整 `.ino` 文件，不要只给片段补丁。
+
+## 自动化检查
+
+本仓库提供轻量检查脚本，用于减少版本边界、PDF 元数据和固件编译问题：
+
+```powershell
+python scripts/check_docs_consistency.py
+python scripts/check_pdf_metadata.py
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/compile_arduino.ps1 -Sketch firmware/brake_temp_alarm_display_12v_rs485/hyundai_n_brake_temp_alarm_display_12V_RS485.ino -Fqbn esp32:esp32:esp32c3
+```
+
+说明：
+
+- `check_docs_consistency.py` 检查 README / CODEX / AGENTS / docs / firmware README 中的主线版本、历史版本和 BLE DIY CAN 边界说明。
+- `check_pdf_metadata.py` 检查 hardware 目录下 PDF 文件名和内部 `/Title` 元数据，避免 `break/brake` 这类交付命名错误。
+- `compile_arduino.ps1` 会把 `.ino` 临时复制成 Arduino CLI 可编译的 sketch 目录，不改动原始固件目录。
+- `.github/workflows/project-checks.yml` 会在 push / PR 时运行文档和 PDF 检查；Arduino 编译默认手动触发，避免缺库或板卡环境导致普通文档提交被卡住。
 
 ## 重要原则
 

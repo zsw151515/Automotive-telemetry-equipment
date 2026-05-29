@@ -1,0 +1,70 @@
+name: Project checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_arduino_compile:
+        description: "Run Arduino compile job"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  docs-and-pdf:
+    name: Docs and PDF metadata
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install PDF tooling
+        run: python -m pip install --upgrade pypdf
+
+      - name: Check documentation consistency
+        run: python scripts/check_docs_consistency.py
+
+      - name: Check PDF metadata
+        run: python scripts/check_pdf_metadata.py
+
+  arduino-compile:
+    name: Arduino compile
+    runs-on: windows-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.run_arduino_compile == 'true'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install ESP32 core
+        shell: pwsh
+        run: |
+          arduino-cli config init
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32
+
+      - name: Install common Arduino libraries
+        shell: pwsh
+        run: |
+          arduino-cli lib update-index
+          arduino-cli lib install "U8g2"
+          arduino-cli lib install "Adafruit MLX90640"
+          arduino-cli lib install "VL53L1X"
+          arduino-cli lib install "Adafruit MAX31856 library"
+
+      - name: Compile all firmware sketches
+        shell: pwsh
+        run: ./scripts/compile_arduino.ps1 -All -Fqbn esp32:esp32:esp32c3

@@ -343,3 +343,28 @@ I2C 串联电阻位置如果误焊为 10kΩ，会导致传感器无法通信。
 - 把 MAX31856 热电偶卡钳测温逻辑混入 RS485 红外刹车盘版本
 - 大规模重构稳定代码
 - 引入复杂第三方库导致 Arduino 编译风险增加
+
+## 14. 自动化检查工具
+
+本仓库提供以下本地检查工具：
+
+```powershell
+python scripts/check_docs_consistency.py
+python scripts/check_pdf_metadata.py
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/compile_arduino.ps1 -Sketch firmware/brake_temp_alarm_display_12v_rs485/hyundai_n_brake_temp_alarm_display_12V_RS485.ino -Fqbn esp32:esp32:esp32c3
+```
+
+Codex 修改代码或文档后应按影响范围运行：
+
+1. 修改文档、版本边界、RaceChrono 规则后，运行 `check_docs_consistency.py`。
+2. 修改硬件 PDF、原理图文件名或 PDF 元数据后，运行 `check_pdf_metadata.py`。
+3. 修改 `.ino` 固件后，优先运行 `compile_arduino.ps1` 编译目标固件。
+4. 如果 Arduino 编译失败，最终回复必须说明失败原因、缺失库或需要用户本地确认的环境。
+
+GitHub Actions 文件：
+
+```text
+.github/workflows/project-checks.yml
+```
+
+该 workflow 默认在 push / PR 时检查文档一致性和 PDF 元数据；Arduino 编译通过 `workflow_dispatch` 手动触发。
