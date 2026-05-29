@@ -25,6 +25,12 @@ iOS 版本相对 Android 在自定义外部遥测方面存在更多限制。
 - Wi-Fi UDP / TCP 外部遥测在 iOS 上配置和通道显示受限。
 - DIY CAN BLE 可以用于某些自定义通道，但名称和显示方式受限制。
 
+边界必须明确：
+
+- 胎温高度节点 v3 的胎温热图走 RejsaRubberTrac 风格 BLE，不是 DIY CAN BLE，不使用 PID / CAN ID 方式描述。
+- DIY CAN BLE 只用于某些自定义通道，例如当前刹车报警显示节点的刹车盘温度、热负荷、报警状态等。
+- 只有 DIY CAN BLE 自定义通道相关改动，才要求列出 PID / CAN ID 和 RaceChrono 计算公式。
+
 因此，不要轻易把已经可用的 RejsaRubberTrac BLE 方案换成 UDP/TCP。
 
 ## 3. BLE 设备命名
@@ -65,7 +71,44 @@ const uint8_t TIRE_ID = 3;
 
 修改前必须明确说明风险。
 
-## 5. 数据刷新率原则
+## 5. BLE DIY CAN 文档规则
+
+以后只要修改 BLE DIY CAN 自定义通道相关固件，必须同时完成两件事：
+
+1. 最终回复中列出当前固件实际使用的 PID / CAN ID、payload 字节布局、单位、缩放倍率和 RaceChrono 计算公式。
+2. 同步更新对应 `.md` 文档，至少包括 `docs/04_RaceChrono_BLE说明.md`、对应版本说明文档和对应 `firmware/*/README.md`。
+
+每个 DIY CAN 通道至少写清楚：
+
+```text
+PID / CAN ID：
+通道名称：
+payload 字节：
+数据类型：
+大小端：
+单位：
+缩放倍率：
+无效值：
+RaceChrono 计算公式：
+```
+
+示例：
+
+```text
+PID 0x100 Brake FL
+payload: B0 B1
+type: int16 BE
+unit: C
+scale: x10
+invalid: 0x7FFF
+RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+```
+
+如果只是优化 DIY CAN 自定义通道的发送节奏、filter 解析、BLE notify 或无效值处理，且 PID 没有变化，也必须重新列出当前 PID 和公式，避免后续文档与固件脱节。
+
+注意：这条规则不适用于胎温高度节点 v3 的 RejsaRubberTrac 风格 BLE 热图。修改胎温高度 v3 时，应说明设备名、Service、Characteristic、轮位 ID、数据包布局和 RaceChrono 热图行为，但不要硬套 DIY CAN PID / 公式表。
+
+## 6. 数据刷新率原则
 
 胎温和高度数据希望尽可能低延迟，但不能牺牲稳定性。
 
@@ -76,7 +119,7 @@ const uint8_t TIRE_ID = 3;
 - 传感器读取失败时不要发送误导数据
 - 显示刷新和 BLE 发送应分开节奏
 
-## 6. BLE 优先级
+## 7. BLE 优先级
 
 RaceChrono BLE 连接是关键功能。
 
@@ -88,7 +131,7 @@ RaceChrono BLE 连接是关键功能。
 - 显示刷新阻塞通信
 - 按键逻辑阻塞 BLE
 
-## 7. 推荐测试流程
+## 8. 推荐测试流程
 
 每次修改 BLE 相关代码后，应测试：
 
@@ -102,9 +145,9 @@ RaceChrono BLE 连接是关键功能。
 8. 保持连接 10 分钟以上，观察是否掉线。
 9. 断开重连，确认可恢复。
 
-## 8. 常见问题
+## 9. 常见问题
 
-### 8.1 RaceChrono 搜索不到设备
+### 9.1 RaceChrono 搜索不到设备
 
 可能原因：
 
@@ -115,7 +158,7 @@ RaceChrono BLE 连接是关键功能。
 - ESP32 供电不稳
 - 代码中阻塞过久
 
-### 8.2 RaceChrono 连接后无数据
+### 9.2 RaceChrono 连接后无数据
 
 可能原因：
 
@@ -125,7 +168,7 @@ RaceChrono BLE 连接是关键功能。
 - 发送频率异常
 - RaceChrono 通道配置不正确
 
-### 8.3 之前能连，后来不能连
+### 9.3 之前能连，后来不能连
 
 可能原因：
 

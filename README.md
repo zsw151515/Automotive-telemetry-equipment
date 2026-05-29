@@ -143,6 +143,7 @@ Automotive-telemetry-equipment/
 - `brake_temp_12v_max31856` 是独立热电偶卡钳测温版本，目前还没有接入报警显示。
 - 不要把 MAX31856 热电偶卡钳测温逻辑、初代 RS485 逻辑、报警显示 RS485 逻辑互相混用。
 - RS485 读取、OLED 显示、蜂鸣器报警不能阻塞 RaceChrono BLE。
+- 以后只要修改 BLE DIY CAN 自定义通道相关固件，必须在回复和对应 `.md` 文档中同步写明 PID / CAN ID、字节布局、单位、缩放倍率和 RaceChrono 计算公式；胎温高度 v3 的 RejsaRubberTrac 风格 BLE 热图不是 DIY CAN，不按 PID 规则记录。
 - 传感器初始化和失败重试逻辑不要为了简洁删除。
 - 电源控制、长按关机、按键识别逻辑必须保守修改。
 - 出现偶发问题时，优先增加日志和保护逻辑，不要盲目大改架构。

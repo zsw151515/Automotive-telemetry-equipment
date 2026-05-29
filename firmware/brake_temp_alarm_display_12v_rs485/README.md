@@ -55,18 +55,28 @@ V1.5 Thermal Load Alarm + RaceChrono BLE
 - RaceChrono 使用 BLE DIY CAN-Bus API，设备名为 `N BrakeTemp`。
 - RaceChrono 默认发送节奏为约 150ms 一轮，兼顾流畅和 BLE 稳定。
 
-RaceChrono DIY CAN PIDs：
+RaceChrono DIY CAN 自定义通道 PIDs：
 
 ```text
-0x100 Brake FL        int16 BE, 温度 x10 C，0x7FFF 表示无效
-0x101 Brake FR        int16 BE, 温度 x10 C，0x7FFF 表示无效
-0x102 Brake Display   int16 BE, 屏幕显示温度 x10 C
-0x103 Brake Fast      int16 BE, Tfast x10 C
-0x104 Brake Core      int16 BE, Tcore x10 C
-0x105 Brake Dose      uint16 BE, Dose x10
-0x106 Brake State     uint8, 0 OK / 1 WARN / 2 ALARM / 3 FAIL
-0x107 Brake Alarm     uint16 BE, ALM C
+0x100 Brake FL        payload B0 B1, int16 BE, 温度 x10 C，0x7FFF 表示无效
+                         RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+0x101 Brake FR        payload B0 B1, int16 BE, 温度 x10 C，0x7FFF 表示无效
+                         RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+0x102 Brake Display   payload B0 B1, int16 BE, 屏幕显示温度 x10 C，0x7FFF 表示无效
+                         RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+0x103 Brake Fast      payload B0 B1, int16 BE, Tfast x10 C，0x7FFF 表示无效
+                         RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+0x104 Brake Core      payload B0 B1, int16 BE, Tcore x10 C，0x7FFF 表示无效
+                         RaceChrono formula: tempC = signed16(B0 * 256 + B1) / 10.0
+0x105 Brake Dose      payload B0 B1, uint16 BE, Dose x10
+                         RaceChrono formula: dose = (B0 * 256 + B1) / 10.0
+0x106 Brake State     payload B0, uint8, 0 OK / 1 WARN / 2 ALARM / 3 FAIL
+                         RaceChrono formula: state = B0
+0x107 Brake Alarm     payload B0 B1, uint16 BE, ALM C
+                         RaceChrono formula: alarmC = B0 * 256 + B1
 ```
+
+以后只要修改 BLE DIY CAN 自定义通道发送、filter、PID、payload、缩放、无效值或 RaceChrono 相关逻辑，即使 PID 没有变化，也必须在最终回复和对应 `.md` 文档中重新列出当前 PID 与计算公式。该规则只针对 DIY CAN 自定义通道，不适用于胎温高度 v3 的 RejsaRubberTrac 风格 BLE 热图。
 
 蜂鸣器逻辑：
 
@@ -105,6 +115,7 @@ RaceChrono DIY CAN PIDs：
 - 不要让 RS485 / 显示 / 按键阻塞 RaceChrono BLE。
 - 修改后必须说明蜂鸣器逻辑。
 - 修改后必须说明 RaceChrono BLE 是否可搜索、可连接、发送哪些通道。
+- 涉及 BLE DIY CAN 自定义通道的固件改动时，必须说明 PID / CAN ID、payload、单位、缩放、无效值和 RaceChrono 计算公式，并同步更新对应 `.md` 文档。
 
 ## 上传固件后需要补充
 
