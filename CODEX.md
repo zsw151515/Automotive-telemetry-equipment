@@ -278,7 +278,8 @@ Codex 修改此版本时必须遵守：
 9. 不要把 RS485 读取失败、CRC 错误、温度无效显示或发送为正常 `0°C`。
 10. 修改后必须说明 RaceChrono 是否可搜索、可连接、发送哪些通道。
 11. 如果修改 BLE DIY CAN 发送、filter、PID、数据缩放、无效值或通道定义，必须列出每个 PID 的 payload 字节含义和 RaceChrono 计算公式，并同步更新 `docs/04_RaceChrono_BLE说明.md`、`docs/08_12V_RS485刹车节点说明.md` 和对应固件 README；不要把胎温高度 v3 的 RejsaRubberTrac BLE 热图写成 DIY CAN PID。
-12. 修改后必须说明蜂鸣器逻辑，尤其是 SET 长按静音后再次超温是否会响。
+12. 当前 V1.6 报警语义是“系统温度确认”：`ALARM` 必须由 `Tcore` 达到或接近 `ALM` 确认，不要把瞬时盘面尖峰或单独 `Dose` 改成可直接强制 `ALARM`。
+13. 修改后必须说明蜂鸣器逻辑，尤其是 SET 长按静音后再次超温是否会响。
 
 ## 10. 胎温高度节点 v2 背景
 

@@ -41,14 +41,18 @@ hyundai_n_brake_temp_alarm_display_12V_RS485.ino
 当前定位：
 
 ```text
-V1.5 Thermal Load Alarm + RaceChrono BLE
+V1.6 System Temperature Alarm + RaceChrono BLE
 ```
 
 关键行为：
 
 - 显示仍使用 V1.4 Hyundai N OLED 开机动画，未改动画代码。
 - 屏幕主数字显示当前有效刹车盘温度最大值。
-- 报警不只看瞬时盘面温度，而是使用 `Tfast / Tcore / Dose` 热负荷模型，减少单次温度尖峰误报。
+- 报警不只看瞬时盘面温度，而是使用 `Tfast / Tcore / Dose` 估算整套刹车系统热浸透状态，减少单次温度尖峰误报。
+- `ALARM` 必须由 `Tcore` 达到或接近 `ALM` 来确认；盘面瞬时高温和 `Dose` 只能触发 `WARN` 或辅助确认，不能单独强制 `ALARM`。
+- `Tcore` 使用较慢的升温 / 降温时间常数，目标是让 `ALARM` 表示刹车盘、刹车片、卡钳、制动液等系统温度已经接近报警温度。
+- 低温台架测试时，`Dose` 起算点最低限制为 `80°C`，避免 `ALM=100°C`、环境约 `35°C` 静置也累计热负荷并误报警。
+- 调整 `ALM` 后会完整重置 `Tfast / Tcore / Dose` 热模型，避免旧阈值下的热模型继续影响新阈值。
 - RS485 失败时不会把温度显示或发送为正常 `0°C`。
 - RS485 候选寄存器探测按轮次逐个尝试，避免传感器断开时一次轮询阻塞太久。
 - 按键提示蜂鸣改为非阻塞，不应造成 OLED 刷新或 RaceChrono 发送明显停顿。
@@ -72,6 +76,7 @@ RaceChrono DIY CAN 自定义通道 PIDs：
                          RaceChrono formula: dose = (B0 * 256 + B1) / 10.0
 0x106 Brake State     payload B0, uint8, 0 OK / 1 WARN / 2 ALARM / 3 FAIL
                          RaceChrono formula: state = B0
+                         V1.6 meaning: ALARM is Tcore/system-temperature confirmed.
 0x107 Brake Alarm     payload B0 B1, uint16 BE, ALM C
                          RaceChrono formula: alarmC = B0 * 256 + B1
 ```

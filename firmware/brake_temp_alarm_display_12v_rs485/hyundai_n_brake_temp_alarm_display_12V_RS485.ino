@@ -7,17 +7,18 @@
   RS485: SP3485, Modbus RTU master
   RaceChrono: BLE DIY CAN-Bus API
 
-  Version: V1.5 Thermal Load Alarm + RaceChrono BLE
-  Date: 2026-05-28
+  Version: V1.6 System Temperature Alarm + RaceChrono BLE
+  Date: 2026-05-31
 
-  Main changes from V1.4:
+  Main changes from V1.5:
     - Instant disc surface temperature is used for display only.
-    - Alarm uses thermal load model:
+    - Alarm is now core/system-temperature confirmed:
         Tfast = fast surface filter
-        Tcore = slow heat-soak estimate
+        Tcore = slow brake-system heat-soak estimate
         Dose  = accumulated thermal load
-      ALARM now means "must cool down", not "momentary rotor surface touched ALM".
-    - RaceChrono BLE DIY CAN output added.
+      ALARM means the estimated brake system temperature is near ALM,
+      not that a short rotor surface spike touched ALM.
+    - Dose and surface peaks can warn, but cannot alone force ALARM.
     - B:OFF only mutes FAIL/WARN. Real ALARM still forces buzzer unless UP+DOWN mute is active.
 
   Display:
@@ -115,41 +116,42 @@
 #define KEY_REPEAT_INTERVAL_MS 150
 
 // ================================================================
-// Thermal Load Alarm V1.5
+// System Temperature Alarm V1.6
 // ================================================================
 
 // ALM 不再代表刹车盘表面瞬时报警线，而代表“热浸透核心温度报警线”。
-#define WARN_CORE_MARGIN_C 40
+#define WARN_CORE_MARGIN_C 30
 
 // 快速表面滤波时间常数。越小越跟手。
 #define FAST_TEMP_TAU_SEC 0.8f
 
-// 热浸透模型：升温比降温快，模拟刹车皮/卡钳/油液被持续热浸透。
-#define CORE_HEAT_TAU_SEC 8.0f
-#define CORE_COOL_TAU_SEC 18.0f
+// 热浸透模型：用更慢的核心温度估算整套刹车系统热状态。
+// IR 看到的是盘面瞬态热点；Tcore 用较慢时间常数避免单脚刹车误判为系统过热。
+#define CORE_HEAT_TAU_SEC 20.0f
+#define CORE_COOL_TAU_SEC 45.0f
 
 // 热负荷从 ALM - 80C 开始累积。
 #define DOSE_START_OFFSET_C 80
+// 低温台架测试时 ALM 可能设到 100~150C。
+// Dose 起算点不能低到环境温度附近，否则静置也会慢慢累计到报警。
+#define DOSE_START_MIN_C 80
 
-// 热负荷报警阈值。路试后可以按实际刹车皮/赛道调整。
+// 热负荷阈值。Dose 主要用于 WARN 和辅助确认 ALARM，不再单独强制 ALARM。
 #define THERMAL_DOSE_WARN 10.0f
 #define THERMAL_DOSE_ALARM 20.0f
 #define THERMAL_DOSE_MAX 99.0f
 
 // Core 达到 ALM 后必须持续这么久才真正报警，避免单次重刹误报。
-#define ALARM_CORE_HOLD_MS 8000
+#define ALARM_CORE_HOLD_MS 6000
 
-// 极端峰值保护：盘面温度非常高且持续时，强制报警。
-#define PEAK_CRITICAL_TEMP_C 780
-#define PEAK_CRITICAL_HOLD_MS 3000
-
-// 高峰值 + 已热浸透，提前报警。
-#define PEAK_WITH_SOAK_TEMP_C 700
-#define PEAK_WITH_SOAK_CORE_MARGIN_C 20
-#define PEAK_WITH_SOAK_HOLD_MS 5000
+// Core 已接近 ALM 时，允许用 Dose 或持续盘面高温辅助确认。
+// 这样 ALARM 仍表示“系统温度接近报警温度”，不是单纯表面尖峰。
+#define CORE_NEAR_ALARM_MARGIN_C 20
+#define SURFACE_CONFIRM_MARGIN_C 40
+#define NEAR_CORE_CONFIRM_HOLD_MS 5000
 
 // 报警解除必须 core 和 dose 都降下来。
-#define CORE_ALARM_RELEASE_MARGIN_C 50
+#define CORE_ALARM_RELEASE_MARGIN_C 40
 #define DOSE_RELEASE_VALUE 8.0f
 
 // ================================================================
@@ -379,7 +381,6 @@ float thermalDose = 0.0f;
 
 uint32_t lastThermalUpdateMs = 0;
 uint32_t coreOverAlarmSinceMs = 0;
-uint32_t peakCriticalSinceMs = 0;
 uint32_t peakWithSoakSinceMs = 0;
 bool thermalAlarmLatched = false;
 
@@ -752,7 +753,6 @@ static void resetThermalModel(uint32_t now) {
   thermalDose = 0.0f;
   lastThermalUpdateMs = now;
   coreOverAlarmSinceMs = 0;
-  peakCriticalSinceMs = 0;
   peakWithSoakSinceMs = 0;
   thermalAlarmLatched = false;
 }
@@ -791,7 +791,12 @@ static void updateThermalModel(uint32_t now) {
   tempCoreC += alphaCore * (rawT - tempCoreC);
 
   // 热负荷积分：只在 ALM - 80°C 以上开始累积。
+  // 但低温台架测试时，起算点最低限制为 DOSE_START_MIN_C，
+  // 避免 ALM=100C 时环境 35C 也累计 Dose。
   float doseStartC = (float)(alarmTempC - DOSE_START_OFFSET_C);
+  if (doseStartC < (float)DOSE_START_MIN_C) {
+    doseStartC = (float)DOSE_START_MIN_C;
+  }
 
   if (tempCoreC > doseStartC) {
     float intensity = (tempCoreC - doseStartC) / (float)DOSE_START_OFFSET_C;
@@ -834,22 +839,15 @@ static void updateAlarmState(uint32_t now) {
       (coreOverAlarmSinceMs != 0 &&
        (now - coreOverAlarmSinceMs) >= ALARM_CORE_HOLD_MS);
 
-  // 2. 极端表面峰值保护。
-  if (tempFastC >= (float)PEAK_CRITICAL_TEMP_C) {
-    if (peakCriticalSinceMs == 0) {
-      peakCriticalSinceMs = now;
-    }
-  } else {
-    peakCriticalSinceMs = 0;
-  }
+  // 2. Core 已接近 ALM 时，才允许用 Dose 或持续表面高温辅助确认。
+  // 这样 ALARM 表示整套刹车系统已经接近报警温度，而不是单次盘面尖峰。
+  bool coreNearAlarm =
+      tempCoreC >= (float)(alarmTempC - CORE_NEAR_ALARM_MARGIN_C);
+  bool doseHigh = thermalDose >= THERMAL_DOSE_ALARM;
+  bool surfaceHighWithNearCore =
+      tempFastC >= (float)(alarmTempC + SURFACE_CONFIRM_MARGIN_C);
 
-  bool peakCriticalAlarm =
-      (peakCriticalSinceMs != 0 &&
-       (now - peakCriticalSinceMs) >= PEAK_CRITICAL_HOLD_MS);
-
-  // 3. 表面温度很高，并且 core 已经接近 ALM。
-  if (tempFastC >= (float)PEAK_WITH_SOAK_TEMP_C &&
-      tempCoreC >= (float)(alarmTempC - PEAK_WITH_SOAK_CORE_MARGIN_C)) {
+  if (coreNearAlarm && (doseHigh || surfaceHighWithNearCore)) {
     if (peakWithSoakSinceMs == 0) {
       peakWithSoakSinceMs = now;
     }
@@ -857,14 +855,11 @@ static void updateAlarmState(uint32_t now) {
     peakWithSoakSinceMs = 0;
   }
 
-  bool peakWithSoakAlarm =
+  bool nearCoreConfirmedAlarm =
       (peakWithSoakSinceMs != 0 &&
-       (now - peakWithSoakSinceMs) >= PEAK_WITH_SOAK_HOLD_MS);
+       (now - peakWithSoakSinceMs) >= NEAR_CORE_CONFIRM_HOLD_MS);
 
-  // 4. 热负荷积分报警。
-  bool doseAlarm = thermalDose >= THERMAL_DOSE_ALARM;
-
-  if (coreSustainedAlarm || peakCriticalAlarm || peakWithSoakAlarm || doseAlarm) {
+  if (coreSustainedAlarm || nearCoreConfirmedAlarm) {
     thermalAlarmLatched = true;
     alarmLatched = true;
   }
@@ -873,7 +868,7 @@ static void updateAlarmState(uint32_t now) {
   if (thermalAlarmLatched) {
     bool coreReleased = tempCoreC <= (float)(alarmTempC - CORE_ALARM_RELEASE_MARGIN_C);
     bool doseReleased = thermalDose <= DOSE_RELEASE_VALUE;
-    bool peakReleased = tempFastC < (float)(alarmTempC - 20);
+    bool peakReleased = tempFastC < (float)alarmTempC;
 
     if (coreReleased && doseReleased && peakReleased) {
       thermalAlarmLatched = false;
@@ -889,8 +884,9 @@ static void updateAlarmState(uint32_t now) {
 
   bool warnByCore = tempCoreC >= (float)(alarmTempC - WARN_CORE_MARGIN_C);
   bool warnByDose = thermalDose >= THERMAL_DOSE_WARN;
+  bool warnBySurface = tempFastC >= (float)alarmTempC;
 
-  if (warnByCore || warnByDose) {
+  if (warnByCore || warnByDose || warnBySurface) {
     systemState = STATE_WARN;
   } else if (anyFail) {
     systemState = STATE_FAIL;
@@ -1180,13 +1176,9 @@ static void adjustAlarmTemp(int delta, uint32_t now) {
     lastAdjustMs = now;
     savedNoticeUntilMs = 0;
 
-    // ALM 调整后重置热模型，避免旧 dose 按旧阈值继续影响报警。
-    thermalDose = 0.0f;
-    thermalAlarmLatched = false;
+    // ALM 调整后完整重置热模型，避免旧 Tcore / dose 按旧阈值继续影响报警。
+    resetThermalModel(now);
     alarmLatched = false;
-    coreOverAlarmSinceMs = 0;
-    peakCriticalSinceMs = 0;
-    peakWithSoakSinceMs = 0;
 
     shortBeep(12);
 
@@ -1575,7 +1567,7 @@ static void drawBootScreen() {
   u8g2.drawStr(10, 36, "12V RS485");
 
   u8g2.setFont(u8g2_font_5x8_tf);
-  u8g2.drawStr(5, 55, "Thermal BLE V1.5");
+  u8g2.drawStr(5, 55, "Thermal BLE V1.6");
 
   u8g2.sendBuffer();
 }
@@ -1695,8 +1687,8 @@ void setup() {
 
   Serial.println();
   Serial.println("==================================================");
-  Serial.println("Brake Temp Node 12V RS485 Alarm Display V1.5");
-  Serial.println("Hyundai N OLED UI + Thermal Load Alarm + RaceChrono BLE");
+  Serial.println("Brake Temp Node 12V RS485 Alarm Display V1.6");
+  Serial.println("Hyundai N OLED UI + System Temperature Alarm + RaceChrono BLE");
   Serial.println("ESP32-C3 + SP3485 + SH1106 OLED + Buzzer + Keys");
   Serial.println("Default protocol: Modbus RTU, 9600, 8N1");
   Serial.println("FL addr=0x01, FR addr=0x02");
