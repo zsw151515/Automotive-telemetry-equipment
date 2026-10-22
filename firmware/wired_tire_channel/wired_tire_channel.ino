@@ -3,10 +3,12 @@
 #include <esp_timer.h>
 #include "ChannelConfig.h"
 #include "ProbeLink.h"
+#include "RaceChronoBle.h"
 #if !CONFIG_IDF_TARGET_ESP32C3
 #error "wired_tire_channel targets ESP32-C3"
 #endif
 ProbeLink probe;
+RaceChronoBle raceChrono;
 uint64_t lastStatusUs = 0;
 void setup() {
   Serial.begin(115200);
@@ -20,10 +22,14 @@ void setup() {
   }
   if (!probe.begin(channel_config::wheel, channel_config::rx, channel_config::tx, channel_config::direction))
     Serial.println("Probe interface init FAILED; firmware remains responsive");
+  raceChrono.begin(channel_config::wheel, channel_config::auxiliaryFields, channel_config::bleAuxVerified);
 }
 void loop() {
   const auto now = static_cast<uint64_t>(esp_timer_get_time());
-  if (channel_config::hardwareEnabled) probe.poll(now);
+  if (channel_config::hardwareEnabled) {
+    probe.poll(now);
+    raceChrono.poll(now, probe.meta(), probe.zones());
+  }
   if (now - lastStatusUs >= 1000000) {
     lastStatusUs = now;
     const auto meta = probe.meta(); const auto& stats = probe.stats();
