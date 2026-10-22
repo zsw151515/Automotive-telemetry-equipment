@@ -12,6 +12,17 @@ static void rejected(const std::vector<uint8_t>& bytes, ParseResult expected, ui
   for (auto value : frame.valid) CHECK(value == 0xA5);
 }
 int main(int argc, char** argv) {
+  runTest("exception_framing_does_not_read_two_byte_count", [] {
+    const uint8_t exception[]{1, 0xE5, 2, 0xAA};
+    CHECK(expectedYfResponseBytes(exception, 1) == 0);
+    CHECK(expectedYfResponseBytes(exception, 2) == 5);
+    CHECK(expectedYfResponseBytes(exception, 4) == 5);
+    const uint8_t normal[]{1, 0x65, 6, 0x22};
+    CHECK(expectedYfResponseBytes(normal, 3) == 0);
+    CHECK(expectedYfResponseBytes(normal, 4) == 1576);
+    const uint8_t oversized[]{1, 0x65, 0xFF, 0xFF};
+    CHECK(expectedYfResponseBytes(oversized, 4) > 2048);
+  });
   runTest("modbus_crc_known_vector", [] {
     CHECK(modbusCrc(reinterpret_cast<const uint8_t*>("123456789"), 9) == 0x4B37);
   });

@@ -33,6 +33,8 @@ firmware/
 
 ## 放置规则
 
+独立研发目录 `wired_tire_channel` 用于新有线胎温中控的 C3 采集/BLE 单元，共享库位于 `libraries/WiredTireCore`。当前默认离线构建、禁用实际 I/O，不能作为旧 v3 的替换固件；完整测试和接口见 `docs/11_四路有线胎温中控接口.md`。
+
 - 每个固件目录至少包含一个 `.ino` 文件和一个 `README.md`。
 - 稳定版本不要直接覆盖，建议保留版本号或使用 Git tag。
 - Codex 修改代码前必须阅读仓库根目录 `CODEX.md` 和 `AGENTS.md`。

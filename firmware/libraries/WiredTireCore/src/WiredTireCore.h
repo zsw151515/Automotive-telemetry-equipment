@@ -2,3 +2,4 @@
 #include "ThermalFrame.h"
 #include "Yf90640Protocol.h"
 #include "TireZones.h"
+#include "ProbeSchedule.h"

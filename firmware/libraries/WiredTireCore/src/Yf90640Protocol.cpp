@@ -1,5 +1,12 @@
 #include "Yf90640Protocol.h"
 namespace wired_tire {
+size_t expectedYfResponseBytes(const uint8_t* bytes, size_t size) {
+  if (!bytes || size < 2) return 0;
+  if (bytes[1] == 0xE5) return 5;
+  if (bytes[1] != 0x65) return kMaxProbeResponse + 1;
+  if (size < 4) return 0;
+  return ((size_t{bytes[2]} << 8) | bytes[3]) + 6;
+}
 uint16_t modbusCrc(const uint8_t* bytes, size_t size) {
   if (!bytes && size) return 0;
   uint16_t crc = 0xFFFF;

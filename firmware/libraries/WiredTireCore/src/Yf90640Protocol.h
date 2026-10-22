@@ -9,5 +9,7 @@ constexpr size_t kYfRegisterBytes = 1570;
 constexpr size_t kYfResponseBytes = kYfRegisterBytes + 6;
 constexpr size_t kMaxProbeResponse = 2048;
 uint16_t modbusCrc(const uint8_t* bytes, size_t size);
+// 0 = incomplete header, > kMaxProbeResponse = unsupported/oversize header.
+size_t expectedYfResponseBytes(const uint8_t* bytes, size_t size);
 ParseResult decodeYf65(const uint8_t* bytes, size_t size, uint8_t expectedAddress, ThermalFrame& output);
 }
