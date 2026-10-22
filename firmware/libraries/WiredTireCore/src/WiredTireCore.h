@@ -4,3 +4,4 @@
 #include "TireZones.h"
 #include "ProbeSchedule.h"
 #include "RaceChronoPacket.h"
+#include "SnapshotWire.h"

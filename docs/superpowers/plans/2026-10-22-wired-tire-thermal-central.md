@@ -172,7 +172,7 @@
 
 **Interfaces:** 提供 `EncodeResult encodeSnapshot(const ThermalFrame&, const FrameMeta&, const ZoneResult&, const LinkStats&, uint32_t ageMs, uint32_t requestToken, uint8_t*, size_t)`、`DecodeResult decodeSnapshot(const uint8_t*, size_t, WheelId expected, uint32_t expectedToken, Snapshot&)`、`uint32_t wireCrc32(const uint8_t*, size_t)`。`Snapshot` 聚合已定义类型及数据年龄、请求 token；`LinkStats` 为 CRC/长度/超时/恢复/丢弃计数。CRC32 采用 IEEE 标准，测试向量 `123456789 -> 0xCBF43926`。
 
-- [ ] 定义固定 1728 字节线协议：64 字节头、1536 字节像素、96 字节有效位图、16 字节八分区、4 字节 CRC32、12 字节零填充。头部偏移：0–3 魔数 `WTH1`；4 版本=1；5 轮位；6 状态；7 分区有效位；8 启动 ID；12 接收序号；16 接收时间 u64；24 年龄 ms u32；28 载荷长度 u16=1648；30 ROI 起始行；31 镜像标志；32 配置版本 u32；36/40/44/48/52 五项错误计数 u32；56 请求 token u32；60–63 保留零。多字节字段均小端，CRC 覆盖前 1712 字节，填充不承载业务字段。
+- [ ] 定义固定 1728 字节线协议：64 字节头、1536 字节像素、96 字节有效位图、16 字节八分区、4 字节 CRC32、12 字节零填充。头部偏移：0–3 魔数 `WTH1`；4 版本=1；5 轮位；6 状态；7 分区有效位；8 启动 ID；12 接收序号；16 接收时间 u64；24 年龄 ms u32；28 载荷长度 u16=1648；30 ROI 起始行；31 状态标志（bit0 镜像、bit1 BLE 连接、bit2 BLE 启用）；32 配置版本 u32；36/40/44/48/52 五项错误计数 u32；56 请求 token u32；60–63 保留零。多字节字段均小端，CRC 覆盖前 1712 字节，填充不承载业务字段。
 - [ ] 先测试缺失/重复数据、CRC 错误、错误轮位、未知版本、错误长度、符号温度、序号回绕、启动 ID 改变，以及同一内容但年龄增大。断言失败不替换旧快照，序号不是采样次数。运行 `-Case snapshot` 取得失败。
 
   ```cpp

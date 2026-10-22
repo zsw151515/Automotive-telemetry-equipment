@@ -30,6 +30,7 @@ struct FrameMeta {
   uint32_t bootId = 0, rxSequence = 0;
   uint64_t receivedUs = 0;
   FrameState state = FrameState::NotReady;
+  bool bleEnabled = false, bleConnected = false;
 };
 struct ZoneResult {
   std::array<int16_t, kZones> temp10{};
