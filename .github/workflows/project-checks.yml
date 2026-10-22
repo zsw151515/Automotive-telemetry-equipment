@@ -65,6 +65,45 @@ jobs:
           arduino-cli lib install "VL53L1X"
           arduino-cli lib install "Adafruit MAX31856 library"
 
-      - name: Compile all firmware sketches
+      - name: Compile existing C3 firmware sketches
         shell: pwsh
-        run: ./scripts/compile_arduino.ps1 -All -Fqbn esp32:esp32:esp32c3
+        run: |
+          ./scripts/compile_arduino.ps1 -SketchPathInput firmware/tire_temp_height_node_v3/tire_temp_height_node_racechrono_fast_clean_v3.ino -Fqbn esp32:esp32:esp32c3
+          ./scripts/compile_arduino.ps1 -SketchPathInput firmware/brake_temp_12v_max31856/node_brake_temp_12V_MAX31856.ino -Fqbn esp32:esp32:esp32c3
+          ./scripts/compile_arduino.ps1 -SketchPathInput firmware/brake_temp_alarm_display_12v_rs485/hyundai_n_brake_temp_alarm_display_12V_RS485.ino -Fqbn esp32:esp32:esp32c3
+
+  wired-tire-native:
+    name: Wired tire offline tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Native C++ tests
+        shell: pwsh
+        run: ./scripts/test_wired_tire_core.ps1 -Case all
+      - name: Capture and package tests
+        run: python -m unittest discover -s tests/wired_tire -p 'test_*.py'
+
+  wired-tire-compile:
+    name: Wired tire ${{ matrix.target }} offline compile
+    runs-on: windows-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.run_arduino_compile == 'true'
+    strategy:
+      matrix:
+        target: [channel, display]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-arduino-cli@v2
+        with:
+          version: "1.5.0"
+      - name: Install tested ESP32 core
+        shell: pwsh
+        run: |
+          arduino-cli config init
+          arduino-cli core update-index
+          arduino-cli core install esp32:esp32@3.3.7
+      - name: Compile and inspect driver linkage
+        shell: pwsh
+        run: ./scripts/compile_wired_tire.ps1 -Target ${{ matrix.target }}

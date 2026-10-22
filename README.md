@@ -27,6 +27,8 @@
 
 [实施计划](docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md)按协议、单轮 BLE、四轮共存、显示原型、定制 PCB 和整机验证分阶段推进。
 
+离线软件入口：[接口与数据定义](docs/11_四路有线胎温中控接口.md)、[软件包与构建说明](docs/12_四路有线胎温离线软件交付说明.md)。采集固件位于 `firmware/wired_tire_channel`，显示固件位于 `firmware/wired_tire_display`；默认关闭真实 I/O，必须取得核准 profile 后才能上硬件。离线构建检查完整驱动路径链接，不能据此宣称实物兼容或 30 FPS 已实现。
+
 ### 1. 胎温高度节点 v3（当前主线）
 
 - ESP32 / ESP32-C3 主控

@@ -7,6 +7,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 CHECKS = [
+    ("docs/11_四路有线胎温中控接口.md", ["硬件关卡未通过", "不是 DIY CAN", "SPI 快照 v1"]),
+    ("docs/12_四路有线胎温离线软件交付说明.md", ["离线研发版本", "不是 DIY CAN", "hardware_validated=false"]),
+    ("firmware/wired_tire_channel/README.md", ["默认构建 WIRED_TIRE_OFFLINE_BUILD=1", "不是旧无线 v3 替换固件"]),
+    ("firmware/wired_tire_display/README.md", ["默认离线构建", "尚未验证"]),
+    ("hardware/wired_tire_central/README.md", ["设计验证阶段", "未提供制造文件"]),
     (
         "README.md",
         [

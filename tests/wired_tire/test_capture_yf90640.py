@@ -1,5 +1,6 @@
 import importlib.util
 import io
+import contextlib
 import json
 import pathlib
 import tempfile
@@ -111,7 +112,7 @@ class CaptureTests(unittest.TestCase):
                                        serial_factory=forbidden)
 
     def test_cli_requires_explicit_port_parameters(self):
-        with self.assertRaises(SystemExit) as error:
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as error:
             capture_module.main([])
         self.assertNotEqual(error.exception.code, 0)
 

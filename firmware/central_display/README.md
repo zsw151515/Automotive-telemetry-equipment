@@ -1,5 +1,7 @@
 # 中控显示固件
 
+本目录为历史占位。新四路有线胎温中控使用独立目录 `firmware/wired_tire_display`，配合 `firmware/wired_tire_channel`；它不恢复无线胎温高度 v3 的中控发送链路，当前仅为离线研发。
+
 ## 用途
 
 本目录用于车内中控显示相关固件。
