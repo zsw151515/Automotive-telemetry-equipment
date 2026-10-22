@@ -25,10 +25,9 @@ void setup() {
   }
   const int pins[]{channel_config::rx, channel_config::tx, channel_config::direction, channel_config::sck,
       channel_config::mosi, channel_config::miso, channel_config::select, channel_config::ready};
+  if (!wired_tire::distinctPins(pins, 8)) { Serial.println("Unassigned/conflicting pins; IO disabled"); return; }
   for (unsigned i = 0; i < 8; ++i) {
     if (!GPIO_IS_VALID_GPIO(pins[i])) { Serial.println("Invalid pin profile; all sensor IO disabled"); return; }
-    for (unsigned j = 0; j < i; ++j)
-      if (pins[i] == pins[j]) { Serial.println("Pin conflict; all sensor IO disabled"); return; }
 #if !ARDUINO_USB_CDC_ON_BOOT
     if (pins[i] == 20 || pins[i] == 21) { Serial.println("UART0 debug pin conflict"); return; }
 #endif

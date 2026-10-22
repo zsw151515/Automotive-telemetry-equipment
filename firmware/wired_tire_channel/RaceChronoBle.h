@@ -7,8 +7,8 @@
 #include <atomic>
 class RaceChronoBle : public BLEServerCallbacks {
  public:
-  bool begin(wired_tire::WheelId, const wired_tire::LegacyAuxFields&, bool auxiliaryFieldsVerified);
-  void poll(uint64_t nowUs, const wired_tire::FrameMeta&, const wired_tire::ZoneResult&);
+  WT_OFFLINE_LINK bool begin(wired_tire::WheelId, const wired_tire::LegacyAuxFields&, bool auxiliaryFieldsVerified);
+  WT_OFFLINE_LINK void poll(uint64_t nowUs, const wired_tire::FrameMeta&, const wired_tire::ZoneResult&);
   bool connected() const { return connected_.load(); }
   bool enabled() const { return enabled_; }
   uint32_t notificationAttempts() const { return notificationAttempts_; }

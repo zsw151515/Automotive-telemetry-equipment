@@ -1,7 +1,13 @@
 #include "test_support.h"
 #include "ProbeSchedule.h"
+#include "ThermalFrame.h"
 using namespace wired_tire;
 int main() {
+  runTest("unassigned_or_duplicate_board_pins_fail_before_io", [] {
+    const int okay[]{3, 4, 5}; const int duplicate[]{3, 4, 3}; const int unassigned[]{3, -1, 5};
+    CHECK(distinctPins(okay, 3)); CHECK(!distinctPins(duplicate, 3));
+    CHECK(!distinctPins(unassigned, 3)); CHECK(!distinctPins(nullptr, 0));
+  });
   runTest("spi_window_uses_configured_100ms_deadline", [] {
     ProbeSchedule schedule(100000, 250000, 500000);
     CHECK(schedule.poll(0) == ProbeAction::Request);

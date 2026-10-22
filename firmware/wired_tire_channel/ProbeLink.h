@@ -3,8 +3,8 @@
 #include <WiredTireCore.h>
 class ProbeLink {
  public:
-  bool begin(wired_tire::WheelId wheel, int rx, int tx, int direction);
-  void poll(uint64_t nowUs);
+  WT_OFFLINE_LINK bool begin(wired_tire::WheelId wheel, int rx, int tx, int direction);
+  WT_OFFLINE_LINK void poll(uint64_t nowUs);
   bool copyLatest(wired_tire::ThermalFrame&, wired_tire::FrameMeta&) const;
   const wired_tire::ZoneResult& zones() const { return zones_; }
   const wired_tire::LinkStats& stats() const { return stats_; }

@@ -38,7 +38,8 @@ uint64_t get(const uint8_t* in, size_t offset, size_t bytes) {
   return value;
 }
 int16_t signed16(uint64_t bits) {
-  return static_cast<int16_t>(bits >= 0x8000 ? static_cast<int32_t>(bits) - 65536 : bits);
+  const int32_t value = static_cast<int32_t>(bits & 0xFFFF);
+  return static_cast<int16_t>(value >= 0x8000 ? value - 65536 : value);
 }
 bool good(const ThermalFrame& frame, const FrameMeta& meta, const ZoneResult& zones) {
   if (!validWheel(meta.wheel) || !meta.bootId || static_cast<unsigned>(meta.state) > 4 ||

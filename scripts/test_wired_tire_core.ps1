@@ -2,7 +2,8 @@ param(
     [ValidateSet("all","yf90640","zones","schedule","racechrono","snapshot","view","heatmap")]
     [string]$Case = "all",
     [string]$CompilerPath = "",
-    [string]$CapturePath = ""
+    [string]$CapturePath = "",
+    [string]$PreviewPath = ""
 )
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
@@ -44,6 +45,7 @@ foreach ($testCase in $cases) {
     if ($LASTEXITCODE -ne 0) { throw "Native compile failed: $testCase" }
     $testArgs = @()
     if ($CapturePath -and $testCase -eq "yf90640") { $testArgs = @("--capture", (Resolve-Path -LiteralPath $CapturePath).Path) }
+    if ($PreviewPath -and $testCase -eq "heatmap") { $testArgs = @("--preview", $PreviewPath) }
     & $executable @testArgs
     if ($LASTEXITCODE -ne 0) { throw "Native assertions failed: $testCase" }
 }

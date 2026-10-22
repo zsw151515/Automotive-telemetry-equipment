@@ -6,6 +6,14 @@
 namespace wired_tire {
 constexpr size_t kRows = 24, kCols = 32, kPixels = kRows * kCols;
 constexpr size_t kValidityBytes = kPixels / 8, kZones = 8;
+inline bool distinctPins(const int* pins, size_t count) {
+  if (!pins || !count) return false;
+  for (size_t i = 0; i < count; ++i) {
+    if (pins[i] < 0) return false;
+    for (size_t j = 0; j < i; ++j) if (pins[i] == pins[j]) return false;
+  }
+  return true;
+}
 enum class WheelId : uint8_t { FL = 1, FR = 2, RL = 3, RR = 4 };
 enum class FrameState : uint8_t { NotReady = 0, Valid = 1, Partial = 2, Stale = 3, CommError = 4 };
 inline bool validWheel(WheelId wheel) {

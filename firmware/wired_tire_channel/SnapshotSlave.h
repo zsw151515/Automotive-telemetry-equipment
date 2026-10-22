@@ -4,8 +4,8 @@
 #include <driver/spi_slave.h>
 class SnapshotSlave {
  public:
-  bool begin(ProbeLink&, RaceChronoBle&, int sck, int mosi, int miso, int select, int ready);
-  void poll();
+  WT_OFFLINE_LINK bool begin(ProbeLink&, RaceChronoBle&, int sck, int mosi, int miso, int select, int ready);
+  WT_OFFLINE_LINK void poll();
  private:
   static void prepared(spi_slave_transaction_t*);
   static void completed(spi_slave_transaction_t*);

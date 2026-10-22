@@ -27,4 +27,9 @@ $compileArgs = @("compile","--fqbn",$fqbn,"--libraries",(Join-Path $repoRoot "fi
     "--build-path",$buildRoot,"--build-property","compiler.cpp.extra_flags=-DWIRED_TIRE_OFFLINE_BUILD=$offlineFlag",$sketch)
 & $ArduinoCli @compileArgs
 if ($LASTEXITCODE -ne 0) { throw "Compile failed: $Target / $Profile" }
+if ($Profile -eq "offline") {
+    $elfFiles = @(Get-ChildItem -LiteralPath $buildRoot -Filter "*.elf" -File)
+    if ($elfFiles.Count -ne 1) { throw "Expected one target ELF for link inspection" }
+    & (Join-Path $PSScriptRoot "check_wired_tire_link.ps1") -Target $Target -ElfPath $elfFiles[0].FullName -ArduinoCli $ArduinoCli
+}
 Write-Host "PASS wired tire $Target compile ($Profile). Compile success is not hardware validation."

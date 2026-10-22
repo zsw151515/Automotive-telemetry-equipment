@@ -4,8 +4,8 @@
 #include <WiredTireCore.h>
 class SnapshotMaster {
  public:
-  bool begin(int sck, int mosi, int miso, const std::array<int,4>& selects, const std::array<int,4>& ready);
-  bool pollWheel(wired_tire::WheelId, wired_tire::SnapshotDelivery&);
+  WT_OFFLINE_LINK bool begin(int sck, int mosi, int miso, const std::array<int,4>& selects, const std::array<int,4>& ready);
+  WT_OFFLINE_LINK bool pollWheel(wired_tire::WheelId, wired_tire::SnapshotDelivery&);
  private:
   struct Channel {
     spi_device_handle_t device = nullptr;
