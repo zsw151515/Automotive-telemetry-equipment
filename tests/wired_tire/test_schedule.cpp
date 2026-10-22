@@ -3,6 +3,13 @@
 #include "ThermalFrame.h"
 using namespace wired_tire;
 int main() {
+  runTest("response_commit_rejects_deadline_without_prior_timeout_poll", [] {
+    ProbeSchedule schedule;
+    schedule.poll(0); schedule.response(400000, true);
+    CHECK(!schedule.hasGoodResponse() && !schedule.pending());
+    CHECK(schedule.poll(899999) == ProbeAction::None);
+    CHECK(schedule.poll(900000) == ProbeAction::Request);
+  });
   runTest("unassigned_or_duplicate_board_pins_fail_before_io", [] {
     const int okay[]{3, 4, 5}; const int duplicate[]{3, 4, 3}; const int unassigned[]{3, -1, 5};
     CHECK(distinctPins(okay, 3)); CHECK(!distinctPins(duplicate, 3));

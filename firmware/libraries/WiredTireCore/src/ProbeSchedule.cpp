@@ -27,12 +27,16 @@ ProbeAction ProbeSchedule::poll(uint64_t nowUs) {
   }
   return ProbeAction::None;
 }
-void ProbeSchedule::response(uint64_t nowUs, bool accepted) {
-  if (!pending_) return;
+bool ProbeSchedule::response(uint64_t nowUs, bool accepted) {
+  if (!pending_) return false;
   pending_ = false;
-  if (nowUs < lastClock_) { good_ = false; clockSet_ = false; nextRequest_ = nowUs; return; }
+  if (nowUs < lastClock_) { good_ = false; clockSet_ = false; nextRequest_ = nowUs; return false; }
   lastClock_ = nowUs;
+  if (nowUs < requested_ || nowUs - requested_ >= timeoutUs_) {
+    nextRequest_ = later(nowUs, retryUs_); return false;
+  }
   if (accepted) { lastGood_ = nowUs; good_ = true; }
   else nextRequest_ = later(nowUs, retryUs_);
+  return accepted;
 }
 }

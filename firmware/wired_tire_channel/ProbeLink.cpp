@@ -21,11 +21,10 @@ bool ProbeLink::begin(WheelId wheel, int rx, int tx, int direction) {
 void ProbeLink::finish(uint64_t nowUs) {
   const auto parsed = decodeYf65(response_, count_, 1, candidate_);
   receiving_ = false;
-  const bool accepted = parsed == ParseResult::Ok;
-  schedule_.response(nowUs, accepted);
+  const bool accepted = schedule_.response(nowUs, parsed == ParseResult::Ok);
   if (!accepted) {
     if (parsed == ParseResult::CrcMismatch) ++stats_.crcErrors;
-    else ++stats_.lengthErrors;
+    else if (parsed != ParseResult::Ok) ++stats_.lengthErrors;
     ++stats_.dropped;
     if (!haveFrame_) meta_.state = FrameState::CommError;
     return;
@@ -45,6 +44,12 @@ void ProbeLink::finish(uint64_t nowUs) {
 void ProbeLink::poll(uint64_t nowUs) {
   if (!enabled_) return;
   if (haveFrame_ && !isFresh(nowUs, meta_.receivedUs)) meta_.state = FrameState::Stale;
+  // Expire before consuming buffered bytes: a late tail must never renew freshness.
+  const auto action = schedule_.poll(nowUs);
+  if (action == ProbeAction::Timeout) {
+    receiving_ = false; count_ = 0; ++stats_.timeouts;
+    if (!haveFrame_) meta_.state = FrameState::CommError;
+  }
   size_t budget = 512;
   while (Serial1.available() && budget--) {
     const int value = Serial1.read();
@@ -63,11 +68,9 @@ void ProbeLink::poll(uint64_t nowUs) {
       if (count_ >= expected) { finish(nowUs); break; }
     }
   }
-  const auto action = schedule_.poll(nowUs);
-  if (action == ProbeAction::Timeout) {
-    receiving_ = false; ++stats_.timeouts;
-    if (!haveFrame_) meta_.state = FrameState::CommError;
-  } else if (action == ProbeAction::Request) {
+  if (action == ProbeAction::Request) {
+    // Keep the drain bounded. Retry later if old traffic still fills the FIFO.
+    if (Serial1.available()) { schedule_.response(nowUs, false); ++stats_.dropped; return; }
     count_ = 0; receiving_ = true;
     uint8_t request[]{1, 0x65, 0, 0, 3, 0x11, 0, 0};
     const auto crc = modbusCrc(request, 6);

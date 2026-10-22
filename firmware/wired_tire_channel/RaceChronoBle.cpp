@@ -56,7 +56,8 @@ void RaceChronoBle::poll(uint64_t nowUs, const FrameMeta& meta, const ZoneResult
     batchMeta_ = meta; batchZones_ = zones;
     nextBatchUs_ = nowUs + 30000; nextPartUs_ = nowUs;
   }
-  if (nowUs < nextPartUs_ || !canNotify(batchMeta_, batchZones_, nowUs, true)) return;
+  if (nowUs < nextPartUs_) return;
+  if (!canNotify(batchMeta_, batchZones_, nowUs, true)) { part_ = 0; return; }
   uint8_t packet[20];
   if (!buildRaceChronoPacket(static_cast<uint8_t>(part_ + 1), batchZones_, aux_, packet)) { part_ = 0; return; }
   chars_[part_]->setValue(packet, sizeof(packet));

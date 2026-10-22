@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("all","yf90640","zones","schedule","racechrono","snapshot","view","heatmap")]
+    [ValidateSet("all","yf90640","zones","schedule","racechrono","snapshot","view","heatmap","probe_driver","ble_driver")]
     [string]$Case = "all",
     [string]$CompilerPath = "",
     [string]$CapturePath = "",
@@ -24,7 +24,7 @@ if (-not $CompilerPath) {
 if (-not $CompilerPath -or -not (Test-Path -LiteralPath $CompilerPath)) {
     throw "Native C++17 compiler missing. Pass -CompilerPath or set WIRED_TIRE_CXX; no tests ran."
 }
-$cases = @("yf90640", "zones", "schedule", "racechrono", "snapshot", "view", "heatmap")
+$cases = @("yf90640", "zones", "schedule", "racechrono", "snapshot", "view", "heatmap", "probe_driver", "ble_driver")
 if ($Case -ne "all") { $cases = @($Case) }
 $buildRoot = Join-Path $workspace "native-tests"
 New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
@@ -40,6 +40,11 @@ foreach ($testCase in $cases) {
     }
     $compileArgs += @("-std=c++17", "-Wall", "-Wextra", "-Wpedantic", "-Werror", "-O1", "-I", $libraryDir, $testFile)
     $compileArgs += $sources
+    if ($testCase -in @("probe_driver", "ble_driver")) {
+        $channelDir = Join-Path $repoRoot "firmware/wired_tire_channel"
+        $driver = if ($testCase -eq "probe_driver") { "ProbeLink.cpp" } else { "RaceChronoBle.cpp" }
+        $compileArgs += @("-I", (Join-Path $repoRoot "tests/wired_tire/stubs"), "-I", $channelDir, (Join-Path $channelDir $driver))
+    }
     $compileArgs += @("-o", $executable)
     & $CompilerPath @compileArgs
     if ($LASTEXITCODE -ne 0) { throw "Native compile failed: $testCase" }

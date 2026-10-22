@@ -19,6 +19,27 @@ static std::array<SnapshotDelivery,4> samples() {
   return values;
 }
 int main(int argc, char** argv) {
+  runTest("dashboard_mirrors_columns_and_validity_to_match_all_four_ble_zone_orders", [] {
+    auto values = samples(); ColorScale scale;
+    std::vector<uint16_t> pixels(1024 * 600);
+    PixelSurface surface{pixels.data(),1024,600,1024,pixels.size()};
+    const size_t origins[]{56 * 1024 + 12,56 * 1024 + 524,336 * 1024 + 12,336 * 1024 + 524};
+    for (size_t w = 0; w < 4; ++w) {
+      auto& frame = values[w].snapshot.frame;
+      for (size_t row = 0; row < 24; ++row)
+        for (size_t col = 0; col < 32; ++col) frame.temp10[row * 32 + col] = static_cast<int16_t>(300 + col * 30);
+      frame.setValid(31, false);
+      values[w].snapshot.zones.mirrored = w % 2 != 0;
+    }
+    renderDashboard(values, 1000, scale, surface);
+    for (size_t w = 0; w < 4; ++w) {
+      const auto& frame = values[w].snapshot.frame;
+      const size_t first = w % 2 ? 31 : 0, last = w % 2 ? 0 : 31;
+      CHECK(surface.pixels[origins[w]] == heatColor(frame.temp10[first], frame.isValid(first), scale));
+      CHECK(surface.pixels[origins[w] + 319] == heatColor(frame.temp10[last], frame.isValid(last), scale));
+      CHECK(frame.temp10[0] == 300 && frame.temp10[31] == 1230 && !frame.isValid(31));
+    }
+  });
   runTest("refresh_fence_keeps_scanout_buffers_leased_across_refreshes", [] {
     DisplaySwapFence fence;
     CHECK(fence.available(10) && fence.drawIndex() == 1);

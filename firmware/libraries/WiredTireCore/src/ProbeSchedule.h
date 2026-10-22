@@ -8,7 +8,8 @@ class ProbeSchedule {
   explicit ProbeSchedule(uint64_t timeoutUs = 400000, uint64_t intervalUs = 250000, uint64_t retryUs = 500000)
       : timeoutUs_(timeoutUs ? timeoutUs : 400000), intervalUs_(intervalUs ? intervalUs : 250000), retryUs_(retryUs ? retryUs : 500000) {}
   ProbeAction poll(uint64_t nowUs);
-  void response(uint64_t nowUs, bool accepted);
+  // True only when a valid response commits inside the current request window.
+  bool response(uint64_t nowUs, bool accepted);
   bool hasGoodResponse() const { return good_; }
   uint64_t lastGoodUs() const { return lastGood_; }
   bool pending() const { return pending_; }

@@ -120,14 +120,14 @@ bool maximumTemperature(const ThermalFrame& frame, int16_t& output) {
   if (found) output = maximum;
   return found;
 }
-static void renderMap(const ThermalFrame& frame, const ColorScale& scale, PixelSurface& surface, bool dim) {
+static void renderMap(const ThermalFrame& frame, const ColorScale& scale, PixelSurface& surface, bool dim, bool mirror = false) {
   if (!validSurface(surface)) return;
   const auto ceilDivide = [](size_t value, size_t by) { return value / by + (value % by != 0); };
   for (size_t row = 0; row < kRows; ++row) {
     const size_t firstY = ceilDivide(row * surface.height, kRows), lastY = ceilDivide((row + 1) * surface.height, kRows);
     for (size_t col = 0; col < kCols; ++col) {
       const size_t firstX = ceilDivide(col * surface.width, kCols), lastX = ceilDivide((col + 1) * surface.width, kCols);
-      const size_t index = row * kCols + col;
+      const size_t index = row * kCols + (mirror ? kCols - 1 - col : col);
       auto color = heatColor(frame.temp10[index], frame.isValid(index), scale);
       if (dim) color = grey(color);
       for (size_t y = firstY; y < lastY; ++y)
@@ -152,7 +152,7 @@ void renderDashboard(const std::array<SnapshotDelivery,4>& values, uint64_t nowU
     text(surface, left + 12, top + 5, wheelNames[wheel], 3, white);
     const size_t offset = (top + 32) * surface.stride + left + 12;
     PixelSurface map{surface.pixels + offset,320,240,surface.stride,surface.capacity - offset};
-    renderMap(sample.snapshot.frame, scale, map, !view.fresh);
+    renderMap(sample.snapshot.frame, scale, map, !view.fresh, sample.snapshot.zones.mirrored);
     const auto& meta = sample.snapshot.meta;
     const char* status = !meta.bootId || meta.state == FrameState::NotReady ? "NO DATA" :
         meta.state == FrameState::CommError ? "FAIL" : !view.fresh ? "STALE" :
