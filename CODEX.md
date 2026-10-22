@@ -67,7 +67,7 @@
 
 ### 独立设计方向的版本边界
 
-四路有线胎温中控的设计规格位于 `docs/superpowers/specs/2026-10-22-wired-tire-thermal-central-design.md`，书面规格已获认可，实施计划 `docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md` 正在审阅，尚无新硬件实测结论。目标为四个成品 RS485 探头、一块定制中控 PCB、同板 7 英寸屏、四个独立采集/BLE 单元和点火控制供电；本地显示完整热图，RaceChrono 保留各轮 8 分区输出。
+四路有线胎温中控的设计规格位于 `docs/superpowers/specs/2026-10-22-wired-tire-thermal-central-design.md`，书面规格和实施计划 `docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md` 已获认可，用户选择原生执行并要求先完成离线软件；尚无新硬件实测结论。目标为四个成品 RS485 探头、一块定制中控 PCB、同板 7 英寸屏、四个独立采集/BLE 单元和点火控制供电；本地显示完整热图，RaceChrono 保留各轮 8 分区输出。
 
 该方向独立于胎温高度 v3，也不是刹车报警板的简单换探头版本。不得将其写成已验证主线，不得因此改动旧 v3 的 BLE only 边界或恢复旧 v3 中控发送。正式投板前需验证厂商扩展全帧协议、实际新帧率、四路 BLE 共存以及无高度/无电池时的 BLE 保留字段行为；本设计不使用 DIY CAN PID。
 
