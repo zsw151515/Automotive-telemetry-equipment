@@ -2,6 +2,14 @@
 #include "ProbeSchedule.h"
 using namespace wired_tire;
 int main() {
+  runTest("spi_window_uses_configured_100ms_deadline", [] {
+    ProbeSchedule schedule(100000, 250000, 500000);
+    CHECK(schedule.poll(0) == ProbeAction::Request);
+    CHECK(schedule.poll(99999) == ProbeAction::None);
+    CHECK(schedule.poll(100000) == ProbeAction::Timeout);
+    CHECK(!schedule.pending());
+    CHECK(schedule.poll(600000) == ProbeAction::Request && schedule.pending());
+  });
   runTest("freshness_boundary_and_clock_regression", [] {
     CHECK(isFresh(1500000, 0)); CHECK(!isFresh(1501000, 0));
     CHECK(!isFresh(100, 101));

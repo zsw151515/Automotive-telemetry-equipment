@@ -1,6 +1,33 @@
 #include "SnapshotWire.h"
+#include "Yf90640Protocol.h"
 #include <cstring>
 namespace wired_tire {
+bool encodeSnapshotRequest(WheelId wheel, uint32_t token, uint8_t* out, size_t size) {
+  if (!validWheel(wheel) || !out || size != kSnapshotBytes) return false;
+  std::memset(out, 0, size);
+  out[0] = 0x52; out[1] = static_cast<uint8_t>(wheel);
+  for (unsigned i = 0; i < 4; ++i) out[2 + i] = static_cast<uint8_t>(token >> (8 * i));
+  const auto crc = modbusCrc(out, 6);
+  out[6] = static_cast<uint8_t>(crc); out[7] = static_cast<uint8_t>(crc >> 8);
+  return true;
+}
+bool decodeSnapshotRequest(const uint8_t* in, size_t size, WheelId expected, uint32_t& token) {
+  if (!in || size != kSnapshotBytes || !validWheel(expected) || in[0] != 0x52 || in[1] != static_cast<uint8_t>(expected)) return false;
+  if (modbusCrc(in, 6) != (uint16_t{in[6]} | (uint16_t{in[7]} << 8))) return false;
+  for (size_t i = 8; i < size; ++i) if (in[i]) return false;
+  uint32_t value = 0;
+  for (unsigned i = 0; i < 4; ++i) value |= uint32_t{in[2 + i]} << (8 * i);
+  token = value;
+  return true;
+}
+EncodeResult SnapshotTxBuffer::prepare(const ThermalFrame& frame, const FrameMeta& meta,
+    const ZoneResult& zones, const LinkStats& stats, uint32_t ageMs, uint32_t token) {
+  return leased_ ? EncodeResult::Busy : encodeSnapshot(frame, meta, zones, stats, ageMs, token, storage_.data(), storage_.size());
+}
+const uint8_t* SnapshotTxBuffer::acquire() {
+  if (leased_) return nullptr;
+  leased_ = true; return storage_.data();
+}
 namespace {
 void put(uint8_t* out, size_t offset, uint64_t value, size_t bytes) {
   for (size_t i = 0; i < bytes; ++i) out[offset + i] = static_cast<uint8_t>(value >> (8 * i));

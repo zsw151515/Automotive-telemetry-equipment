@@ -5,3 +5,4 @@
 #include "ProbeSchedule.h"
 #include "RaceChronoPacket.h"
 #include "SnapshotWire.h"
+#include "ThermalView.h"

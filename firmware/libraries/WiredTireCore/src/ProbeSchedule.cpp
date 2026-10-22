@@ -16,13 +16,13 @@ ProbeAction ProbeSchedule::poll(uint64_t nowUs) {
   }
   clockSet_ = true; lastClock_ = nowUs;
   if (pending_) {
-    if (nowUs - requested_ >= 400000) {
-      pending_ = false; nextRequest_ = later(nowUs, 500000); return ProbeAction::Timeout;
+    if (nowUs - requested_ >= timeoutUs_) {
+      pending_ = false; nextRequest_ = later(nowUs, retryUs_); return ProbeAction::Timeout;
     }
     return ProbeAction::None;
   }
   if (nowUs >= nextRequest_) {
-    pending_ = true; requested_ = nowUs; nextRequest_ = later(nowUs, 250000);
+    pending_ = true; requested_ = nowUs; nextRequest_ = later(nowUs, intervalUs_);
     return ProbeAction::Request;
   }
   return ProbeAction::None;
@@ -33,6 +33,6 @@ void ProbeSchedule::response(uint64_t nowUs, bool accepted) {
   if (nowUs < lastClock_) { good_ = false; clockSet_ = false; nextRequest_ = nowUs; return; }
   lastClock_ = nowUs;
   if (accepted) { lastGood_ = nowUs; good_ = true; }
-  else nextRequest_ = later(nowUs, 500000);
+  else nextRequest_ = later(nowUs, retryUs_);
 }
 }

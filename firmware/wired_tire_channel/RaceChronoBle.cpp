@@ -61,6 +61,7 @@ void RaceChronoBle::poll(uint64_t nowUs, const FrameMeta& meta, const ZoneResult
   if (!buildRaceChronoPacket(static_cast<uint8_t>(part_ + 1), batchZones_, aux_, packet)) { part_ = 0; return; }
   chars_[part_]->setValue(packet, sizeof(packet));
   chars_[part_]->notify();
+  ++notificationAttempts_;
   part_ = static_cast<uint8_t>((part_ + 1) % 3);
   nextPartUs_ = nowUs + 1000;
 }

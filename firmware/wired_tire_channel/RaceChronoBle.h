@@ -10,6 +10,8 @@ class RaceChronoBle : public BLEServerCallbacks {
   bool begin(wired_tire::WheelId, const wired_tire::LegacyAuxFields&, bool auxiliaryFieldsVerified);
   void poll(uint64_t nowUs, const wired_tire::FrameMeta&, const wired_tire::ZoneResult&);
   bool connected() const { return connected_.load(); }
+  bool enabled() const { return enabled_; }
+  uint32_t notificationAttempts() const { return notificationAttempts_; }
   void onConnect(BLEServer*) override;
   void onDisconnect(BLEServer*) override;
  private:
@@ -23,4 +25,5 @@ class RaceChronoBle : public BLEServerCallbacks {
   uint64_t connectedAtUs_ = 0, nextBatchUs_ = 0, nextPartUs_ = 0;
   uint8_t part_ = 0;
   bool enabled_ = false;
+  uint32_t notificationAttempts_ = 0;
 };

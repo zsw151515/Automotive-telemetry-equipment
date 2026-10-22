@@ -10,6 +10,8 @@
 
 该 profile 还需定义 bleAuxVerified 和 wired_tire::LegacyAuxFields 类型的 auxiliaryFields。未经手机实测核准时 bleAuxVerified 必须为 false；BLE 不启动，不把全零辅助字段当作真实高度或电池。单轮/四轮实测见 notes/validation_ble.md。
 
+SPI profile 还需定义 sck、mosi、miso、select、ready；初始化前检查与 UART 的引脚重复。使用默认 UART0 日志时保留 GPIO20/21，使用 USB 日志时也必须核对 USB 引脚占用。SPI 异步事务在完成前保持发送缓冲不可变，不能让传感器更新覆盖在途图像。
+
 串口基线 115200 8N2，使用 UART1 的硬件半双工方向控制；只发送探头 01 的 0x65 读取请求。请求限时 400 ms，失败后退避 500 ms；正常请求周期 250 ms。真实探头参数、串口周转和方向控制必须实测。
 
 保留启动、版本、轮位、引脚、供电来源、传感器初始化、响应与错误计数日志。不测量电源电压时明确记录未测量。初版仅使用编译期配置，不提供运行期配置写入或自动探头设置写入；持久化设置及掉电试验留在硬件关卡中。

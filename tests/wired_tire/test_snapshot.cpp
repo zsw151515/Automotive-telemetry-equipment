@@ -24,6 +24,34 @@ static void reject(std::vector<uint8_t> wire, DecodeResult expected, WheelId whe
   for (auto temperature : previous.frame.temp10) CHECK(temperature == 555);
 }
 int main() {
+  runTest("equal_length_read_request_has_crc_and_rejects_writes_or_padding", [] {
+    std::vector<uint8_t> request(1728, 0xCC);
+    CHECK(encodeSnapshotRequest(WheelId::RR, 0x12345678, request.data(), request.size()));
+    CHECK(request[0] == 0x52 && request[1] == 4 && request[2] == 0x78 && request[5] == 0x12);
+    for (size_t i = 8; i < request.size(); ++i) CHECK(request[i] == 0);
+    uint32_t token = 99;
+    CHECK(decodeSnapshotRequest(request.data(), request.size(), WheelId::RR, token));
+    CHECK(token == 0x12345678);
+    request[0] = 0x10;
+    CHECK(!decodeSnapshotRequest(request.data(), request.size(), WheelId::RR, token));
+    CHECK(token == 0x12345678);
+  });
+  runTest("dma_lease_prevents_inflight_snapshot_overwrite", [] {
+    SnapshotTxBuffer buffer;
+    const auto* inFlight = buffer.acquire();
+    CHECK(inFlight != nullptr && buffer.acquire() == nullptr);
+    ThermalFrame frame; FrameMeta meta; ZoneResult zones; LinkStats stats;
+    CHECK(buffer.prepare(frame, meta, zones, stats, 0, 1) == EncodeResult::Busy);
+    for (size_t i = 0; i < 1728; ++i) CHECK(inFlight[i] == 0);
+    buffer.release();
+    meta.wheel = WheelId::FL; meta.bootId = 1;
+    CHECK(buffer.prepare(frame, meta, zones, stats, 0, 1) == EncodeResult::Ok);
+    const auto* published = buffer.acquire();
+    CHECK(published[0] == 'W' && published[3] == '1');
+    CHECK(buffer.prepare(frame, meta, zones, stats, 999, 2) == EncodeResult::Busy);
+    CHECK(published[24] == 0 && published[56] == 1);
+    buffer.release();
+  });
   runTest("crc32_ieee_known_vector", [] {
     CHECK(wireCrc32(reinterpret_cast<const uint8_t*>("123456789"), 9) == 0xCBF43926);
   });
