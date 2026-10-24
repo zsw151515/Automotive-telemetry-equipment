@@ -5,6 +5,7 @@
 #include "BrakeBuzzer.h"
 #include "BrakeSettings.h"
 #include "BrakeWire.h"
+#include "BrakeCan.h"
 #if defined(ARDUINO) && (!defined(WIRED_TIRE_OFFLINE_BUILD) || WIRED_TIRE_OFFLINE_BUILD)
 // Offline builds retain complete driver entry points for a real SDK link check.
 // This attribute never enables IO; runtime profile gates remain authoritative.
