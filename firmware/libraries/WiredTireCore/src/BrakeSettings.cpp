@@ -27,6 +27,7 @@ LoadResult selectPersist(const uint8_t*a,const uint8_t*b,PersistRecord&out,bool&
 }
 void BrakeControl::begin(uint32_t boot,uint64_t now){
  boot_=boot;host_=highWater_=0;cache_={};next_=0;unknown_=false;ack_={};effective_={};effective_.origin=0;saved_=recovered_=false;begun_=boot!=0;
+ retiredHosts_={};retiredCount_=0;
  PersistRecord r{};const auto load=store_.load(r);
  if(load==LoadResult::Valid&&validConfig(r.config)){effective_=r;saved_=r.origin==1&&r.version>0;recovered_=r.recovered||r.origin!=1;}
  else recovered_=load!=LoadResult::Missing;
@@ -50,7 +51,12 @@ BrakeAck BrakeControl::handle(const BrakeCommand&c,uint64_t now){
  if(!begun_||!c.hostBootId)return makeAck(c,AckResult::Invalid);
  if(c.op==CommandOp::Read){
   if(c.targetBrakeBootId&&c.targetBrakeBootId!=boot_)return makeAck(c,AckResult::StaleBoot);
-  if(host_!=c.hostBootId){host_=c.hostBootId;highWater_=0;cache_={};next_=0;}
+  if(host_!=c.hostBootId){
+   for(size_t i=0;i<retiredCount_;++i)if(retiredHosts_[i]==c.hostBootId)return makeAck(c,AckResult::SessionMismatch);
+   // Never evict replay protection. At capacity require a brake reboot before accepting another host.
+   if(host_){if(retiredCount_==retiredHosts_.size())return makeAck(c,AckResult::SessionMismatch);retiredHosts_[retiredCount_++]=host_;}
+   host_=c.hostBootId;highWater_=0;cache_={};next_=0;
+  }
   return ack_;
  }
  if(c.hostBootId!=host_)return makeAck(c,AckResult::SessionMismatch);

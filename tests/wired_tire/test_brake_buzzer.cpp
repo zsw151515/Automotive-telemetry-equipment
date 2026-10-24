@@ -2,6 +2,9 @@
 #include "BrakeBuzzer.h"
 using namespace wired_brake;
 int main(){
+ runTest("nonblocking_startup_60_gap80_40_respects_warning_and_mute",[]{BrakeBuzzer b;b.begin(0);for(uint64_t t:{0ull,59999ull,140000ull,179999ull})CHECK(b.output(BrakeState::Ok,true,t));for(uint64_t t:{60000ull,139999ull,180000ull,2999999ull})CHECK(!b.output(BrakeState::Ok,true,t));
+  b.begin(0);CHECK(!b.output(BrakeState::Ok,false,0)&&!b.output(BrakeState::Ok,false,140000));b.begin(0);b.mute60(0);CHECK(!b.output(BrakeState::Ok,true,0));
+ });
  runTest("startup_3s_and_warn_alarm_patterns",[]{BrakeBuzzer b;b.begin(0);
   CHECK(!b.output(BrakeState::Alarm,true,2999999));CHECK(b.output(BrakeState::Alarm,true,3000000));
   CHECK(!b.output(BrakeState::Alarm,true,3150000));CHECK(b.output(BrakeState::Alarm,true,3300000));

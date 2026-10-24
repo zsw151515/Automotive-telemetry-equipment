@@ -41,7 +41,9 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     try {
         $ErrorActionPreference = "Continue"
         $candidate = ((& git -C $SourceRoot rev-parse HEAD 2>$null) -join "").Trim()
-        if ($LASTEXITCODE -eq 0 -and $candidate -match "^[a-f0-9]{40}$") {
+        $gitRoot = ((& git -C $SourceRoot rev-parse --show-toplevel 2>$null) -join "").Trim()
+        if ($LASTEXITCODE -eq 0 -and $candidate -match "^[a-f0-9]{40}$" -and
+            [IO.Path]::GetFullPath($gitRoot).TrimEnd([char[]]"\/") -eq $SourceRoot.TrimEnd([char[]]"\/")) {
             $commit = $candidate
             $changes = @(& git -C $SourceRoot status --porcelain 2>$null)
             $dirty = $changes.Count -ne 0

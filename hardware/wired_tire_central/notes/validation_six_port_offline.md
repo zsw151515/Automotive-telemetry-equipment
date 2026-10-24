@@ -6,6 +6,6 @@
 
 离线覆盖：20ms双路Modbus期限/噪声隔离、0/负温/量程、V1.6模型/64位时间/长停顿、蜂鸣/60秒静音、双槽CRC/损坏槽恢复/Unknown、配置/会话/缓存重放、256字节BrakeLink与独立年龄、八PID/过滤、五从机DMA租约、命令超时停止变更重发、三页全像素/镜像/越界/触摸长按/回执状态及GT911原始报告、未核准profile前拒绝IO。
 
-本次原生测试实际105个命名测试、22组全部通过；Python实际14项通过（含旧包不覆写）。prev3/postv3两变体均显式PSRAM=enabled且已编译/链接，刹车显式CDCOnBoot=cdc。最终交付需在源码提交后从ZIP重新解压，逐文件SHA256校验，再运行原生/Python及channel/brake/display两变体矩阵；具体最终结果补于本文件末尾。
+本次原生测试实际110个命名测试、22组全部通过；Python实际15项通过（含旧包不覆写）。prev3/postv3两变体均显式PSRAM=enabled且已编译/链接，刹车显式CDCOnBoot=cdc。最终交付需在源码提交后从ZIP重新解压，逐文件SHA256校验，再运行原生/Python及channel/brake/display两变体矩阵；具体最终结果由同目录 offline_release_verification.json 随交付提供，记录对应软件源提交，不依赖包内自证。
 
 已有0.1包和59项原生/10项工具结果只属于历史四轮包，不充当本次新包结果。预览为SIMULATED DATA，已检查三页1024×600布局，不是实屏或实测FPS。

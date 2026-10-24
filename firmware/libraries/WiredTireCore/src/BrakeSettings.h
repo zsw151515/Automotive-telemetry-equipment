@@ -34,6 +34,7 @@ class BrakeControl {
   PersistRecord effective_{},pendingRecord_{};BrakeCommand pendingCommand_{};BrakeAck ack_{};
   uint32_t boot_=0,host_=0,highWater_=0;bool begun_=false,saved_=false,recovered_=false,unknown_=false;
   uint64_t nextRead_=0;std::array<Entry,8> cache_{};size_t next_=0;
+  std::array<uint32_t,32> retiredHosts_{};size_t retiredCount_=0;
   BrakeAck makeAck(const BrakeCommand&,AckResult)const;
   BrakeAck remember(const BrakeCommand&,AckResult);
   void activate(const PersistRecord&,uint64_t now);

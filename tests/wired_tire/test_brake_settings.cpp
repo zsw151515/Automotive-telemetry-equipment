@@ -1,5 +1,15 @@
 #include "brake_test_support.h"
 int main(){
+ runTest("retired_session_read_cannot_revive_mute_command",[]{CountingStore s;BrakeModel m;BrakeBuzzer b;BrakeControl ctl(s,m,b);ctl.begin(11,0);ctl.handle(readCommand(7),0);
+  auto mute=saveCommand();mute.op=CommandOp::Mute60;mute.muteMs=60000;CHECK(ctl.handle(mute,0).result==AckResult::Muted);
+  ctl.handle(readCommand(8),1000000);CHECK(ctl.handle(readCommand(7),59000000).result==AckResult::SessionMismatch);CHECK(ctl.handle(mute,59000000).result==AckResult::SessionMismatch);CHECK(b.remainingMs(60000000)==0);
+  mute.hostBootId=8;CHECK(ctl.handle(mute,60000000).result==AckResult::Muted);CHECK(b.remainingMs(60000000)==60000);
+ });
+ runTest("session_history_never_evicts_and_full_history_fails_closed",[]{CountingStore s;BrakeModel m;BrakeBuzzer b;BrakeControl ctl(s,m,b);ctl.begin(11,0);ctl.handle(readCommand(1),0);
+  for(uint32_t h=2;h<=33;++h)CHECK(ctl.handle(readCommand(h),h).result!=AckResult::SessionMismatch);
+  CHECK(ctl.handle(readCommand(34),34).result==AckResult::SessionMismatch);CHECK(ctl.handle(readCommand(1),35).result==AckResult::SessionMismatch);
+  auto c=saveCommand();c.hostBootId=33;c.op=CommandOp::Mute60;c.muteMs=60000;CHECK(ctl.handle(c,36).result==AckResult::Muted);
+ });
  runTest("save_then_apply_once_and_lost_ack_retry_no_extra_flash_or_reset",[]{
   CountingStore s;BrakeModel m;BrakeBuzzer b;BrakeControl ctl(s,m,b);CHECK(s.loads==0);ctl.begin(11,0);ctl.handle(readCommand(),0);
   auto c=saveCommand();CHECK(ctl.handle(c,1).result==AckResult::AppliedSaved);CHECK(ctl.configVersion()==1&&ctl.config().alarmC==650&&s.commitCount==1);

@@ -28,13 +28,14 @@ void setup(){
  if(!probes.begin(c))Serial.println("Brake probes initialization FAILED; FAIL remains visible");
  if(!ble.begin(c))Serial.println("Brake BLE initialization FAILED");
  if(!spi.begin(c))Serial.println("Brake SPI initialization FAILED; local alarms remain independent");
- running=true;
+ // Start the finite nonblocking cue after potentially slow driver initialization.
+ buzzer.begin(uint64_t(esp_timer_get_time()));running=true;
 }
 void loop(){
  const auto now=uint64_t(esp_timer_get_time());
  if(running){
   probes.poll(now);spi.poll(now);BrakeCommand cmd{};
-  if(spi.takeCommand(cmd)){const auto a=control.handle(cmd,now);if(cmd.op!=CommandOp::Read)Serial.printf("Brake command=%lu result=%u cfg=%lu\n",static_cast<unsigned long>(cmd.commandId),unsigned(a.result),static_cast<unsigned long>(control.configVersion()));}
+  if(spi.takeCommand(cmd)){const auto a=control.handle(cmd,now);if(cmd.op!=CommandOp::Read||a.result==AckResult::SessionMismatch)Serial.printf("Brake command=%lu result=%u cfg=%lu (session history capacity32 switches/boot)\n",static_cast<unsigned long>(cmd.commandId),unsigned(a.result),static_cast<unsigned long>(control.configVersion()));}
   control.poll(now);
   // Re-read monotonic time after possible bounded-but-blocking Flash IO; never hide that pause.
   const auto serviced=uint64_t(esp_timer_get_time());probes.poll(serviced);

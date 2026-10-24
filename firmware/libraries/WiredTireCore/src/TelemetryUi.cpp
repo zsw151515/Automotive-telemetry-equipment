@@ -71,6 +71,7 @@ void TelemetryUi::render(const std::array<wired_tire::SnapshotDelivery,4>&tires,
  else{
   if(view.stateFresh)std::snprintf(label,sizeof(label),"EFFECTIVE ALM %u C  WARN BEEP %s",b.config.alarmC,b.config.warningBeep?"ON":"OFF");else std::snprintf(label,sizeof(label),"EFFECTIVE CONFIG UNKNOWN");text(s,24,115,label,3,white);
   std::snprintf(label,sizeof(label),"DRAFT ALM %u C",draft_.alarmC);text(s,24,185,label,5,cyan);
+  if(view.stateFresh&&draft_.alarmC!=b.config.alarmC)text(s,24,244,"NEW ALM RESETS MODEL AND ALARM",2,amber);
   fill(s,80,280,150,90,0x2149);text(s,130,305,"-",6,white);fill(s,270,280,150,90,0x2149);text(s,320,305,"+",6,white);
   fill(s,480,280,300,90,0x2149);text(s,500,310,draft_.warningBeep?"WARN BEEP ON":"WARN BEEP OFF",3,white);
   fill(s,780,390,226,80,pending_?0x4208:0x036c);text(s,795,415,pending_?"WAIT":"APPLY SAVE",3,white);

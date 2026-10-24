@@ -27,7 +27,14 @@ bool BrakeLinkMaster::poll(uint64_t now,BrakeDelivery&out){
      else if(a.result==AckResult::OutcomeUnknown)readingBack_=true;
     }else if(s.brakeBootId!=command_.targetBrakeBootId||s.configVersion!=command_.expectedConfigVersion)unknown();
    }
-   if(readingBack_&&wireCommand_.op==CommandOp::Read&&fresh&&s.ack.result!=AckResult::OutcomeUnknown&&s.ack.result!=AckResult::Pending)readingBack_=false;
+   if(readingBack_&&wireCommand_.op==CommandOp::Read&&fresh&&s.ack.result!=AckResult::OutcomeUnknown&&s.ack.result!=AckResult::Pending){
+    const auto&a=s.ack;const bool matching=s.brakeBootId==command_.targetBrakeBootId&&a.hostBootId==host_&&a.commandId==command_.commandId&&a.targetBrakeBootId==command_.targetBrakeBootId&&a.op==command_.op;
+    const bool actualSaved=s.brakeBootId==command_.targetBrakeBootId&&command_.op==CommandOp::ApplySave&&s.configValid&&s.saved&&s.config==command_.candidate;
+    bool resolved=true;
+    if(matching&&a.result!=AckResult::None){if(a.result==AckResult::AppliedSaved&&(!actualSaved||a.configVersion!=s.configVersion))resolved=false;else ack_=a;}
+    else if(actualSaved){ack_.result=AckResult::AppliedSaved;ack_.configVersion=s.configVersion;}
+    readingBack_=!resolved;
+   }
   }
  }
  if(window_&&(now<started_||now-started_>=100000)){window_=false;next_=deadlineAfter(now,500000);}

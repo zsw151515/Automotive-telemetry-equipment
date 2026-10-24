@@ -74,6 +74,20 @@ class PackageTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertFalse(output.exists())
 
+    def test_copied_source_does_not_inherit_parent_repo_commit(self):
+        git=shutil.which('git')
+        if not git:self.skipTest('git unavailable')
+        with tempfile.TemporaryDirectory(prefix='six-nested-git-') as folder:
+            folder=pathlib.Path(folder);parent=folder/'parent';parent.mkdir()
+            subprocess.run([git,'-C',str(parent),'init','-q'],check=True,capture_output=True)
+            subprocess.run([git,'-C',str(parent),'-c','user.name=Fixture','-c','user.email=fixture@example.invalid',
+                            'commit','--allow-empty','-qm','fixture'],check=True,capture_output=True)
+            source,output=parent/'source',folder/'output';self.fixture(source);result=self.package(source,output)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            package=next(x for x in output.glob('offline-*') if x.is_dir())
+            manifest=json.loads((package/'MANIFEST.json').read_text(encoding='utf-8-sig'))
+            self.assertEqual(manifest['source_commit'],'unversioned')
+
     def test_missing_brake_driver_or_vendor_source_rejected_before_export(self):
         for missing in ('firmware/wired_brake_channel/wired_brake_channel.ino',
                         'firmware/wired_brake_channel/BrakeNvsStore.cpp',

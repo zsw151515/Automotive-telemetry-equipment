@@ -7,7 +7,10 @@ uint32_t BrakeBuzzer::remainingMs(uint64_t now)const{
 bool BrakeBuzzer::output(BrakeState state,bool warning,uint64_t now){
   if(lastState_==BrakeState::Alarm&&state!=BrakeState::Alarm)muted_=false;
   lastState_=state;
-  if(!begun_||now<boot_||now-boot_<3000000||remainingMs(now))return false;
+  if(!begun_||now<boot_||remainingMs(now))return false;
+  const auto startup=now-boot_;
+  if(startup<180000)return warning&&(startup<60000||startup>=140000);
+  if(startup<3000000)return false;
   if(state==BrakeState::Alarm)return (now-boot_)%300000<150000;
   if(state==BrakeState::Warn&&warning)return (now-boot_)%1500000<80000;
   return false;
