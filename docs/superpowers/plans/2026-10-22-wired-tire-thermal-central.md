@@ -1,5 +1,7 @@
 # 四路有线胎温中控 Implementation Plan
 
+2026-10-24：用户选定 7B 完整显示套件＋四接口采集底板、同一外壳。后续显示与硬件工作先依据[设计变更说明](../specs/2026-10-24-wired-tire-7b-kit-design.md)完成审阅和增量计划；本计划中关于自行设计 P4/屏幕同板的结构步骤保留作历史，不直接执行。离线软件验证证据仍只属于原交付版本。
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** 实现一块带 7 英寸屏、四路 RS485 成品胎温探头接口、四轮独立 RaceChrono BLE 输出的定制中控，并取得协议、通信、显示与供电的验证记录。
