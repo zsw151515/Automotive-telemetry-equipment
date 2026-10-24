@@ -1,0 +1,75 @@
+{
+  "version": "0.2.0-offline-six-port",
+  "source_commit": "b5c6ac0f6d50888215018843832f2e6e26d72b07",
+  "package": "offline-b5c6ac0-0400be44.zip",
+  "package_sha256": "61e9b5fd668dd67a29568328e83bbfd60a9a9d5a5f74c28b8871cf27b57178d8",
+  "manifest_sha256": "f384740bf3b88d93c16c2a10125d1617d7369585a4218a569777b4ae02b88ead",
+  "files_verified": 185,
+  "source_files_unchanged_after_checks": true,
+  "native_named_tests": 110,
+  "native_cases": 22,
+  "python_tests": 15,
+  "toolchain": {
+    "arduino_cli": "1.5.0",
+    "arduino_esp32": "3.3.7",
+    "idf": "5.5.2",
+    "native": "Zig 0.14.1 / C++17"
+  },
+  "extracted_builds": [
+    {
+      "target": "channel",
+      "variant": "prev3",
+      "fqbn": "esp32:esp32:esp32c3",
+      "result": "PASS",
+      "sketch": "firmware/wired_tire_channel",
+      "flash_bytes": 688263,
+      "globals_bytes": 24660,
+      "log_sha256": "2e736d394dfd49c52eaa9309076b391c1fbb19fb77dd73d9daeb89fd02a0e309"
+    },
+    {
+      "target": "brake",
+      "variant": "prev3",
+      "fqbn": "esp32:esp32:esp32c3:CDCOnBoot=cdc",
+      "result": "PASS",
+      "sketch": "firmware/wired_brake_channel",
+      "flash_bytes": 698497,
+      "globals_bytes": 21380,
+      "log_sha256": "ed944353a6e22634f41e24e5def99b0e1da64c69ddf8275b4137c71d958eddd7"
+    },
+    {
+      "target": "display",
+      "variant": "prev3",
+      "fqbn": "esp32:esp32:esp32p4:ChipVariant=prev3,PSRAM=enabled",
+      "result": "PASS",
+      "sketch": "firmware/wired_tire_display",
+      "flash_bytes": 441486,
+      "globals_bytes": 48892,
+      "log_sha256": "a8a005c92267022cb583c4ca86d38febc565123da6924db93be8ddf6eb20dae8"
+    },
+    {
+      "target": "display",
+      "variant": "postv3",
+      "fqbn": "esp32:esp32:esp32p4:ChipVariant=postv3,PSRAM=enabled",
+      "result": "PASS",
+      "sketch": "firmware/wired_tire_display",
+      "flash_bytes": 442276,
+      "globals_bytes": 48900,
+      "log_sha256": "fb63bd82137d5cfc54397a1ed9243fe4e0fa01d8d0a55f8593d07e5c16e42ca7"
+    }
+  ],
+  "hardware_validated": false,
+  "actual_fps_measured": false,
+  "physical_gates": "NOT RUN",
+  "review": {
+    "reviewed_head": "b9bfa30e183b3910f20adb2085f5c559e5166ce2",
+    "critical": 0,
+    "important_fixed": 4,
+    "important_fix_verification": "RED->GREEN then full suite",
+    "second_review": false,
+    "deferred_minors": [
+      "stale mute countdown after link loss",
+      "maximum not separately shown on brake page"
+    ]
+  },
+  "verified_utc": "2026-10-24T07:13:53.220554+00:00"
+}
