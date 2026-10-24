@@ -26,7 +26,7 @@ if (-not $CompilerPath -or -not (Test-Path -LiteralPath $CompilerPath)) {
     throw "Native C++17 compiler missing. Pass -CompilerPath or set WIRED_TIRE_CXX; no tests ran."
 }
 $cases = @("yf90640", "zones", "schedule", "racechrono", "snapshot", "view", "heatmap", "probe_driver", "ble_driver",
-    "brake_modbus", "brake_model", "brake_buzzer", "brake_settings", "brake_wire", "brake_view", "brake_can", "brake_driver", "board_spi", "brake_client")
+    "brake_modbus", "brake_model", "brake_buzzer", "brake_settings", "brake_wire", "brake_view", "brake_can", "brake_driver", "board_spi", "brake_client", "telemetry_ui", "telemetry_touch")
 if ($Case -ne "all") { $cases = @($Case) }
 $buildRoot = Join-Path $workspace "native-tests"
 New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
@@ -63,7 +63,7 @@ foreach ($testCase in $cases) {
     if ($LASTEXITCODE -ne 0) { throw "Native compile failed: $testCase" }
     $testArgs = @()
     if ($CapturePath -and $testCase -eq "yf90640") { $testArgs = @("--capture", (Resolve-Path -LiteralPath $CapturePath).Path) }
-    if ($PreviewPath -and $testCase -eq "heatmap") { $testArgs = @("--preview", $PreviewPath) }
+    if ($PreviewPath -and $testCase -in @("heatmap", "telemetry_ui")) { $testArgs = @("--preview", $PreviewPath) }
     & $executable @testArgs
     if ($LASTEXITCODE -ne 0) { throw "Native assertions failed: $testCase" }
 }

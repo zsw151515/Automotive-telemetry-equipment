@@ -33,5 +33,6 @@ class DisplaySwapFence {
 uint16_t heatColor(int16_t temperature, bool valid, const ColorScale&);
 bool maximumTemperature(const ThermalFrame&, int16_t& output);
 void renderHeatmap(const ThermalFrame&, const ColorScale&, PixelSurface&);
+void renderHeatmap(const ThermalFrame&,const ColorScale&,PixelSurface&,bool dim,bool mirror);
 void renderDashboard(const std::array<SnapshotDelivery,4>&, uint64_t nowUs, const ColorScale&, PixelSurface&, bool simulation = false);
 }
