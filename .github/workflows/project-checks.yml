@@ -92,7 +92,15 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.run_arduino_compile == 'true'
     strategy:
       matrix:
-        target: [channel, display]
+        include:
+          - target: channel
+            variant: prev3
+          - target: brake
+            variant: prev3
+          - target: display
+            variant: prev3
+          - target: display
+            variant: postv3
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-arduino-cli@v2
@@ -106,4 +114,4 @@ jobs:
           arduino-cli core install esp32:esp32@3.3.7
       - name: Compile and inspect driver linkage
         shell: pwsh
-        run: ./scripts/compile_wired_tire.ps1 -Target ${{ matrix.target }}
+        run: ./scripts/compile_wired_tire.ps1 -Target ${{ matrix.target }} -ChipVariant ${{ matrix.variant }}

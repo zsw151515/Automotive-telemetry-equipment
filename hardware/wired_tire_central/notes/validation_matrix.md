@@ -13,3 +13,7 @@
 | G 六接口胎温/刹车集成增量 | 未通过 | 两刹车协议/独立线路、后台热模型与报警/蜂鸣、触屏命令回执/去重/保存及断电、五 BLE 共存、六支路电源保护 |
 
 离线单元测试和固件编译结果单独记录，不能将本表改成整机通过。当前禁止据此冻结制造输出或宣称稳定交付。
+
+## 六口增量（NOT RUN）
+
+六口增量：resource_approval、validation_brake、validation_settings均NOT RUN；新离线验证另见validation_six_port_offline.md，不替代硬件关卡。

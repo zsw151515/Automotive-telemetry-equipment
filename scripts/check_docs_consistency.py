@@ -7,6 +7,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 CHECKS = [
+    ("docs/13_六接口中控板间与刹车接口.md", ["0x100", "0x101", "0x102", "0x103", "0x104", "0x105", "0x106", "0x107", "1FF8", "0x7FFF", "signed16", "不属于DIY CAN", "BrakeLink"]),
+    ("firmware/wired_brake_channel/README.md", ["CDCOnBoot=cdc", "N BrakeTemp", "brake6p_v1"]),
     ("docs/11_四路有线胎温中控接口.md", ["硬件关卡未通过", "不是 DIY CAN", "SPI 快照 v1"]),
     ("docs/12_四路有线胎温离线软件交付说明.md", ["离线研发版本", "不是 DIY CAN", "hardware_validated=false"]),
     ("firmware/wired_tire_channel/README.md", ["默认构建 WIRED_TIRE_OFFLINE_BUILD=1", "不是旧无线 v3 替换固件"]),
