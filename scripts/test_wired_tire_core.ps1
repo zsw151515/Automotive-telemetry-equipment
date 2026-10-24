@@ -26,7 +26,7 @@ if (-not $CompilerPath -or -not (Test-Path -LiteralPath $CompilerPath)) {
     throw "Native C++17 compiler missing. Pass -CompilerPath or set WIRED_TIRE_CXX; no tests ran."
 }
 $cases = @("yf90640", "zones", "schedule", "racechrono", "snapshot", "view", "heatmap", "probe_driver", "ble_driver",
-    "brake_modbus", "brake_model", "brake_buzzer", "brake_settings", "brake_wire", "brake_view", "brake_can", "brake_driver")
+    "brake_modbus", "brake_model", "brake_buzzer", "brake_settings", "brake_wire", "brake_view", "brake_can", "brake_driver", "board_spi", "brake_client")
 if ($Case -ne "all") { $cases = @($Case) }
 $buildRoot = Join-Path $workspace "native-tests"
 New-Item -ItemType Directory -Path $buildRoot -Force | Out-Null
@@ -52,6 +52,11 @@ foreach ($testCase in $cases) {
         $compileArgs += @("-I", (Join-Path $repoRoot "tests/wired_tire/stubs"), "-I", $brakeDir,
             (Join-Path $brakeDir "DualBrakeProbe.cpp"), (Join-Path $brakeDir "BrakeBle.cpp"),
             (Join-Path $brakeDir "BrakeNvsStore.cpp"), (Join-Path $brakeDir "BrakeSpiSlave.cpp"))
+    }
+    if ($testCase -in @("board_spi", "brake_client")) {
+        $displayDir = Join-Path $repoRoot "firmware/wired_tire_display"
+        $compileArgs += @("-I", (Join-Path $repoRoot "tests/wired_tire/stubs"), "-I", $displayDir,
+            (Join-Path $displayDir "BoardSpiBus.cpp"), (Join-Path $displayDir "BrakeLinkMaster.cpp"), (Join-Path $displayDir "SnapshotMaster.cpp"))
     }
     $compileArgs += @("-o", $executable)
     & $CompilerPath @compileArgs

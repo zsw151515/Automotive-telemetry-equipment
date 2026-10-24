@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <deque>
 #include <vector>
+#include "driver/gpio.h"
+inline int digitalRead(int p){return gpio_get_level(p);}
 constexpr int SERIAL_8N2 = 0;
 constexpr int SERIAL_8N1=1,OUTPUT=1,INPUT=0,HIGH=1,LOW=0;
 inline void pinMode(int,int){}
