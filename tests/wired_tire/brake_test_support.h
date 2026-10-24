@@ -1,6 +1,7 @@
 #pragma once
 #include "test_support.h"
 #include "BrakeSettings.h"
+#include <algorithm>
 using namespace wired_brake;
 struct CountingStore:ConfigStore {
  PersistRecord record{};LoadResult loadResult=LoadResult::Missing,readResult=LoadResult::Valid;
@@ -11,3 +12,5 @@ struct CountingStore:ConfigStore {
 };
 inline BrakeCommand readCommand(uint32_t host=7){BrakeCommand c{};c.hostBootId=host;return c;}
 inline BrakeCommand saveCommand(uint32_t id=1,uint32_t version=0){BrakeCommand c{};c.op=CommandOp::ApplySave;c.hostBootId=7;c.targetBrakeBootId=11;c.commandId=id;c.expectedConfigVersion=version;c.candidate={650,true};return c;}
+inline BrakeTelemetry validBrakeTelemetry(){BrakeTelemetry s{};s.brakeBootId=1;s.sequence=1;s.state=BrakeState::Warn;s.configValid=s.modelValid=s.saved=true;s.configVersion=s.savedVersion=1;s.configOrigin=1;s.validMask=3;s.temp10={6100,6100};s.max10=s.fast10=s.core10=6100;s.stateAgeMs=0;s.sensorAgeMs={0,0};return s;}
+inline void repairBrakeCrc(std::array<uint8_t,256>&b){uint32_t crc=0xffffffff;for(size_t i=0;i<248;++i){crc^=b[i];for(unsigned k=0;k<8;++k)crc=(crc>>1)^((crc&1)?0xedb88320u:0);}crc=~crc;for(unsigned i=0;i<4;++i)b[248+i]=uint8_t(crc>>(i*8));}
