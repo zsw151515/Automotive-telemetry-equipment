@@ -1,13 +1,14 @@
 param(
-    [ValidateSet("all","yf90640","zones","schedule","racechrono","snapshot","view","heatmap","probe_driver","ble_driver")]
+    [ValidateSet("all","yf90640","zones","schedule","racechrono","snapshot","view","heatmap","probe_driver","ble_driver","brake_modbus","brake_model","brake_buzzer","brake_settings","brake_wire","brake_view","brake_can","brake_driver","board_spi","brake_client","telemetry_ui","telemetry_touch","board_profile")]
     [string]$Case = "all",
     [string]$CompilerPath = "",
     [string]$CapturePath = "",
-    [string]$PreviewPath = ""
+    [string]$PreviewPath = "",
+    [string]$WorkspacePath = ""
 )
 $ErrorActionPreference = "Stop"
 $repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
-$workspace = Join-Path $repoRoot ".superpowers\sdd\2026-10-22-wired-tire-thermal-central"
+$workspace = if ($WorkspacePath) { $WorkspacePath } else { Join-Path $repoRoot ".superpowers\sdd\2026-10-24-six-port-tire-brake-central" }
 if (-not $CompilerPath) {
     if ($env:WIRED_TIRE_CXX) { $CompilerPath = $env:WIRED_TIRE_CXX }
     else {
@@ -18,7 +19,7 @@ if (-not $CompilerPath) {
     }
 }
 if (-not $CompilerPath) {
-    $portable = Join-Path $workspace "tools\zig-x86_64-windows-0.14.1\zig.exe"
+    $portable = Join-Path $repoRoot ".superpowers/sdd/2026-10-22-wired-tire-thermal-central/tools/zig-x86_64-windows-0.14.1/zig.exe"
     if (Test-Path -LiteralPath $portable) { $CompilerPath = $portable }
 }
 if (-not $CompilerPath -or -not (Test-Path -LiteralPath $CompilerPath)) {
