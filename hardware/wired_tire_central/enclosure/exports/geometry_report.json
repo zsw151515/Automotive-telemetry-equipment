@@ -1,0 +1,108 @@
+{
+  "scope": "mechanical fit prototype; not physically validated",
+  "unit": "mm",
+  "tool": "OpenSCAD version 2021.01",
+  "source_sha256": "30ba4ac20a42b68ea5005421081884432e1723e1e219be757dc7af4b651ba88b",
+  "parts": {
+    "body": {
+      "triangles": 3120,
+      "closed_edges": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "volume_mm3": 150669.369,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          125.0,
+          57.0
+        ]
+      ],
+      "size_mm": [
+        190.0,
+        125.0,
+        57.0
+      ],
+      "sha256": "32bb1189907a480ac8f78d3a32f3d829fcb5b4f49b93f4b8fe21a6de7d307659"
+    },
+    "rear_cover": {
+      "triangles": 2524,
+      "closed_edges": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "volume_mm3": 72953.411,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          125.0,
+          13.0
+        ]
+      ],
+      "size_mm": [
+        190.0,
+        125.0,
+        13.0
+      ],
+      "sha256": "5e019799627dae21d17371b07c907e8af7d0702dad4d3677de20380fc8190a70"
+    },
+    "rear_cover_pilot": {
+      "triangles": 7060,
+      "closed_edges": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "volume_mm3": 72786.448,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          125.0,
+          13.0
+        ]
+      ],
+      "size_mm": [
+        190.0,
+        125.0,
+        13.0
+      ],
+      "sha256": "e3efd240eefecfd3d449495ba746b5da3a7b16a2773b2abc848732d62d5fa9b2"
+    },
+    "retainer": {
+      "triangles": 892,
+      "closed_edges": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "volume_mm3": 5321.486,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          183.0,
+          10.0,
+          3.0
+        ]
+      ],
+      "size_mm": [
+        183.0,
+        10.0,
+        3.0
+      ],
+      "sha256": "6a1ae153d2e1ee38289eaefdb3f47623da1cddeffe64b8166a2c66bc101f9edd"
+    }
+  }
+}
