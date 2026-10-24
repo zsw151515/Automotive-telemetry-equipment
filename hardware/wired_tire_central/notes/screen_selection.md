@@ -11,3 +11,5 @@
 离线 PanelConfig 仍未核准，hardwareEnabled=false；选定套件不等于驱动已实现。先确认官方显示原型和 1024×600 双缓冲提交，再迁移应用。日光可读性、温升、屏幕背板对四个 C3 天线的影响、点火自动开机/断电及快速重启均须实测。
 
 硬件验证关卡未通过前，不因模拟界面看起来正常而生成投板用屏幕接口或承诺 30 FPS。
+
+本次执行资源与工具链门槛见 [7b_resource_review.md](7b_resource_review.md)，固定源文件版本/哈希见 [third_party_manifest.md](third_party_manifest.md)。尚未核准真实profile。

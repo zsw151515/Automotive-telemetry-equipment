@@ -11,3 +11,5 @@
 离线配置使用 -1 表示未分配，并禁用真实 I/O。它是编译保护值，不是有效 GPIO。硬件 profile 缺失时显式硬件构建必须失败。
 
 取得实际板型、引脚资料和屏幕后，记录每个信号的引脚号、启动约束、与其他外设冲突检查和审查版本。后续修改必须追加新旧对照。
+
+本次执行资源与工具链门槛见 [7b_resource_review.md](7b_resource_review.md)，固定源文件版本/哈希见 [third_party_manifest.md](third_party_manifest.md)。尚未核准真实profile。
