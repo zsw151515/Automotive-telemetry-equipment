@@ -1,6 +1,6 @@
 # 有线胎温中控显示主控
 
-ESP32-P4 显示固件，与四个 C3 采集/BLE 单元通信。2026-10-24 用户选定微雪 ESP32-P4-WIFI6-Touch-LCD-7B 完整显示套件，与四接口采集底板装入同一外壳。当前实现仍是原通用离线基线，7B 板级适配尚未完成；默认离线构建，SPI 与屏幕硬件均禁用。相同的 1024×600 分辨率不代表现有 PanelDriver 可直接使用，实际背光/复位/电源和 SPI 引脚须核准。
+当前实现是 P4 四轮胎温显示离线基线，默认离线构建，SPI 和屏幕均禁用。2026-10-24 新目标为 7B 完整套件＋六接口底板（四胎温＋两前刹车）；刹车控制器、BrakeLink、触屏切页与设置回执尚未实现。六口设计见 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md`。7B 背光/复位/电源、触摸及工程基线 13 GPIO 须核准，原代码四轮 11 GPIO 与 1024×600 编译通过不等于整机适配通过。
 
 编译：powershell -File scripts/compile_wired_tire.ps1 -Target display。没有核准接线时不能用本固件做实物连接。
 

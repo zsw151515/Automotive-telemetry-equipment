@@ -1,5 +1,9 @@
 # 04 RaceChrono BLE 说明
 
+## 六接口中控的设计边界（2026-10-24）
+
+最新集成方向为四胎温＋两前刹车、7B 触屏及六接口底板。胎温保留四个 RejsaRubberTrac BLE 设备；刹车保留一个 N BrakeTemp DIY CAN 设备及 0x100–0x107 定义。五 BLE 共存、刹车移植及设置命令尚未实现/实测；不得把两类 UUID、数据布局或无效值混用。完整设计和兼容目标见 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md`。本节不改变下文原独立固件的实际行为。
+
 ## 1. RaceChrono 在本项目中的作用
 
 RaceChrono Pro 是本项目的重要数据记录平台。

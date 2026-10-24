@@ -1,5 +1,7 @@
 # 四路有线胎温中控 Implementation Plan
 
+最新范围：用户选择六接口（四胎温＋两前刹车）、7B 触屏和底板同壳；刹车采集/报警/BLE 并入底板，触屏替代 OLED/设置键、保留蜂鸣。后续需先审阅[六接口设计](../specs/2026-10-24-six-port-tire-brake-7b-design.md)并编写增量计划，本文件不包含新刹车控制器、设置命令或触屏的实施步骤。
+
 2026-10-24：用户选定 7B 完整显示套件＋四接口采集底板、同一外壳。后续显示与硬件工作先依据[设计变更说明](../specs/2026-10-24-wired-tire-7b-kit-design.md)完成审阅和增量计划；本计划中关于自行设计 P4/屏幕同板的结构步骤保留作历史，不直接执行。离线软件验证证据仍只属于原交付版本。
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.

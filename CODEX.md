@@ -69,11 +69,11 @@
 
 四路有线胎温中控的设计规格位于 `docs/superpowers/specs/2026-10-22-wired-tire-thermal-central-design.md`，书面规格和实施计划 `docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md` 已获认可，用户选择原生执行并要求先完成离线软件；尚无新硬件实测结论。目标为四个成品 RS485 探头、一块定制中控 PCB、同板 7 英寸屏、四个独立采集/BLE 单元和点火控制供电；本地显示完整热图，RaceChrono 保留各轮 8 分区输出。
 
-上述单板结构为历史基线。2026-10-24 用户已选择 **微雪 ESP32-P4-WIFI6-Touch-LCD-7B 完整显示套件＋四接口采集底板，同一外壳**；后续依据 `docs/superpowers/specs/2026-10-24-wired-tire-7b-kit-design.md` 审阅和增量计划，不再按自行设计 P4/DSI 同板结构推进。四个 C3 采集/BLE 单元保留，套件 C6 不直接替代四个轮位身份；当前固件仍未获得 7B 硬件兼容验证。
+上述单板结构及随后的 7B 四接口结构为历史基线。2026-10-24 用户最新选择为 **微雪 7B 显示套件＋六接口底板，同一外壳**，四胎温＋两前刹车探头，刹车采集/报警/BLE 并入底板，触屏替代 OLED/设置按键，保留蜂鸣。新说明为 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md`，其中第五 C3、双刹车独立 RS485、13 GPIO SPI 及设置命令为待审阅工程基线。当前代码仍未实现六口或 7B 硬件兼容，不能据此接线或投板。
 
 离线代码分别位于 `firmware/wired_tire_channel`、`firmware/wired_tire_display`，共享库为 `firmware/libraries/WiredTireCore`。安装、构建、打包说明见 `docs/12_四路有线胎温离线软件交付说明.md`；不得把默认禁用 I/O 的离线编译、合成热图或协议测试当作实物验证，也不得据此冻结 PCB。核准硬件 profile 必须来自真实接线、面板资料和验证记录。
 
-该方向独立于胎温高度 v3，也不是刹车报警板的简单换探头版本。不得将其写成已验证主线，不得因此改动旧 v3 的 BLE only 边界或恢复旧 v3 中控发送。正式投板前需验证厂商扩展全帧协议、实际新帧率、四路 BLE 共存以及无高度/无电池时的 BLE 保留字段行为；本设计不使用 DIY CAN PID。
+该方向独立于胎温高度 v3，也不是刹车报警板的简单换探头版本。不得将其写成已验证主线，不得因此改动旧 v3 的 BLE only 边界或恢复旧 v3 中控发送。胎温继续使用 RejsaRubberTrac，不使用 DIY CAN PID；新增刹车子系统沿用 N BrakeTemp DIY CAN 的 0x100–0x107。不能混用两种 BLE 布局，也不能把旧四路离线测试升级为五 BLE/六探头通过。正式投板前增加双刹车报警、触屏设置回执/持久化及五 BLE 共存验证。
 
 ## 3. 代码修改总原则
 

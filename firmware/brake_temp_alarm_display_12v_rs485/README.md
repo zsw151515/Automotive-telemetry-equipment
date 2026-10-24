@@ -4,6 +4,8 @@
 
 本目录用于当前主线之一：`brake_temp_alarm_display_12V_RS485`。
 
+2026-10-24 新增[六接口中控设计方向](../../docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md)，计划将本版双前刹车采集/报警/BLE 并入底板，7B 触屏替代 OLED 和设置键、保留蜂鸣。本目录原固件继续作为行为对照，当前未实现六口、双独立总线或远程设置命令。
+
 它和 `brake_temp_12v_max31856` 不是同一个版本，不能混淆。
 
 ## 测量目标
