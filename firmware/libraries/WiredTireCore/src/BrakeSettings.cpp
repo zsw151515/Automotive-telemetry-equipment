@@ -26,9 +26,9 @@ LoadResult selectPersist(const uint8_t*a,const uint8_t*b,PersistRecord&out,bool&
  recovered=(a&&!va)||(b&&!vb);out=!va?y:!vb?x:x.version>=y.version?x:y;return LoadResult::Valid;
 }
 void BrakeControl::begin(uint32_t boot,uint64_t now){
- boot_=boot;host_=highWater_=0;cache_={};next_=0;unknown_=false;ack_={};effective_={};saved_=recovered_=false;begun_=boot!=0;
+ boot_=boot;host_=highWater_=0;cache_={};next_=0;unknown_=false;ack_={};effective_={};effective_.origin=0;saved_=recovered_=false;begun_=boot!=0;
  PersistRecord r{};const auto load=store_.load(r);
- if(load==LoadResult::Valid&&validConfig(r.config)){effective_=r;saved_=r.origin==1&&r.version>0;recovered_=r.origin!=1;}
+ if(load==LoadResult::Valid&&validConfig(r.config)){effective_=r;saved_=r.origin==1&&r.version>0;recovered_=r.recovered||r.origin!=1;}
  else recovered_=load!=LoadResult::Missing;
  model_.reset(now);buzzer_.begin(now);
 }

@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <vector>
+#include <string>
 constexpr int ESP_PWR_LVL_P9 = 9;
 class BLEServer;
 class BLEServerCallbacks {
@@ -14,9 +15,13 @@ class BLEServerCallbacks {
 };
 struct BLEUUID { explicit BLEUUID(uint16_t v) : value(v) {} uint16_t value; };
 inline std::vector<uint16_t> testNotifications;
+class BLECharacteristic;
+class BLECharacteristicCallbacks{public:virtual ~BLECharacteristicCallbacks()=default;virtual void onWrite(BLECharacteristic*){}};
 class BLECharacteristic {
  public:
-  static constexpr int PROPERTY_READ = 1, PROPERTY_NOTIFY = 2;
+  static constexpr int PROPERTY_READ = 1, PROPERTY_NOTIFY = 2,PROPERTY_WRITE=4;
+  void setCallbacks(BLECharacteristicCallbacks*){}
+  std::string getValue(){return {};}
   uint16_t id = 0;
   void addDescriptor(BLE2902* descriptor) { delete descriptor; }
   void setValue(const uint8_t*, size_t) {}

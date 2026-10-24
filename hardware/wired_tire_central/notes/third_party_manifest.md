@@ -9,7 +9,7 @@
 |Waveshare示例|9fcd49a8c927a00f5583c22d568b3448addbe51c|仅对照，不使用整套示例|
 |EK79007|2.0.2~1，esp-iot-solution 12f6ca1182ec48889b17ec570fadaaf267cb336e|MIPI DSI面板底层|
 |GT911|1.1.3，esp-bsp 08b53c32b53d2b4c3c4ecbf2cb6f1fc91a0441fd|触控底层|
-|esp_lcd_touch|1.1.2，同上esp-bsp提交|触控基础接口|
+|esp_lcd_touch|1.1.2，esp-bsp 54e9ba5f17d0f007f5a4073240b5f6c20e099f91|触控基础接口|
 
 源文件逐项SHA256和许可清单将在接入任务中与实际入包文件核对补齐。当前尚未据此启用实物profile。
 

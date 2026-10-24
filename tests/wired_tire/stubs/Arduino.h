@@ -5,6 +5,10 @@
 #include <deque>
 #include <vector>
 constexpr int SERIAL_8N2 = 0;
+constexpr int SERIAL_8N1=1,OUTPUT=1,INPUT=0,HIGH=1,LOW=0;
+inline void pinMode(int,int){}
+inline void digitalWrite(int,int){}
+inline void yield(){}
 struct TestSerial {
   std::deque<uint8_t> rx;
   std::vector<uint8_t> tx;
@@ -18,3 +22,12 @@ struct TestSerial {
   void inject(const std::vector<uint8_t>& bytes) { rx.insert(rx.end(), bytes.begin(), bytes.end()); }
 };
 inline TestSerial Serial, Serial1;
+namespace test_hw {inline unsigned uartBegins=0;inline TestSerial uartPorts[2];}
+class HardwareSerial {
+ public:explicit HardwareSerial(unsigned n):id_(n){}
+ void begin(int,int,int,int){++test_hw::uartBegins;}void end(){}
+ int available()const{return test_hw::uartPorts[id_].available();}
+ int read(){return test_hw::uartPorts[id_].read();}
+ size_t write(const uint8_t*b,size_t n){return test_hw::uartPorts[id_].write(b,n);}
+ private:unsigned id_;
+};

@@ -1,5 +1,5 @@
 param(
-    [Parameter(Mandatory=$true)][ValidateSet("channel","display")][string]$Target,
+    [Parameter(Mandatory=$true)][ValidateSet("channel","brake","display")][string]$Target,
     [Parameter(Mandatory=$true)][string]$ElfPath,
     [Parameter(Mandatory=$true)][string]$ArduinoCli
 )
@@ -21,6 +21,8 @@ $symbols = @(& $nm.FullName --defined-only $ElfPath)
 if ($LASTEXITCODE -ne 0) { throw "ELF symbol inspection failed" }
 $required = if ($Target -eq "channel") {
     @("(esp_ble_gatts_send_indicate|ble_gatts_notify_custom)", "spi_slave_queue_trans", "uart_set_mode")
+} elseif ($Target -eq "brake") {
+    @("(esp_ble_gatts_send_indicate|ble_gatts_notify_custom)", "spi_slave_queue_trans", "uart_set_mode", "nvs_set_blob", "nvs_get_blob")
 } else {
     @("esp_lcd_new_dsi_bus", "spi_device_queue_trans", "esp_lcd_panel_draw_bitmap")
 }

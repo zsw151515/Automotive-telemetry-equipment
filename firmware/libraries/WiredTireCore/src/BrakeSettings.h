@@ -3,7 +3,7 @@
 #include "BrakeBuzzer.h"
 #include <cstddef>
 namespace wired_brake {
-struct PersistRecord {BrakeConfig config{};uint32_t version=0;uint8_t origin=1;};
+struct PersistRecord {BrakeConfig config{};uint32_t version=0;uint8_t origin=1;bool recovered=false;};
 enum class LoadResult {Valid,Missing,Invalid,Unavailable};
 enum class StoreResult {Committed,NotCommitted,Unknown};
 bool encodePersist(const PersistRecord&,uint8_t*,size_t);
