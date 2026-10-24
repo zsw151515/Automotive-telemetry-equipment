@@ -25,7 +25,7 @@
 
 详见 [四路有线胎温中控设计规格](docs/superpowers/specs/2026-10-22-wired-tire-thermal-central-design.md)。本方向尚未完成新硬件验证，不改变现有两条主线；不属于对胎温高度 v3 的中控链路恢复。成品探头全帧协议、实际更新率及四路 BLE 同时连接是正式投板前的验证条件。
 
-[实施计划](docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md)按协议、单轮 BLE、四轮共存、显示原型、定制 PCB 和整机验证分阶段推进。
+[六接口增量实施计划](docs/superpowers/plans/2026-10-24-six-port-tire-brake-central.md)已编写待审阅，执行方式沿用原生；涵盖双刹车核心、确认保存、BrakeLink、五从机、三页触屏、7B适配及离线交付，实物关卡单独保留。[原四轮计划](docs/superpowers/plans/2026-10-22-wired-tire-thermal-central.md)保留作既有实现记录。
 
 离线软件入口：[接口与数据定义](docs/11_四路有线胎温中控接口.md)、[软件包与构建说明](docs/12_四路有线胎温离线软件交付说明.md)。采集固件位于 `firmware/wired_tire_channel`，显示固件位于 `firmware/wired_tire_display`；默认关闭真实 I/O，必须取得核准 profile 后才能上硬件。离线构建检查完整驱动路径链接，不能据此宣称实物兼容或 30 FPS 已实现。
 

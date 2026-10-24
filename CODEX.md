@@ -71,6 +71,8 @@
 
 上述单板结构及随后的 7B 四接口结构为历史基线。2026-10-24 用户最新选择为 **微雪 7B 显示套件＋六接口底板，同一外壳**，四胎温＋两前刹车探头，刹车采集/报警/BLE 并入底板，触屏替代 OLED/设置按键，保留蜂鸣。新说明为 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md`，其中第五 C3、双刹车独立 RS485、13 GPIO SPI 及设置命令为待审阅工程基线。当前代码仍未实现六口或 7B 硬件兼容，不能据此接线或投板。
 
+用户核对7B中文说明书后要求继续，增量计划位于 `docs/superpowers/plans/2026-10-24-six-port-tire-brake-central.md`，待审阅后按已选原生方式执行。官方资料审查见 `hardware/wired_tire_central/notes/7b_source_audit.md`：默认P4 SPI脚与背光/复位冲突，13信号需额外核准绑带或VO4域脚，禁止按“17 GPIO”直接接线。
+
 离线代码分别位于 `firmware/wired_tire_channel`、`firmware/wired_tire_display`，共享库为 `firmware/libraries/WiredTireCore`。安装、构建、打包说明见 `docs/12_四路有线胎温离线软件交付说明.md`；不得把默认禁用 I/O 的离线编译、合成热图或协议测试当作实物验证，也不得据此冻结 PCB。核准硬件 profile 必须来自真实接线、面板资料和验证记录。
 
 该方向独立于胎温高度 v3，也不是刹车报警板的简单换探头版本。不得将其写成已验证主线，不得因此改动旧 v3 的 BLE only 边界或恢复旧 v3 中控发送。胎温继续使用 RejsaRubberTrac，不使用 DIY CAN PID；新增刹车子系统沿用 N BrakeTemp DIY CAN 的 0x100–0x107。不能混用两种 BLE 布局，也不能把旧四路离线测试升级为五 BLE/六探头通过。正式投板前增加双刹车报警、触屏设置回执/持久化及五 BLE 共存验证。

@@ -1,5 +1,7 @@
 # 7 英寸屏幕选型状态
 
+2026-10-24 新增资料核对 `7b_source_audit.md`，记录EK79007/GT911、背光32、复位33及触控原理图与BSP差异，并固定官方源码提交。应用的7B板级适配仍未实施；增量计划见 `docs/superpowers/plans/2026-10-24-six-port-tire-brake-central.md`。
+
 2026-10-24：用户选择 **微雪 ESP32-P4-WIFI6-Touch-LCD-7B 完整显示套件＋六接口底板，同一外壳**，四胎温＋两前刹车。触屏替代原刹车小屏/设置键，切页仍保持后台采集、报警及五 BLE。以 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md` 为最新设计说明；此前四口、自行设计 P4 同板和 5 英寸方案为历史。
 
 [官方文档](https://docs.waveshare.com/ESP32-P4-WIFI6-Touch-LCD-7B)列出 7 英寸横屏 1024×600、MIPI-DSI、P4/C6、32 MB PSRAM，以及 PH2.0 两组 12 针扩展接口。不能使用 5 英寸板的 40 针定义。
