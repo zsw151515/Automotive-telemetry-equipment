@@ -1,0 +1,92 @@
+[
+  {
+    "component": "esp_lcd_ek79007",
+    "version": "2.0.2~1",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_ek79007.c",
+    "url": "https://raw.githubusercontent.com/espressif/esp-iot-solution/12f6ca1182ec48889b17ec570fadaaf267cb336e/components/display/lcd/esp_lcd_ek79007/esp_lcd_ek79007.c",
+    "upstream_sha256": "0bd6882cbf9fc1a7dc932b288e99784519816d9d9989f15578abbfa094c76c1b",
+    "sha256": "0bd6882cbf9fc1a7dc932b288e99784519816d9d9989f15578abbfa094c76c1b",
+    "modification": "none"
+  },
+  {
+    "component": "esp_lcd_ek79007",
+    "version": "2.0.2~1",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_ek79007.h",
+    "url": "https://raw.githubusercontent.com/espressif/esp-iot-solution/12f6ca1182ec48889b17ec570fadaaf267cb336e/components/display/lcd/esp_lcd_ek79007/include/esp_lcd_ek79007.h",
+    "upstream_sha256": "d015530ae1ab69b1b9d11ce27a5570840a59bb203a424ab49da6788f25bba371",
+    "sha256": "da03cc7cdba631bdc771b3a0f5c1c989bf752faae7b60d8883369a1d11ae8d99",
+    "modification": "prepend VendorConfig.h"
+  },
+  {
+    "component": "esp_lcd_ek79007",
+    "version": "2.0.2~1",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_ek79007-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/espressif/esp-iot-solution/12f6ca1182ec48889b17ec570fadaaf267cb336e/components/display/lcd/esp_lcd_ek79007/license.txt",
+    "upstream_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "modification": "none"
+  },
+  {
+    "component": "esp_lcd_touch_gt911",
+    "version": "1.1.3",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch_gt911.c",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/08b53c32b53d2b4c3c4ecbf2cb6f1fc91a0441fd/components/lcd_touch/esp_lcd_touch_gt911/esp_lcd_touch_gt911.c",
+    "upstream_sha256": "84935addfa5e6d021d7ea464077500e6e41dab421952832b4b1b7a6242199a71",
+    "sha256": "84935addfa5e6d021d7ea464077500e6e41dab421952832b4b1b7a6242199a71",
+    "modification": "none"
+  },
+  {
+    "component": "esp_lcd_touch_gt911",
+    "version": "1.1.3",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch_gt911.h",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/08b53c32b53d2b4c3c4ecbf2cb6f1fc91a0441fd/components/lcd_touch/esp_lcd_touch_gt911/include/esp_lcd_touch_gt911.h",
+    "upstream_sha256": "28e56b5d7728edf76b7993b5d52921dea49e9508710b1111caaaab4e75585c5d",
+    "sha256": "94621d4615d1f263f69d13f5d3d41e7b594dc1a2fdd9ef9f546dd0a91cbb9c62",
+    "modification": "prepend VendorConfig.h"
+  },
+  {
+    "component": "esp_lcd_touch_gt911",
+    "version": "1.1.3",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch_gt911-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/08b53c32b53d2b4c3c4ecbf2cb6f1fc91a0441fd/components/lcd_touch/esp_lcd_touch_gt911/license.txt",
+    "upstream_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "modification": "none"
+  },
+  {
+    "component": "esp_lcd_touch",
+    "version": "1.1.2",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch.c",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/54e9ba5f17d0f007f5a4073240b5f6c20e099f91/components/lcd_touch/esp_lcd_touch/esp_lcd_touch.c",
+    "upstream_sha256": "804eeea836e75a8a9c815fb53932a7d3c8811f2b167c3707f55bd400d376328b",
+    "sha256": "804eeea836e75a8a9c815fb53932a7d3c8811f2b167c3707f55bd400d376328b",
+    "modification": "none"
+  },
+  {
+    "component": "esp_lcd_touch",
+    "version": "1.1.2",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch.h",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/54e9ba5f17d0f007f5a4073240b5f6c20e099f91/components/lcd_touch/esp_lcd_touch/include/esp_lcd_touch.h",
+    "upstream_sha256": "3769c5e0bb60a05475ec182607ca4edb02add622d38dd6ae75592ac0d8477cb1",
+    "sha256": "ea879ca3531fb9867e01083c095a063cb58306eece5a9cff2f0417eec81bd4d2",
+    "modification": "prepend VendorConfig.h"
+  },
+  {
+    "component": "esp_lcd_touch",
+    "version": "1.1.2",
+    "license": "Apache-2.0",
+    "file": "esp_lcd_touch-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/espressif/esp-bsp/54e9ba5f17d0f007f5a4073240b5f6c20e099f91/components/lcd_touch/esp_lcd_touch/license.txt",
+    "upstream_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "modification": "none"
+  }
+]

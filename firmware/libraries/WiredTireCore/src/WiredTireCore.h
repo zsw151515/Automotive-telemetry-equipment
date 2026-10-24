@@ -8,6 +8,8 @@
 #include "BrakeCan.h"
 #include "TelemetryUi.h"
 #include "RasterPrimitives.h"
+#include "Board7BRules.h"
+#include "Gt911TouchCodec.h"
 #if defined(ARDUINO) && (!defined(WIRED_TIRE_OFFLINE_BUILD) || WIRED_TIRE_OFFLINE_BUILD)
 // Offline builds retain complete driver entry points for a real SDK link check.
 // This attribute never enables IO; runtime profile gates remain authoritative.

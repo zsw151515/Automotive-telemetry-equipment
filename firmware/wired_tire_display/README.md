@@ -1,15 +1,7 @@
-# 有线胎温中控显示主控
+# 微雪7B六口中控P4
 
-当前实现是 P4 四轮胎温显示离线基线，默认离线构建，SPI 和屏幕均禁用。2026-10-24 新目标为 7B 完整套件＋六接口底板（四胎温＋两前刹车）；刹车控制器、BrakeLink、触屏切页与设置回执尚未实现。六口设计见 `docs/superpowers/specs/2026-10-24-six-port-tire-brake-7b-design.md`。7B 背光/复位/电源、触摸及工程基线 13 GPIO 须核准，原代码四轮 11 GPIO 与 1024×600 编译通过不等于整机适配通过。
+默认离线构建，实际电气/芯片修订/触摸/帧率尚未验证。完整入口wired_tire_display.ino；五从机共享SPI owner，四热图与刹车/设置三页，切页不改变后台调度。第五C3自身采集/模型/蜂鸣/BLE不依赖P4。
 
-编译：powershell -File scripts/compile_wired_tire.ps1 -Target display。没有核准接线时不能用本固件做实物连接。
+Board7BProfile所有批准标志false、引脚-1。板上EK79007双lane1000Mbps、LDO3/2500mV、RGB565双缓冲、BL32反相5kHz/10bit、RST33；GT911 SDA7/SCL8、0x5D/0x14探测、NC复位/中断需实物核准，不驱动猜测GPIO23。13个板间信号涉及绑带和VO4电压域，未闭合硬件门槛。
 
-实际 hardware profile 需要 ApprovedDisplayProfile.h，定义 display_config 命名空间中的 hardwareEnabled、sck、mosi、miso、selects（四个独立片选）、ready（四个就绪信号）。这些字段不能凭空填写，必须来自正式 pinmap 审查。
-
-屏幕 profile 还要提供 PanelConfig panel 与 wired_tire::ColorScale colorScale。panel.approved 只有在面板、FPC、供电、DSI 时序、背光 PWM 和厂商命令核对后才能启用。禁止同时指定片内 DPHY LDO 和外部 DPHY 供电；命令序列与复位总等待不超过 10 s，单条命令等待不超过 1 s，超过须重新审查。未核准时不操作屏幕。
-
-RGB565 双缓冲使用刷新事件保护，第一次有效 UI 提交并完成保守刷新等待后才点亮背光；启动阶段不会依赖未初始化的图像。当前采用两个刷新计数保护旧缓冲复用，实际 UI 帧率和撕裂仍需面板实测。
-
-SPI 为 1 MHz mode 0、固定 1728 字节的全双工事务。每次主机发送相同长度的读取请求，并接收从机此前准备的响应；同一个 token 可在 100 ms 窗口内重试，直到收到匹配快照。P4 每次启动以随机种子开始 token，避免固定从 1 开始读取重启前的排队旧响应。通信由异步 DMA 推进，等待就绪不阻塞其他轮。
-
-响应内的数据年龄加上主机请求耗时和接收后的本地经过时间，避免 SPI 重读续命。数据状态与 BLE 状态分别显示；物理 SPI、面板帧率和 RaceChrono 共存尚未验证。
+src/vendor内固定官方EK79007 2.0.2~1、GT9111.1.3、touch1.1.2及许可证/逐文件哈希，只有头部前置一致的VendorConfig.h。只随本P4 sketch编译，不污染C3或纯核心。完整安装、协议及实物步骤见docs12/13和hardware/wired_tire_central/notes/。

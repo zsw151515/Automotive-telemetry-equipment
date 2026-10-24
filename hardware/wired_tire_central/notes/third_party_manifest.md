@@ -24,3 +24,7 @@
 - `esp_lcd_touch_gt911-1.1.3/esp_lcd_touch_gt911/esp_lcd_touch_gt911.c`：`84935addfa5e6d021d7ea464077500e6e41dab421952832b4b1b7a6242199a71`
 - `esp_lcd_touch_gt911-1.1.3/esp_lcd_touch_gt911/include/esp_lcd_touch_gt911.h`：`28e56b5d7728edf76b7993b5d52921dea49e9508710b1111caaaab4e75585c5d`
 - `esp_lcd_touch_gt911-1.1.3/esp_lcd_touch_gt911/license.txt`：`cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30`
+
+## 实际入包与Arduino适配
+
+逐文件来源URL、上游SHA256、入包SHA256及修改说明见 `firmware/wired_tire_display/src/vendor/SOURCE_MANIFEST.json`。三个底层组件均Apache-2.0，许可证随包。仅头部前置VendorConfig.h：EK版本宏2/0/2、touch MAX_POINTS=5/MAX_BUTTONS=0（不启用外部按键）。原始C驱动未改；GT911使用有界I2C panel-IO适配，每次10ms，原始报告经纯codec判定，缓存报告保留原采样时刻。未引入LVGL/BSP网络音频，未使用原CMake，因此无cmake_utilities运行依赖。vendor通过.gitattributes禁止换行转换以保存哈希。

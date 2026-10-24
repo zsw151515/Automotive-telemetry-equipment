@@ -11,6 +11,7 @@ bool base(const uint8_t*b,size_t n,const char* magic){return b&&n==256&&!std::me
 bool temp(int16_t t){return t==kInvalidTemperature||(t>=-400&&t<=12000);}
 bool valid(const BrakeTelemetry&s){
  if(!s.brakeBootId||uint8_t(s.state)>3||!validConfig(s.config)||(s.validMask&~s.enabledMask)||(s.enabledMask&~3)||s.configOrigin>2||uint8_t(s.ack.result)>11||uint8_t(s.ack.op)>2||s.dose10>990||s.muteRemainingMs>60000)return false;
+ if((!s.modelValid&&s.state!=BrakeState::Fail)||(s.modelValid&&!s.validMask)||(s.state==BrakeState::Ok&&s.validMask!=s.enabledMask))return false;
  for(unsigned i=0;i<2;++i)if(!temp(s.temp10[i])||((s.validMask&(1<<i))&&s.temp10[i]==kInvalidTemperature))return false;
  if(!temp(s.max10)||!temp(s.fast10)||!temp(s.core10))return false;
  if((s.validMask==0)!=(s.max10==kInvalidTemperature))return false;

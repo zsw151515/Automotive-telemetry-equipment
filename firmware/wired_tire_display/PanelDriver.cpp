@@ -7,7 +7,7 @@ bool IRAM_ATTR PanelDriver::refreshed(esp_lcd_panel_handle_t, esp_lcd_dpi_panel_
   return false;
 }
 void PanelDriver::setBrightness(uint8_t value) {
-  if (pwm_) ledcWrite(backlightPin_, backlightActiveHigh_ ? value : 255 - value);
+  if (pwm_) ledcWrite(backlightPin_, backlightActiveHigh_ ? uint32_t(value)*pwmMax_/255 : pwmMax_-uint32_t(value)*pwmMax_/255);
 }
 void PanelDriver::cleanup() {
   ready_ = false;
@@ -92,4 +92,15 @@ bool PanelDriver::present(const uint16_t* pixels, size_t count) {
   if (esp_lcd_panel_draw_bitmap(panel_, 0, 0, 1024, 600, pixels) != ESP_OK) return false;
   presented_ = fence_.presented(refreshes_.load());
   return presented_;
+}
+
+bool PanelDriver::adopt7B(uint8_t brightness){
+  void*first=nullptr,*second=nullptr;
+  if(esp_lcd_dpi_panel_get_frame_buffer(panel_,2,&first,&second)!=ESP_OK||!first||!second){cleanup();return false;}
+  buffers_[0]=static_cast<uint16_t*>(first);buffers_[1]=static_cast<uint16_t*>(second);
+  std::memset(first,0,1024*600*2);std::memset(second,0,1024*600*2);
+  esp_lcd_dpi_panel_event_callbacks_t callbacks{};callbacks.on_refresh_done=refreshed;
+  if(esp_lcd_dpi_panel_register_event_callbacks(panel_,&callbacks,this)!=ESP_OK||esp_lcd_panel_init(panel_)!=ESP_OK){cleanup();return false;}
+  pwmMax_=1023;if(!ledcAttach(32,5000,10)){cleanup();return false;}
+  pwm_=ready_=true;targetBrightness_=brightness;setBrightness(0);return true;
 }

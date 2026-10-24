@@ -1,6 +1,7 @@
 #include "brake_test_support.h"
 #include "BrakeWire.h"
 int main(){
+ runTest("no_valid_model_or_partial_failure_cannot_claim_ok",[]{BrakeTelemetry s{};s.brakeBootId=1;s.stateAgeMs=0;s.state=BrakeState::Ok;std::array<uint8_t,256>b{};CHECK(!encodeBrakeStatus(s,1,b.data(),256));s=validBrakeTelemetry();s.state=BrakeState::Ok;s.validMask=1;CHECK(!encodeBrakeStatus(s,1,b.data(),256));});
  runTest("wire_offsets_signed_crc_and_transactional_reject",[]{auto s=validBrakeTelemetry();s.temp10[0]=-123;s.temp10[1]=6100;std::array<uint8_t,256>b{};
   CHECK(encodeBrakeStatus(s,0x12345678,b.data(),256));CHECK(b[16]==0x78&&b[17]==0x56&&b[44]==0x85&&b[45]==0xff&&b[6]==1);
   auto repaired=b;repairBrakeCrc(repaired);CHECK(b==repaired);BrakeTelemetry out{};CHECK(decodeBrakeStatus(b.data(),256,0x12345678,out)&&out.temp10[0]==-123);

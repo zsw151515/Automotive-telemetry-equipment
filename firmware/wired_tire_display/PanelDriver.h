@@ -31,9 +31,11 @@ class PanelDriver {
   void setBrightness(uint8_t value);
   bool ready() const { return ready_; }
   uint32_t refreshes() const { return refreshes_.load(); }
- private:
+ protected:
   static bool IRAM_ATTR refreshed(esp_lcd_panel_handle_t, esp_lcd_dpi_panel_event_data_t*, void*);
   void cleanup();
+  bool adopt7B(uint8_t brightness);
+  uint16_t pwmMax_=255;
   esp_lcd_dsi_bus_handle_t bus_ = nullptr;
   esp_lcd_panel_io_handle_t io_ = nullptr;
   esp_lcd_panel_handle_t panel_ = nullptr;
