@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 49,
-      "groups": 19
+      "count": 31,
+      "groups": 14
     }
   ],
   "pours": [
@@ -21,23 +21,15 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 612,
-  "board_vias": 600,
+  "total_vias_including_module": 628,
+  "board_vias": 616,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 3775,
+  "routed_line_primitives": 3912,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
     {
-      "net": "GND",
-      "count": 6
-    },
-    {
       "net": "12V_PROTECTED",
-      "count": 5
-    },
-    {
-      "net": "3V3",
       "count": 5
     },
     {
@@ -50,18 +42,6 @@
     },
     {
       "net": "FR_VPROBE",
-      "count": 2
-    },
-    {
-      "net": "P4_3V3_REF",
-      "count": 3
-    },
-    {
-      "net": "UV_SW",
-      "count": 2
-    },
-    {
-      "net": "OVLO",
       "count": 2
     },
     {

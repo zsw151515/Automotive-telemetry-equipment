@@ -1,0 +1,79 @@
+{
+  "before_connections": 40,
+  "after_connections": 31,
+  "via_in_pad": [
+    {
+      "name": "VIP_R29_1",
+      "net": "3V3",
+      "x_mm": 88.4966353,
+      "y_mm": 62.249999960000004,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "R29.1",
+      "requires_filled_capped": true
+    },
+    {
+      "name": "VIP_R31_1",
+      "net": "3V3",
+      "x_mm": 91.53663692,
+      "y_mm": 62.249999960000004,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "R31.1",
+      "requires_filled_capped": true
+    },
+    {
+      "name": "VIP_U13_14",
+      "net": "3V3",
+      "x_mm": 42.0100429,
+      "y_mm": 64.00009551999999,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "U13.14",
+      "requires_filled_capped": true
+    },
+    {
+      "name": "VIP_R35_2",
+      "net": "GND",
+      "x_mm": 87.00336422000001,
+      "y_mm": 62.249999960000004,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "R35.2",
+      "requires_filled_capped": true
+    },
+    {
+      "name": "VIP_C23_2",
+      "net": "GND",
+      "x_mm": 99.70002412,
+      "y_mm": 62.249999960000004,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C23.2",
+      "requires_filled_capped": true
+    }
+  ],
+  "signal_repairs": [
+    "FR_POWER_EN",
+    "P4_3V3_REF",
+    "RL_MISO",
+    "RL_TX"
+  ],
+  "source_copper_union_difference_max_mm2": 0.00012408003224528318,
+  "union_tolerance_mm2": 0.001,
+  "automatic_cleanup": "Contained old left3V3 bus line cd2c0ed404209d3b removed; old RL_TX line3c01f7c51d3b6708 and new RL_TX line0b78f07f1c1d6426 received replacement IDs during editing. Full copper union, including the oldRL_TX span, equals the intended geometry within tolerance.",
+  "bypass": {
+    "count": 2,
+    "parallel_traces": 2,
+    "width_mm": 0.8,
+    "length_mm": 4.4,
+    "copper_thickness_assumption_mm": 0.0152,
+    "estimated_additional_resistance_total_ohm": 0.0029550438596491237,
+    "note": "Ideal20C copper estimate only; confirm stackup,load andtemperature beforefabrication"
+  },
+  "independent_review_complete": true,
+  "fabrication_released": false,
+  "old_rl_tx_replaced_id": "3c01f7c51d3b6708",
+  "old_rl_tx_geometry_retained": true,
+  "independent_review_report": "supply-checkpoint-review.md"
+}

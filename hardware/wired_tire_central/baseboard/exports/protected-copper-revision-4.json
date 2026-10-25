@@ -1,0 +1,227 @@
+{
+  "previous_baseline_sha256": "a7c0b5205be1a89ad45b32c8ec887e30072a0ffa002e503f38ba488aebfda94f",
+  "previous_header": {
+    "phase": "Revision 3: structured U31 left fanout and restored voltage control",
+    "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
+    "revision_history": [
+      "protected-copper-revision.json",
+      "protected-copper-revision-3.json"
+    ]
+  },
+  "removed_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 472.4409,
+      "startY": 2452.7559,
+      "endX": 2086.6142,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "cd2c0ed404209d3b"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 2086.6142,
+      "startY": 2452.7559,
+      "endX": 5551.1811,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "83a791f494a27afe"
+    }
+  ],
+  "removed_line_indices": [
+    180,
+    181
+  ],
+  "added_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 472.4409,
+      "startY": 2452.7559,
+      "endX": 3338.5827,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "8bc04a8c372e128c"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 3511.811,
+      "startY": 2452.7559,
+      "endX": 3838.5827,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "58bdb9d3fa1655d5"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 4011.811,
+      "startY": 2452.7559,
+      "endX": 5551.1811,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "db34496b33523e62"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 3338.5827,
+      "startY": 2413.3858,
+      "endX": 3511.811,
+      "endY": 2413.3858,
+      "lineWidth": 31.4961,
+      "primitiveLock": true,
+      "primitiveId": "d2ac7e6339f24aa1"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 3338.5827,
+      "startY": 2492.126,
+      "endX": 3511.811,
+      "endY": 2492.126,
+      "lineWidth": 31.4961,
+      "primitiveLock": true,
+      "primitiveId": "d075717c92d49062"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 3838.5827,
+      "startY": 2413.3858,
+      "endX": 4011.811,
+      "endY": 2413.3858,
+      "lineWidth": 31.4961,
+      "primitiveLock": true,
+      "primitiveId": "3ab5cb233406f74a"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 3838.5827,
+      "startY": 2492.126,
+      "endX": 4011.811,
+      "endY": 2492.126,
+      "lineWidth": 31.4961,
+      "primitiveLock": true,
+      "primitiveId": "6ae370102d1db6c9"
+    }
+  ],
+  "added_protected_vias": [
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "3V3",
+      "x": 3484.1195,
+      "y": 2450.7874,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "9bc64ecbb955b4b5"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "3V3",
+      "x": 3603.8045999999995,
+      "y": 2450.7874,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "84b1e48daf186aeb"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "3V3",
+      "x": 1653.9387,
+      "y": 2519.6888,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "e3c0a98dbec8f599"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 3425.3292999999994,
+      "y": 2450.7874,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "b648375b7c33e7fe"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 3925.1978,
+      "y": 2450.7874,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "4ce85d6e94b6a88f"
+    }
+  ],
+  "reason": "Two local GND via clearances in 3V3 rail: two parallel0.8mm bypasses per4.4mm neck. Original left contained bus segment was automatically removed when covered by its new replacement; whole-copper union checked.",
+  "retained_previous_lines": 599,
+  "retained_previous_board_vias": 293,
+  "fabrication_released": false
+}

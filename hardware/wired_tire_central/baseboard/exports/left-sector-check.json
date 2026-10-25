@@ -1,0 +1,70 @@
+{
+  "base_commit": "59c861b",
+  "before_connections": 49,
+  "after_dense_subset": 44,
+  "after_left_sector": 40,
+  "moves": [
+    {
+      "ref": "C56",
+      "before": [
+        8,
+        53.4
+      ],
+      "after": [
+        6,
+        53.4
+      ]
+    },
+    {
+      "ref": "R120",
+      "before": [
+        8.25,
+        50.25
+      ],
+      "after": [
+        6.9,
+        50.25
+      ]
+    },
+    {
+      "ref": "R121",
+      "before": [
+        6.75,
+        50.25
+      ],
+      "after": [
+        4,
+        50.25
+      ]
+    },
+    {
+      "ref": "R123",
+      "before": [
+        6.0,
+        53.25
+      ],
+      "after": [
+        3,
+        53.25
+      ]
+    }
+  ],
+  "removed_lines": 72,
+  "removed_vias": 4,
+  "left_sector_operations": 151,
+  "protected_lines": 601,
+  "protected_board_vias": 293,
+  "restored_nets": [
+    "DGATE",
+    "12V_RAW",
+    "MAIN_N1",
+    "UVLO",
+    "UV_SW",
+    "OVLO",
+    "OCP_TMR"
+  ],
+  "schematic_pinmap_changed": false,
+  "independent_review_complete": true,
+  "fabrication_released": false,
+  "independent_review_report": "supply-checkpoint-review.md"
+}
