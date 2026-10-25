@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "files": {
+    "epro": {
+      "bytes": 391310,
+      "sha256": "76e91468b9d008e44a3c61ce14e225970b9d1dc789b71cc699ff218fc46cbe0d",
+      "components": 282,
+      "pours": 2,
+      "poured_fragments": 140,
+      "routed_line_primitives": 69,
+      "outlines": 1
+    },
+    "epro2": {
+      "bytes": 1925617,
+      "sha256": "0f9929ee4317e277d7f7f8ca2014772047c405b8b695421253813d9d5f857f1a",
+      "components": 282,
+      "pours": 2,
+      "active_poured_regions": 2,
+      "orphan_fill_cache_records": 2,
+      "source_thermal_vias": 12
+    }
+  },
+  "errors": [],
+  "scope": "Native archive object persistence and selected geometry only; no fabrication approval"
+}

@@ -1,13 +1,13 @@
 # 嘉立创 EDA 专业版自动化接入记录
 
-日期：2026-10-24。用户已选择嘉立创 EDA 专业版交付，并要求查找可操作原理图与PCB的技能、插件、MCP等工具。原六接口底板任务继续；本文记录接入准备，不代表已生成电路或完成PCB布局。
+日期：2026-10-24。用户已选择嘉立创 EDA 专业版交付，并要求查找可操作原理图与PCB的技能、插件、MCP等工具。原六接口底板任务继续；本文记录接入和实际API兼容性；设计阶段以 `../baseboard/review.md` 及导出文件为准。
 
 ## 查到的可用路径
 
 | 工具 | 能力及本次用途 | 状态 |
 |---|---|---|
 | 官方 [easyeda-api 技能](https://github.com/easyeda/easyeda-api-skill) | 提供原理图、PCB、封装/符号、工程管理API文档，以及执行API的本地桥接服务 | 已下载到本任务忽略目录，已读取技能与桥接代码 |
-| 官方 [Run API Gateway](https://github.com/easyeda/eext-run-api-gateway) | 安装在EDA内，连接本地桥接并执行扩展API；所下载扩展清单要求 `eda: ~3.2.0`，与本机3.2.149系列匹配 | 已准备中文官方安装包；尚待在EDA中导入并开启外部交互，实际兼容性待连接验证 |
+| 官方 [Run API Gateway](https://github.com/easyeda/eext-run-api-gateway) | 安装在EDA内，连接本地桥接并执行扩展API；所下载扩展清单要求 `eda: ~3.2.0`，与本机3.2.149系列匹配 | 用户已导入并开启外部交互；本机3.2.149已实际连接并执行工程读写 |
 | 官方 [CLI/MCP](https://github.com/easyeda/easyeda-client-cli) | 新版客户端内置命令行和MCP，可管理会话、执行API、查询文档及导出文件 | 官方要求4.1.60以上；本机3.2.149不包含此入口，本次未改客户端或Codex MCP配置 |
 | 社区 [pcb-skill](https://github.com/daishuge/pcb-skill) | 面向选型、布局、布线和制造文件复核的工作流程参考 | 已查阅介绍，未安装、未执行其脚本；本次优先官方桥接 |
 
@@ -22,7 +22,7 @@
 - 官方技能：`easyeda-api 1.1.60`，存放于本工作树 `.superpowers/sdd/2026-10-24-six-port-baseboard-hardware/skills/easyeda-api/`。这是任务本地副本，未注册为Codex全局技能。
 - 桥接依赖：按上游lockfile取得 `ws 8.21.3`，校验SHA512完整性后放入该副本的 `node_modules/ws/`，未执行npm安装脚本。
 - 本地桥接：已在后台启动，仅监听 `127.0.0.1:49620`；源码 `LISTEN_HOST='127.0.0.1'` 已核对。
-- 首次健康检查：`service=easyeda-bridge`、`status=ok`、`edaConnected=false`、`edaWindowCount=0`。**服务启动不等于EDA已经连接**，尚未执行任何原理图/PCB读写。
+- 首次健康检查：`service=easyeda-bridge`、`status=ok`、`edaConnected=false`、`edaWindowCount=0`。**服务启动不等于EDA已经连接**。随后用户导入扩展，已确认 `edaConnected=true`、单一EDA窗口，并建立下述独立工程。
 - 本次未修改既有工程、固件、引脚profile或RaceChrono协议，未产生已核准制造文件。
 
 技能副本、日志、PID和依赖位于忽略目录；本机可导入扩展位于本工作树 `output/wired-tire/integrations/run-api-gateway_v1.0.5_zh-cn.eext`。这些本机文件不作为仓库源码或可复现硬件设计提交。
@@ -36,3 +36,32 @@
 接通后先做只读检查：读取当前EDA版本、已连接窗口和当前工程。后续新建六口底板独立工程，避免覆盖现有工程；每次写入前核对目标工程和文档类型。原理图与PCB坐标单位不同（10mil与mil），放置后必须读回引脚/焊盘坐标并复核。规则检查、网表、预览及导出结果分别留证，不能把API调用成功写成电路正确或实物验证通过。
 
 原理图、PCB、库和导出API能力见[官方API参考](https://prodocs.lceda.cn/cn/api/reference/pro-api.html)。连接能力与元器件选型、引脚核准、电源/射频/PCB工程审查是不同关卡；后者仍按用户指定顺序推进。
+
+
+## 实际接入与3.2 API核对
+
+2026-10-24开始接入，2026-10-25继续绘图。已建立独立工程“六接口中控底板 V0.1 工程样机”，工程UUID `cabf59e4c0fc400bb9f26d8801fd78d4`；同板原理图 `c894fbda5b2e2552`、PCB `f6a2934be26f0c80`。未覆盖用户已有工程。
+
+- 当前为客户端在线模式，`getProjectsPaths()`在此模式不可用；不切换用户模式。导出File/Blob经桥接返回后，保存到本工作树。
+- 使用本机 `api-types.d.ts` 与实现核对精确签名，不能直接套用最新API文档。3.2没有公开的PCB自动布局/自动布线API。
+- `openDocument()`之后显式调用 `activateDocument(tabId)`，每批操作和各次写入前核对文档类型、图页UUID与工程UUID；仅打开标签页不足以替代激活核查。
+- `sch_Net.getAllNets()`等接口在本版为空实现，不能用空结果证明网表无误。
+- `sch_Netlist.getNetlist()`在实测中超时；改用已实际验证的 `sch_ManufactureData.getNetlistFile("明确文件名","JLCEDA")` 导出真实网表，避免旧入口逐封装补标题的串行请求。
+- 原理图完整PDF使用 `getExportDocumentFile(...,"PDF",...)`；本版没有原理图 `getPdfFile()`。已验证初始完整PDF导出，最终图纸另存于底板目录。
+- `sch_PrimitiveComponent.modify()`只允许普通器件；NetPort直接用 `createNetPort()`及 `getState_Net()`读回。跨页连接保留真实NetPort，并从导出网表确认，不假定普通同名短线总是跨页互通。
+- 通过API查询的器件按精确厂家型号筛选，不能只取搜索第一条。逗号型号查询会返回无关器件；每只元件读回引脚号、坐标和封装引用。
+- NC修改通过画布引脚 `setState_NoConnected()`，不编辑共享符号库；裸焊盘悬空与接地按具体芯片手册分别核对。
+
+实际设计包含供电隔离、启动毛刺、保护二极管极性及热焊盘复核；API调用成功只证明操作完成，网表断言、规则检查和实物验证另行记录。
+
+## 保存与PCB接口的实测注意事项
+
+- `sch_PrimitiveComponent.modify()`的几何修改会重置部分器件属性。修改后须按实际位号恢复Supplier Part、Value、DNP及说明，并验证Unique ID和网表。直接修改属性对象可避免再次覆盖几何。
+- 导线读回可能归一化端点次序；标注位置应从实际符号引脚识别外端，不能总把数组第二端当外端。NetPort的默认文字位置也需检查PDF。接口页以带名导线实现连接后，已从完整导出网表核对跨页连接。
+- PCB器件旋转使用度，实体焊盘读回旋转在本版为弧度；重开后的270°可能表示为−90°。检查应比较等价角度，不能因此移动器件。
+- 板框用一个闭合的 `pcb_PrimitivePolyline`，并用真实DSN导出验证。`pcb_PrimitiveLine`放在11层会形成普通走线，不能据视觉闭合推断导出器能识别。
+- 覆铜优先级为所在铜层中的顺序，不能传任意大数。实测传10会在运行时建对象后、提交保存前报错。遇到报错先读回对象，不能直接重复创建。使用默认顺序修复后，已验证原生文件包含边界和填充，重开仍保留。
+- 封装内过孔尺寸须在本工程本地封装修正；实例修改可改变网名，但不能代替封装几何更新。过孔读回孔径可能按mil取整，应核对原生源码。
+- 当前同时保存`.epro2`与兼容`.epro`，并对归档内部的器件、闭合板框和铜区计数。`.epro2`可保留已无活动父边界的旧填充缓存；检查活动铜区引用，并以重开后的画布对象为准。
+
+已核对官方Freerouting 2.5.0便携CLI，可在任务目录处理真实DSN/SES，尚未将其用于已放行布线。原厂电源回路先单独处理；信号自动布线不得修改受保护电源线或占用完整地参考层。软件退出成功不替代回导后的真实DRC。[官方发行版](https://github.com/freerouting/freerouting/releases/tag/v2.5.0)、[参数说明](https://github.com/freerouting/freerouting/blob/v2.5.0/docs/settings.md)。

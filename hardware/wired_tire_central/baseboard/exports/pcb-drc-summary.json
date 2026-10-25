@@ -1,0 +1,28 @@
+{
+  "drc": [
+    {
+      "category": "Connection Error",
+      "count": 990,
+      "groups": 196
+    }
+  ],
+  "pours": [
+    {
+      "name": "GND_BUCK_TOP",
+      "id": "b043c4dd9787492e",
+      "layer": 1,
+      "net": "GND"
+    },
+    {
+      "name": "GND_L2_BASE",
+      "id": "bad6c9d941c7e11d",
+      "layer": 15,
+      "net": "GND"
+    }
+  ],
+  "poured_regions": 2,
+  "ground_vias": 34,
+  "reopened_after_save": true,
+  "routing_complete": false,
+  "fabrication_released": false
+}

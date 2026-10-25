@@ -1,0 +1,9 @@
+*.epro binary
+*.epro2 binary
+*.pdf binary
+*.png binary
+*.json text eol=lf
+*.enet text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.csv text eol=crlf

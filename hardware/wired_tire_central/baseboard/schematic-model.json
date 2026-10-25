@@ -1,0 +1,4448 @@
+{
+  "revision": "V0.1 engineering draft",
+  "project_uuid": "cabf59e4c0fc400bb9f26d8801fd78d4",
+  "schematic_uuid": "c894fbda5b2e2552",
+  "pcb_uuid": "f6a2934be26f0c80",
+  "pages": {
+    "FL": "00a616049657d599",
+    "BRAKE": "af4ca8b1a83ec6ce",
+    "PORTS": "87ee525a4b8567a6",
+    "POWER": "f70af1c0281850fd",
+    "FR": "97d6b8c93cb60a4f",
+    "RL": "11d343cd37419ef5",
+    "RR": "a8e9e1b57677c6b5",
+    "DISPLAY": "c85737767a50e6ac",
+    "BUCK": "3f354cd0a4ae8677",
+    "PORT_P0": "df4770c91b974f8f",
+    "PORT_P1": "f6509666384a920b",
+    "PORT_P2": "7be36c2243314699"
+  },
+  "instances": [
+    {
+      "ref": "U1",
+      "part": "c3",
+      "page": "FL",
+      "pins": {
+        "3": "3V3",
+        "5": "FL_STRAP2",
+        "6": "FL_MISO",
+        "8": "FL_EN",
+        "12": "FL_SCK",
+        "13": "FL_MOSI",
+        "16": "FL_RX",
+        "18": "FL_CS",
+        "19": "READY_FL",
+        "20": "FL_TX",
+        "21": "FL_DE_CMD",
+        "22": "FL_STRAP8",
+        "23": "FL_BOOT",
+        "26": "FL_USB_DM",
+        "27": "FL_USB_DP",
+        "30": "FL_ARM",
+        "1": "GND",
+        "2": "GND",
+        "11": "GND",
+        "14": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "GND",
+        "40": "GND",
+        "41": "GND",
+        "42": "GND",
+        "43": "GND",
+        "44": "GND",
+        "45": "GND",
+        "46": "GND",
+        "47": "GND",
+        "48": "GND",
+        "49": "GND",
+        "50": "GND",
+        "51": "GND",
+        "52": "GND",
+        "53": "GND"
+      },
+      "x": 250,
+      "y": 620,
+      "rotation": 0,
+      "note": "GPIO20 ARM 2.2k pulldown; UART0 RX must not connect external UART TX",
+      "dnp": false
+    },
+    {
+      "ref": "U12",
+      "part": "buf",
+      "page": "FL",
+      "pins": {
+        "1": "GND",
+        "2": "HOST_SCK",
+        "3": "FL_SCK_B",
+        "4": "GND",
+        "5": "HOST_MOSI",
+        "6": "FL_MOSI_B",
+        "7": "GND",
+        "8": "FL_CS_B",
+        "9": "CS_FL",
+        "10": "GND",
+        "11": "FL_MISO_B",
+        "12": "FL_MISO",
+        "13": "CS_FL",
+        "14": "3V3"
+      },
+      "x": 720,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R1",
+      "part": "r220",
+      "page": "FL",
+      "pins": {
+        "1": "FL_SCK_B",
+        "2": "FL_SCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R2",
+      "part": "r220",
+      "page": "FL",
+      "pins": {
+        "1": "FL_MOSI_B",
+        "2": "FL_MOSI"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R3",
+      "part": "r220",
+      "page": "FL",
+      "pins": {
+        "1": "FL_CS_B",
+        "2": "FL_CS"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R4",
+      "part": "r33",
+      "page": "FL",
+      "pins": {
+        "1": "FL_MISO_B",
+        "2": "HOST_MISO_INT"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R5",
+      "part": "r2k2",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "CS_FL"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C1",
+      "part": "c100n",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R6",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "FL_EN"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R7",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "FL_BOOT"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R8",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "FL_STRAP8"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R9",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "FL_STRAP2"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R10",
+      "part": "r2k2",
+      "page": "FL",
+      "pins": {
+        "1": "FL_ARM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R11",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "FL_DE_CMD",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R12",
+      "part": "r10k",
+      "page": "FL",
+      "pins": {
+        "1": "READY_FL",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C2",
+      "part": "c1u",
+      "page": "FL",
+      "pins": {
+        "1": "FL_EN",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C3",
+      "part": "c10u25",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C4",
+      "part": "c100n",
+      "page": "FL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J11",
+      "part": "progconn",
+      "page": "FL",
+      "pins": {
+        "1": "FL_USB_DM",
+        "2": "FL_USB_DP",
+        "3": "GND",
+        "4": "FL_EN",
+        "5": "GND",
+        "6": "FL_BOOT"
+      },
+      "x": 1000,
+      "y": 640,
+      "rotation": 0,
+      "note": "Native USB jig only; no VBUS or UART0 RX; external 12V supply required",
+      "dnp": false
+    },
+    {
+      "ref": "U2",
+      "part": "c3",
+      "page": "FR",
+      "pins": {
+        "3": "3V3",
+        "5": "FR_STRAP2",
+        "6": "FR_MISO",
+        "8": "FR_EN",
+        "12": "FR_SCK",
+        "13": "FR_MOSI",
+        "16": "FR_RX",
+        "18": "FR_CS",
+        "19": "READY_FR",
+        "20": "FR_TX",
+        "21": "FR_DE_CMD",
+        "22": "FR_STRAP8",
+        "23": "FR_BOOT",
+        "26": "FR_USB_DM",
+        "27": "FR_USB_DP",
+        "30": "FR_ARM",
+        "1": "GND",
+        "2": "GND",
+        "11": "GND",
+        "14": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "GND",
+        "40": "GND",
+        "41": "GND",
+        "42": "GND",
+        "43": "GND",
+        "44": "GND",
+        "45": "GND",
+        "46": "GND",
+        "47": "GND",
+        "48": "GND",
+        "49": "GND",
+        "50": "GND",
+        "51": "GND",
+        "52": "GND",
+        "53": "GND"
+      },
+      "x": 250,
+      "y": 620,
+      "rotation": 0,
+      "note": "GPIO20 ARM 2.2k pulldown; UART0 RX must not connect external UART TX",
+      "dnp": false
+    },
+    {
+      "ref": "U13",
+      "part": "buf",
+      "page": "FR",
+      "pins": {
+        "1": "GND",
+        "2": "HOST_SCK",
+        "3": "FR_SCK_B",
+        "4": "GND",
+        "5": "HOST_MOSI",
+        "6": "FR_MOSI_B",
+        "7": "GND",
+        "8": "FR_CS_B",
+        "9": "CS_FR",
+        "10": "GND",
+        "11": "FR_MISO_B",
+        "12": "FR_MISO",
+        "13": "CS_FR",
+        "14": "3V3"
+      },
+      "x": 720,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R13",
+      "part": "r220",
+      "page": "FR",
+      "pins": {
+        "1": "FR_SCK_B",
+        "2": "FR_SCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R14",
+      "part": "r220",
+      "page": "FR",
+      "pins": {
+        "1": "FR_MOSI_B",
+        "2": "FR_MOSI"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R15",
+      "part": "r220",
+      "page": "FR",
+      "pins": {
+        "1": "FR_CS_B",
+        "2": "FR_CS"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R16",
+      "part": "r33",
+      "page": "FR",
+      "pins": {
+        "1": "FR_MISO_B",
+        "2": "HOST_MISO_INT"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R17",
+      "part": "r2k2",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "CS_FR"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C5",
+      "part": "c100n",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R18",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "FR_EN"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R19",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "FR_BOOT"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R20",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "FR_STRAP8"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R21",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "FR_STRAP2"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R22",
+      "part": "r2k2",
+      "page": "FR",
+      "pins": {
+        "1": "FR_ARM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R23",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "FR_DE_CMD",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R24",
+      "part": "r10k",
+      "page": "FR",
+      "pins": {
+        "1": "READY_FR",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C6",
+      "part": "c1u",
+      "page": "FR",
+      "pins": {
+        "1": "FR_EN",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C7",
+      "part": "c10u25",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C8",
+      "part": "c100n",
+      "page": "FR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J12",
+      "part": "progconn",
+      "page": "FR",
+      "pins": {
+        "1": "FR_USB_DM",
+        "2": "FR_USB_DP",
+        "3": "GND",
+        "4": "FR_EN",
+        "5": "GND",
+        "6": "FR_BOOT"
+      },
+      "x": 1000,
+      "y": 640,
+      "rotation": 0,
+      "note": "Native USB jig only; no VBUS or UART0 RX; external 12V supply required",
+      "dnp": false
+    },
+    {
+      "ref": "U3",
+      "part": "c3",
+      "page": "RL",
+      "pins": {
+        "3": "3V3",
+        "5": "RL_STRAP2",
+        "6": "RL_MISO",
+        "8": "RL_EN",
+        "12": "RL_SCK",
+        "13": "RL_MOSI",
+        "16": "RL_RX",
+        "18": "RL_CS",
+        "19": "READY_RL",
+        "20": "RL_TX",
+        "21": "RL_DE_CMD",
+        "22": "RL_STRAP8",
+        "23": "RL_BOOT",
+        "26": "RL_USB_DM",
+        "27": "RL_USB_DP",
+        "30": "RL_ARM",
+        "1": "GND",
+        "2": "GND",
+        "11": "GND",
+        "14": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "GND",
+        "40": "GND",
+        "41": "GND",
+        "42": "GND",
+        "43": "GND",
+        "44": "GND",
+        "45": "GND",
+        "46": "GND",
+        "47": "GND",
+        "48": "GND",
+        "49": "GND",
+        "50": "GND",
+        "51": "GND",
+        "52": "GND",
+        "53": "GND"
+      },
+      "x": 250,
+      "y": 620,
+      "rotation": 0,
+      "note": "GPIO20 ARM 2.2k pulldown; UART0 RX must not connect external UART TX",
+      "dnp": false
+    },
+    {
+      "ref": "U14",
+      "part": "buf",
+      "page": "RL",
+      "pins": {
+        "1": "GND",
+        "2": "HOST_SCK",
+        "3": "RL_SCK_B",
+        "4": "GND",
+        "5": "HOST_MOSI",
+        "6": "RL_MOSI_B",
+        "7": "GND",
+        "8": "RL_CS_B",
+        "9": "CS_RL",
+        "10": "GND",
+        "11": "RL_MISO_B",
+        "12": "RL_MISO",
+        "13": "CS_RL",
+        "14": "3V3"
+      },
+      "x": 720,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R25",
+      "part": "r220",
+      "page": "RL",
+      "pins": {
+        "1": "RL_SCK_B",
+        "2": "RL_SCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R26",
+      "part": "r220",
+      "page": "RL",
+      "pins": {
+        "1": "RL_MOSI_B",
+        "2": "RL_MOSI"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R27",
+      "part": "r220",
+      "page": "RL",
+      "pins": {
+        "1": "RL_CS_B",
+        "2": "RL_CS"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R28",
+      "part": "r33",
+      "page": "RL",
+      "pins": {
+        "1": "RL_MISO_B",
+        "2": "HOST_MISO_INT"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R29",
+      "part": "r2k2",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "CS_RL"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C9",
+      "part": "c100n",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R30",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "RL_EN"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R31",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "RL_BOOT"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R32",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "RL_STRAP8"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R33",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "RL_STRAP2"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R34",
+      "part": "r2k2",
+      "page": "RL",
+      "pins": {
+        "1": "RL_ARM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R35",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "RL_DE_CMD",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R36",
+      "part": "r10k",
+      "page": "RL",
+      "pins": {
+        "1": "READY_RL",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C10",
+      "part": "c1u",
+      "page": "RL",
+      "pins": {
+        "1": "RL_EN",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C11",
+      "part": "c10u25",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C12",
+      "part": "c100n",
+      "page": "RL",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J13",
+      "part": "progconn",
+      "page": "RL",
+      "pins": {
+        "1": "RL_USB_DM",
+        "2": "RL_USB_DP",
+        "3": "GND",
+        "4": "RL_EN",
+        "5": "GND",
+        "6": "RL_BOOT"
+      },
+      "x": 1000,
+      "y": 640,
+      "rotation": 0,
+      "note": "Native USB jig only; no VBUS or UART0 RX; external 12V supply required",
+      "dnp": false
+    },
+    {
+      "ref": "U4",
+      "part": "c3",
+      "page": "RR",
+      "pins": {
+        "3": "3V3",
+        "5": "RR_STRAP2",
+        "6": "RR_MISO",
+        "8": "RR_EN",
+        "12": "RR_SCK",
+        "13": "RR_MOSI",
+        "16": "RR_RX",
+        "18": "RR_CS",
+        "19": "READY_RR",
+        "20": "RR_TX",
+        "21": "RR_DE_CMD",
+        "22": "RR_STRAP8",
+        "23": "RR_BOOT",
+        "26": "RR_USB_DM",
+        "27": "RR_USB_DP",
+        "30": "RR_ARM",
+        "1": "GND",
+        "2": "GND",
+        "11": "GND",
+        "14": "GND",
+        "36": "GND",
+        "37": "GND",
+        "38": "GND",
+        "39": "GND",
+        "40": "GND",
+        "41": "GND",
+        "42": "GND",
+        "43": "GND",
+        "44": "GND",
+        "45": "GND",
+        "46": "GND",
+        "47": "GND",
+        "48": "GND",
+        "49": "GND",
+        "50": "GND",
+        "51": "GND",
+        "52": "GND",
+        "53": "GND"
+      },
+      "x": 250,
+      "y": 620,
+      "rotation": 0,
+      "note": "GPIO20 ARM 2.2k pulldown; UART0 RX must not connect external UART TX",
+      "dnp": false
+    },
+    {
+      "ref": "U15",
+      "part": "buf",
+      "page": "RR",
+      "pins": {
+        "1": "GND",
+        "2": "HOST_SCK",
+        "3": "RR_SCK_B",
+        "4": "GND",
+        "5": "HOST_MOSI",
+        "6": "RR_MOSI_B",
+        "7": "GND",
+        "8": "RR_CS_B",
+        "9": "CS_RR",
+        "10": "GND",
+        "11": "RR_MISO_B",
+        "12": "RR_MISO",
+        "13": "CS_RR",
+        "14": "3V3"
+      },
+      "x": 720,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R37",
+      "part": "r220",
+      "page": "RR",
+      "pins": {
+        "1": "RR_SCK_B",
+        "2": "RR_SCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R38",
+      "part": "r220",
+      "page": "RR",
+      "pins": {
+        "1": "RR_MOSI_B",
+        "2": "RR_MOSI"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R39",
+      "part": "r220",
+      "page": "RR",
+      "pins": {
+        "1": "RR_CS_B",
+        "2": "RR_CS"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R40",
+      "part": "r33",
+      "page": "RR",
+      "pins": {
+        "1": "RR_MISO_B",
+        "2": "HOST_MISO_INT"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R41",
+      "part": "r2k2",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "CS_RR"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C13",
+      "part": "c100n",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R42",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "RR_EN"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R43",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "RR_BOOT"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R44",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "RR_STRAP8"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R45",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "RR_STRAP2"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R46",
+      "part": "r2k2",
+      "page": "RR",
+      "pins": {
+        "1": "RR_ARM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R47",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "RR_DE_CMD",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R48",
+      "part": "r10k",
+      "page": "RR",
+      "pins": {
+        "1": "READY_RR",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C14",
+      "part": "c1u",
+      "page": "RR",
+      "pins": {
+        "1": "RR_EN",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C15",
+      "part": "c10u25",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C16",
+      "part": "c100n",
+      "page": "RR",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J14",
+      "part": "progconn",
+      "page": "RR",
+      "pins": {
+        "1": "RR_USB_DM",
+        "2": "RR_USB_DP",
+        "3": "GND",
+        "4": "RR_EN",
+        "5": "GND",
+        "6": "RR_BOOT"
+      },
+      "x": 1000,
+      "y": 640,
+      "rotation": 0,
+      "note": "Native USB jig only; no VBUS or UART0 RX; external 12V supply required",
+      "dnp": false
+    },
+    {
+      "ref": "U5",
+      "part": "s3",
+      "page": "BRAKE",
+      "pins": {
+        "1": "GND",
+        "2": "3V3",
+        "3": "BRAKE_EN",
+        "4": "BL_RX",
+        "5": "BL_TX",
+        "6": "BL_DE_CMD",
+        "7": "BUZZER_CMD",
+        "8": "BR_RX",
+        "9": "BR_TX",
+        "10": "BR_DE_CMD",
+        "13": "BRAKE_USB_DM",
+        "14": "BRAKE_USB_DP",
+        "18": "BRAKE_CS",
+        "19": "BRAKE_MOSI",
+        "20": "BRAKE_SCK",
+        "21": "BRAKE_MISO",
+        "22": "READY_BRAKE",
+        "23": "BRAKE_ARM",
+        "27": "BRAKE_BOOT",
+        "38": "MAIN_FAULT_N",
+        "39": "PORT_FAULT_N",
+        "40": "GND",
+        "41": "GND"
+      },
+      "x": 250,
+      "y": 650,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U16",
+      "part": "buf",
+      "page": "BRAKE",
+      "pins": {
+        "1": "GND",
+        "2": "HOST_SCK",
+        "3": "BRAKE_SCK_B",
+        "4": "GND",
+        "5": "HOST_MOSI",
+        "6": "BRAKE_MOSI_B",
+        "7": "GND",
+        "8": "BRAKE_CS_B",
+        "9": "CS_BRAKE",
+        "10": "GND",
+        "11": "BRAKE_MISO_B",
+        "12": "BRAKE_MISO",
+        "13": "CS_BRAKE",
+        "14": "3V3"
+      },
+      "x": 700,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R49",
+      "part": "r220",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_SCK_B",
+        "2": "BRAKE_SCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R50",
+      "part": "r220",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_MOSI_B",
+        "2": "BRAKE_MOSI"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R51",
+      "part": "r220",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_CS_B",
+        "2": "BRAKE_CS"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R52",
+      "part": "r33",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_MISO_B",
+        "2": "HOST_MISO_INT"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R53",
+      "part": "r2k2",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "CS_BRAKE"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C17",
+      "part": "c100n",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R54",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "BRAKE_EN"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R55",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "BRAKE_BOOT"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R56",
+      "part": "r2k2",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_ARM",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R57",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "READY_BRAKE",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R58",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BL_DE_CMD",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R59",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BR_DE_CMD",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C18",
+      "part": "c1u",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_EN",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C19",
+      "part": "c10u25",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C20",
+      "part": "c100n",
+      "page": "BRAKE",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J15",
+      "part": "progconn",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BRAKE_USB_DM",
+        "2": "BRAKE_USB_DP",
+        "3": "GND",
+        "4": "BRAKE_EN",
+        "5": "GND",
+        "6": "BRAKE_BOOT"
+      },
+      "x": 1000,
+      "y": 640,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "Q4",
+      "part": "buzzmos",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BUZZER_GATE",
+        "2": "GND",
+        "3": "BUZZER_LOW"
+      },
+      "x": 700,
+      "y": 750,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R60",
+      "part": "r100",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BUZZER_CMD",
+        "2": "BUZZER_GATE"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R61",
+      "part": "r10k",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BUZZER_GATE",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "BZ1",
+      "part": "buzz",
+      "page": "BRAKE",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "BUZZER_LOW"
+      },
+      "x": 950,
+      "y": 750,
+      "rotation": 90,
+      "note": "Active 5V 30mA; audio hole / actual sound level must be verified",
+      "dnp": false
+    },
+    {
+      "ref": "D4",
+      "part": "schottky",
+      "page": "BRAKE",
+      "pins": {
+        "1": "BUZZER_LOW",
+        "2": "5V_BUCK"
+      },
+      "x": 1080,
+      "y": 750,
+      "rotation": 90,
+      "note": "Read-back library pin1=A pin2=K: cathode to +5V",
+      "dnp": false
+    },
+    {
+      "ref": "J3",
+      "part": "p4conn",
+      "page": "DISPLAY",
+      "pins": {
+        "3": "HOST_MISO",
+        "4": "P4_SCK",
+        "5": "P4_MOSI",
+        "6": "P4_CS_FL",
+        "7": "P4_CS_FR",
+        "8": "P4_CS_RL",
+        "9": "P4_CS_RR",
+        "10": "P4_CS_BRAKE",
+        "11": "GND",
+        "12": "P4_3V3_REF"
+      },
+      "x": 180,
+      "y": 600,
+      "rotation": 0,
+      "note": "7B P3: 1/2 NC; pin12 powers ONLY display-domain buffers, never join baseboard 3V3",
+      "dnp": false
+    },
+    {
+      "ref": "J4",
+      "part": "p4conn",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "MUX_A_IN",
+        "2": "MUX_B_IN",
+        "3": "MUX_C_IN",
+        "4": "MUX_Y_OUT",
+        "8": "GND",
+        "11": "GND"
+      },
+      "x": 180,
+      "y": 720,
+      "rotation": 0,
+      "note": "7B P1: 5/6/7/9/10/12 NC; VO4 and BAT must not be powered here",
+      "dnp": false
+    },
+    {
+      "ref": "U18",
+      "part": "mux",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "READY_RR",
+        "2": "READY_RL",
+        "3": "READY_FR",
+        "4": "READY_FL",
+        "5": "MUX_Y",
+        "7": "GND",
+        "8": "GND",
+        "9": "MUX_C",
+        "10": "MUX_B",
+        "11": "MUX_A",
+        "12": "GND",
+        "13": "GND",
+        "14": "GND",
+        "15": "READY_BRAKE",
+        "16": "3V3"
+      },
+      "x": 1030,
+      "y": 720,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R62",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "MUX_A",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R63",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "MUX_B",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R64",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "MUX_C",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R65",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "HOST_SCK",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R66",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "HOST_MOSI",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C21",
+      "part": "c100n",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U35",
+      "part": "axc8",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "GND",
+        "11": "GND",
+        "12": "GND",
+        "13": "GND",
+        "22": "LINK_OE_N",
+        "23": "P4_3V3_REF",
+        "24": "P4_3V3_REF",
+        "3": "HOST_SCK",
+        "21": "P4_SCK",
+        "4": "HOST_MOSI",
+        "20": "P4_MOSI",
+        "5": "CS_FL",
+        "19": "P4_CS_FL",
+        "6": "CS_FR",
+        "18": "P4_CS_FR",
+        "7": "CS_RL",
+        "17": "P4_CS_RL",
+        "8": "CS_RR",
+        "16": "P4_CS_RR",
+        "9": "CS_BRAKE",
+        "15": "P4_CS_BRAKE",
+        "10": "MUX_A",
+        "14": "MUX_A_IN"
+      },
+      "x": 480,
+      "y": 650,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U36",
+      "part": "axc4",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "GND",
+        "3": "3V3",
+        "4": "MUX_B",
+        "5": "MUX_C",
+        "6": "HOST_MISO_INT",
+        "7": "MUX_Y",
+        "8": "GND",
+        "9": "GND",
+        "10": "MUX_Y_OUT",
+        "11": "HOST_MISO",
+        "12": "MUX_C_IN",
+        "13": "MUX_B_IN",
+        "14": "LINK_OE_N",
+        "15": "LINK_OE_N",
+        "16": "P4_3V3_REF"
+      },
+      "x": 760,
+      "y": 650,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R67",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "P4_CS_FL"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R68",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "P4_CS_FR"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R69",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "P4_CS_RL"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R70",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "P4_CS_RR"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R71",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "P4_CS_BRAKE"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R72",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "HOST_MISO_INT",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C22",
+      "part": "c100n",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C23",
+      "part": "c100n",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C24",
+      "part": "c100n",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C25",
+      "part": "c100n",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C26",
+      "part": "c1u",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "P4_3V3_REF",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R73",
+      "part": "r2k2",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "LINK_OE_N"
+      },
+      "x": 550,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "Q5",
+      "part": "buzzmos",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "BASE_3V3_PG",
+        "2": "GND",
+        "3": "LINK_OE_N"
+      },
+      "x": 1030,
+      "y": 550,
+      "rotation": 0,
+      "note": "Open-drain enable; LMR33630 3V3 PG must be valid before link enabled",
+      "dnp": false
+    },
+    {
+      "ref": "R74",
+      "part": "r10k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "3V3",
+        "2": "BASE_3V3_PG"
+      },
+      "x": 760,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R75",
+      "part": "r100k",
+      "page": "DISPLAY",
+      "pins": {
+        "1": "BASE_3V3_PG",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U6",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_RO",
+        "2": "FL_DE_HW",
+        "3": "FL_DE_HW",
+        "4": "FL_TX",
+        "5": "GND",
+        "6": "FL_A",
+        "7": "FL_B",
+        "8": "3V3"
+      },
+      "x": 210,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U19",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_DE_CMD",
+        "2": "FL_ARM",
+        "3": "GND",
+        "4": "FL_DE_HW",
+        "5": "3V3"
+      },
+      "x": 430,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U25",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_POWER_EN",
+        "2": "FL_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "FL_ILIM",
+        "5": "FL_RETRY",
+        "6": "GND",
+        "7": "FL_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 210,
+      "y": 665,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J5",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_VPROBE",
+        "2": "GND",
+        "3": "FL_A",
+        "4": "FL_B"
+      },
+      "x": 480,
+      "y": 665,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D5",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_A",
+        "2": "GND"
+      },
+      "x": 510,
+      "y": 740,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D6",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "FL_B",
+        "2": "GND"
+      },
+      "x": 570,
+      "y": 740,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R76",
+      "part": "r1k",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_RO",
+        "2": "FL_RX"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R77",
+      "part": "r4k7",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_ARM",
+        "2": "FL_POWER_EN"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R78",
+      "part": "r6k19",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_ILIM",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R79",
+      "part": "r100k",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "FL_RETRY"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C27",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C28",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C29",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C30",
+      "part": "c10u25",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_VPROBE",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R80",
+      "part": "r120",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_A",
+        "2": "FL_B"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R81",
+      "part": "r390",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "3V3",
+        "2": "FL_A"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R82",
+      "part": "r390",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FL_B",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "U7",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_RO",
+        "2": "FR_DE_HW",
+        "3": "FR_DE_HW",
+        "4": "FR_TX",
+        "5": "GND",
+        "6": "FR_A",
+        "7": "FR_B",
+        "8": "3V3"
+      },
+      "x": 750,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U20",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_DE_CMD",
+        "2": "FR_ARM",
+        "3": "GND",
+        "4": "FR_DE_HW",
+        "5": "3V3"
+      },
+      "x": 970,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U26",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_POWER_EN",
+        "2": "FR_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "FR_ILIM",
+        "5": "FR_RETRY",
+        "6": "GND",
+        "7": "FR_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 750,
+      "y": 665,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J6",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_VPROBE",
+        "2": "GND",
+        "3": "FR_A",
+        "4": "FR_B"
+      },
+      "x": 1020,
+      "y": 665,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D7",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_A",
+        "2": "GND"
+      },
+      "x": 1050,
+      "y": 740,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D8",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "FR_B",
+        "2": "GND"
+      },
+      "x": 1110,
+      "y": 740,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R83",
+      "part": "r1k",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_RO",
+        "2": "FR_RX"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R84",
+      "part": "r4k7",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_ARM",
+        "2": "FR_POWER_EN"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R85",
+      "part": "r6k19",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_ILIM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R86",
+      "part": "r100k",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "FR_RETRY"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C31",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C32",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C33",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C34",
+      "part": "c10u25",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_VPROBE",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R87",
+      "part": "r120",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_A",
+        "2": "FR_B"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R88",
+      "part": "r390",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "3V3",
+        "2": "FR_A"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R89",
+      "part": "r390",
+      "page": "PORT_P0",
+      "pins": {
+        "1": "FR_B",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "U8",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_RO",
+        "2": "RL_DE_HW",
+        "3": "RL_DE_HW",
+        "4": "RL_TX",
+        "5": "GND",
+        "6": "RL_A",
+        "7": "RL_B",
+        "8": "3V3"
+      },
+      "x": 210,
+      "y": 535,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U21",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_DE_CMD",
+        "2": "RL_ARM",
+        "3": "GND",
+        "4": "RL_DE_HW",
+        "5": "3V3"
+      },
+      "x": 430,
+      "y": 535,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U27",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_POWER_EN",
+        "2": "RL_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "RL_ILIM",
+        "5": "RL_RETRY",
+        "6": "GND",
+        "7": "RL_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 210,
+      "y": 460,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J7",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_VPROBE",
+        "2": "GND",
+        "3": "RL_A",
+        "4": "RL_B"
+      },
+      "x": 480,
+      "y": 460,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D9",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_A",
+        "2": "GND"
+      },
+      "x": 510,
+      "y": 535,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D10",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "RL_B",
+        "2": "GND"
+      },
+      "x": 570,
+      "y": 535,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R90",
+      "part": "r1k",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_RO",
+        "2": "RL_RX"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R91",
+      "part": "r4k7",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_ARM",
+        "2": "RL_POWER_EN"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R92",
+      "part": "r6k19",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_ILIM",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R93",
+      "part": "r100k",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "RL_RETRY"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C35",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C36",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C37",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C38",
+      "part": "c10u25",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_VPROBE",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R94",
+      "part": "r120",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_A",
+        "2": "RL_B"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R95",
+      "part": "r390",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "3V3",
+        "2": "RL_A"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R96",
+      "part": "r390",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RL_B",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "U9",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_RO",
+        "2": "RR_DE_HW",
+        "3": "RR_DE_HW",
+        "4": "RR_TX",
+        "5": "GND",
+        "6": "RR_A",
+        "7": "RR_B",
+        "8": "3V3"
+      },
+      "x": 750,
+      "y": 535,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U22",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_DE_CMD",
+        "2": "RR_ARM",
+        "3": "GND",
+        "4": "RR_DE_HW",
+        "5": "3V3"
+      },
+      "x": 970,
+      "y": 535,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U28",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_POWER_EN",
+        "2": "RR_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "RR_ILIM",
+        "5": "RR_RETRY",
+        "6": "GND",
+        "7": "RR_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 750,
+      "y": 460,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J8",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_VPROBE",
+        "2": "GND",
+        "3": "RR_A",
+        "4": "RR_B"
+      },
+      "x": 1020,
+      "y": 460,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D11",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_A",
+        "2": "GND"
+      },
+      "x": 1050,
+      "y": 535,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D12",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "RR_B",
+        "2": "GND"
+      },
+      "x": 1110,
+      "y": 535,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R97",
+      "part": "r1k",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_RO",
+        "2": "RR_RX"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R98",
+      "part": "r4k7",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_ARM",
+        "2": "RR_POWER_EN"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R99",
+      "part": "r6k19",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_ILIM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R100",
+      "part": "r100k",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "RR_RETRY"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C39",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C40",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C41",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C42",
+      "part": "c10u25",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_VPROBE",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R101",
+      "part": "r120",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_A",
+        "2": "RR_B"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R102",
+      "part": "r390",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "3V3",
+        "2": "RR_A"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R103",
+      "part": "r390",
+      "page": "PORT_P1",
+      "pins": {
+        "1": "RR_B",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "U10",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_RO",
+        "2": "BL_DE_HW",
+        "3": "BL_DE_HW",
+        "4": "BL_TX",
+        "5": "GND",
+        "6": "BL_A",
+        "7": "BL_B",
+        "8": "3V3"
+      },
+      "x": 210,
+      "y": 330,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U23",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_DE_CMD",
+        "2": "BRAKE_ARM",
+        "3": "GND",
+        "4": "BL_DE_HW",
+        "5": "3V3"
+      },
+      "x": 430,
+      "y": 330,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U29",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_POWER_EN",
+        "2": "BL_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "BL_ILIM",
+        "5": "BL_RETRY",
+        "6": "GND",
+        "7": "BL_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 210,
+      "y": 255,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J9",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_VPROBE",
+        "2": "GND",
+        "3": "BL_A",
+        "4": "BL_B"
+      },
+      "x": 480,
+      "y": 255,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D13",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_A",
+        "2": "GND"
+      },
+      "x": 510,
+      "y": 330,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D14",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "BL_B",
+        "2": "GND"
+      },
+      "x": 570,
+      "y": 330,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R104",
+      "part": "r1k",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BL_RO",
+        "2": "BL_RX"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R105",
+      "part": "r4k7",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BRAKE_ARM",
+        "2": "BL_POWER_EN"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R106",
+      "part": "r6k19",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BL_ILIM",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R107",
+      "part": "r100k",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "BL_RETRY"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C43",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C44",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C45",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C46",
+      "part": "c10u25",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BL_VPROBE",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R108",
+      "part": "r120",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BL_A",
+        "2": "BL_B"
+      },
+      "x": 130,
+      "y": 545,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R109",
+      "part": "r390",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "BL_A"
+      },
+      "x": 340,
+      "y": 545,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R110",
+      "part": "r390",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BL_B",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 545,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "U11",
+      "part": "rs485",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_RO",
+        "2": "BR_DE_HW",
+        "3": "BR_DE_HW",
+        "4": "BR_TX",
+        "5": "GND",
+        "6": "BR_A",
+        "7": "BR_B",
+        "8": "3V3"
+      },
+      "x": 750,
+      "y": 330,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U24",
+      "part": "and",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_DE_CMD",
+        "2": "BRAKE_ARM",
+        "3": "GND",
+        "4": "BR_DE_HW",
+        "5": "3V3"
+      },
+      "x": 970,
+      "y": 330,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U30",
+      "part": "portpower",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_POWER_EN",
+        "2": "BR_POWER_EN",
+        "3": "PORT_FAULT_N",
+        "4": "BR_ILIM",
+        "5": "BR_RETRY",
+        "6": "GND",
+        "7": "BR_VPROBE",
+        "8": "12V_PROTECTED",
+        "9": "GND"
+      },
+      "x": 750,
+      "y": 255,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J10",
+      "part": "probeconn",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_VPROBE",
+        "2": "GND",
+        "3": "BR_A",
+        "4": "BR_B"
+      },
+      "x": 1020,
+      "y": 255,
+      "rotation": 90,
+      "note": "Vertical MicroFit; confirm numbering/view and real probe adapter before crimping",
+      "dnp": false
+    },
+    {
+      "ref": "D15",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_A",
+        "2": "GND"
+      },
+      "x": 1050,
+      "y": 330,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D16",
+      "part": "tvsab",
+      "page": "PORTS",
+      "pins": {
+        "1": "BR_B",
+        "2": "GND"
+      },
+      "x": 1110,
+      "y": 330,
+      "rotation": 90,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R111",
+      "part": "r1k",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BR_RO",
+        "2": "BR_RX"
+      },
+      "x": 760,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R112",
+      "part": "r4k7",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BRAKE_ARM",
+        "2": "BR_POWER_EN"
+      },
+      "x": 970,
+      "y": 545,
+      "rotation": 0,
+      "note": "4.7k MCU I/O fault current limiter per TI recommendation; IN and DIAG tied at IC side",
+      "dnp": false
+    },
+    {
+      "ref": "R113",
+      "part": "r6k19",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BR_ILIM",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 625,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R114",
+      "part": "r100k",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "BR_RETRY"
+      },
+      "x": 340,
+      "y": 625,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C47",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 625,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C48",
+      "part": "c100n",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 625,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C49",
+      "part": "c1u",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 625,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C50",
+      "part": "c10u25",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BR_VPROBE",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 705,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R115",
+      "part": "r120",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BR_A",
+        "2": "BR_B"
+      },
+      "x": 340,
+      "y": 705,
+      "rotation": 0,
+      "note": "DNP until probe end termination measured",
+      "dnp": true
+    },
+    {
+      "ref": "R116",
+      "part": "r390",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "BR_A"
+      },
+      "x": 550,
+      "y": 705,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R117",
+      "part": "r390",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "BR_B",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 705,
+      "rotation": 0,
+      "note": "DNP; built-in fail-safe used initially",
+      "dnp": true
+    },
+    {
+      "ref": "R118",
+      "part": "r10k",
+      "page": "PORT_P2",
+      "pins": {
+        "1": "3V3",
+        "2": "PORT_FAULT_N"
+      },
+      "x": 970,
+      "y": 705,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J1",
+      "part": "inputconn",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_RAW",
+        "2": "GND"
+      },
+      "x": 150,
+      "y": 640,
+      "rotation": 0,
+      "note": "Ignition-switched input, external 5A fuse close to vehicle takeoff",
+      "dnp": false
+    },
+    {
+      "ref": "U31",
+      "part": "main",
+      "page": "POWER",
+      "pins": {
+        "1": "DGATE",
+        "2": "12V_RAW",
+        "3": "UV_SW",
+        "4": "UVLO",
+        "5": "OVLO",
+        "6": "MAIN_N1",
+        "7": "MAIN_N1",
+        "9": "OCP_TMR",
+        "10": "IMON",
+        "11": "OCP_ILIM",
+        "12": "MAIN_FAULT_N",
+        "13": "GND",
+        "14": "HGATE",
+        "15": "12V_PROTECTED",
+        "16": "MAIN_N1",
+        "18": "ISCP",
+        "19": "MAIN_N2",
+        "20": "CS_PLUS",
+        "22": "MAIN_N1",
+        "23": "MAIN_CAP",
+        "24": "MAIN_N1"
+      },
+      "x": 580,
+      "y": 640,
+      "rotation": 0,
+      "note": "EP/RTN floating, never tied GND; common-drain power MOS topology; SLEEP_OV to VS for cutoff",
+      "dnp": false
+    },
+    {
+      "ref": "Q1",
+      "part": "mos100",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_RAW",
+        "2": "12V_RAW",
+        "3": "12V_RAW",
+        "4": "DGATE",
+        "5": "MAIN_N1",
+        "6": "MAIN_N1",
+        "7": "MAIN_N1",
+        "8": "MAIN_N1"
+      },
+      "x": 350,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "Q2",
+      "part": "mos100",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "12V_PROTECTED",
+        "3": "12V_PROTECTED",
+        "4": "HGATE",
+        "5": "MAIN_N2",
+        "6": "MAIN_N2",
+        "7": "MAIN_N2",
+        "8": "MAIN_N2"
+      },
+      "x": 900,
+      "y": 740,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R119",
+      "part": "sense",
+      "page": "POWER",
+      "pins": {
+        "1": "MAIN_N1",
+        "2": "MAIN_N2"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "2mOhm 2W; independent Kelvin sense routing required",
+      "dnp": false
+    },
+    {
+      "ref": "D1",
+      "part": "tvsraw",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_RAW",
+        "2": "GND"
+      },
+      "x": 150,
+      "y": 520,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D2",
+      "part": "tvsbus",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 900,
+      "y": 520,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "D3",
+      "part": "schottky",
+      "page": "POWER",
+      "pins": {
+        "1": "GND",
+        "2": "12V_PROTECTED"
+      },
+      "x": 1030,
+      "y": 520,
+      "rotation": 0,
+      "note": "Read-back library pin1=A pin2=K: cathode to protected bus",
+      "dnp": false
+    },
+    {
+      "ref": "R120",
+      "part": "r107k",
+      "page": "POWER",
+      "pins": {
+        "1": "UV_SW",
+        "2": "UVLO"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R121",
+      "part": "r9k09",
+      "page": "POWER",
+      "pins": {
+        "1": "UVLO",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R122",
+      "part": "r95k3",
+      "page": "POWER",
+      "pins": {
+        "1": "UV_SW",
+        "2": "OVLO"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R123",
+      "part": "r3k32",
+      "page": "POWER",
+      "pins": {
+        "1": "OVLO",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R124",
+      "part": "r75",
+      "page": "POWER",
+      "pins": {
+        "1": "MAIN_N1",
+        "2": "CS_PLUS"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R125",
+      "part": "r1k",
+      "page": "POWER",
+      "pins": {
+        "1": "MAIN_N1",
+        "2": "ISCP"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R126",
+      "part": "r56k2",
+      "page": "POWER",
+      "pins": {
+        "1": "OCP_ILIM",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R127",
+      "part": "r3k32",
+      "page": "POWER",
+      "pins": {
+        "1": "IMON",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C51",
+      "part": "c68n",
+      "page": "POWER",
+      "pins": {
+        "1": "OCP_TMR",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C52",
+      "part": "c220n",
+      "page": "POWER",
+      "pins": {
+        "1": "MAIN_CAP",
+        "2": "MAIN_N1"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R128",
+      "part": "r1k",
+      "page": "POWER",
+      "pins": {
+        "1": "HGATE",
+        "2": "DVDT_RC"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C53",
+      "part": "c2n2",
+      "page": "POWER",
+      "pins": {
+        "1": "DVDT_RC",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C54",
+      "part": "c100u35",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R129",
+      "part": "r10k",
+      "page": "POWER",
+      "pins": {
+        "1": "3V3",
+        "2": "MAIN_FAULT_N"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C55",
+      "part": "c100n",
+      "page": "POWER",
+      "pins": {
+        "1": "MAIN_N1",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C56",
+      "part": "c100n",
+      "page": "POWER",
+      "pins": {
+        "1": "12V_RAW",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U32",
+      "part": "buck",
+      "page": "BUCK",
+      "pins": {
+        "1": "GND",
+        "2": "12V_PROTECTED",
+        "3": "12V_PROTECTED",
+        "5": "B32_FB",
+        "6": "B32_VCC",
+        "7": "B32_BOOT",
+        "8": "B32_SW",
+        "9": "GND"
+      },
+      "x": 250,
+      "y": 650,
+      "rotation": 0,
+      "note": "B=1.4MHz, industrial HSOIC8; not Q1 drop-in. EP grounded",
+      "dnp": false
+    },
+    {
+      "ref": "L1",
+      "part": "inductor",
+      "page": "BUCK",
+      "pins": {
+        "1": "B32_SW",
+        "2": "5V_BUCK"
+      },
+      "x": 130,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C57",
+      "part": "c100n",
+      "page": "BUCK",
+      "pins": {
+        "1": "B32_BOOT",
+        "2": "B32_SW"
+      },
+      "x": 340,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C58",
+      "part": "c1u",
+      "page": "BUCK",
+      "pins": {
+        "1": "B32_VCC",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C59",
+      "part": "c10u50",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C60",
+      "part": "c10u50",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 225,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C61",
+      "part": "c220n",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C62",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C63",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C64",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C65",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 305,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R130",
+      "part": "r100k",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "B32_FB"
+      },
+      "x": 130,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R131",
+      "part": "r24k9",
+      "page": "BUCK",
+      "pins": {
+        "1": "B32_FB",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U33",
+      "part": "buck",
+      "page": "BUCK",
+      "pins": {
+        "1": "GND",
+        "2": "12V_PROTECTED",
+        "3": "12V_PROTECTED",
+        "5": "B33_FB",
+        "6": "B33_VCC",
+        "7": "B33_BOOT",
+        "8": "B33_SW",
+        "9": "GND",
+        "4": "BASE_3V3_PG"
+      },
+      "x": 750,
+      "y": 650,
+      "rotation": 0,
+      "note": "B=1.4MHz, industrial HSOIC8; not Q1 drop-in. EP grounded",
+      "dnp": false
+    },
+    {
+      "ref": "L2",
+      "part": "inductor",
+      "page": "BUCK",
+      "pins": {
+        "1": "B33_SW",
+        "2": "3V3"
+      },
+      "x": 550,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C66",
+      "part": "c100n",
+      "page": "BUCK",
+      "pins": {
+        "1": "B33_BOOT",
+        "2": "B33_SW"
+      },
+      "x": 760,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C67",
+      "part": "c1u",
+      "page": "BUCK",
+      "pins": {
+        "1": "B33_VCC",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 385,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C68",
+      "part": "c10u50",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C69",
+      "part": "c10u50",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C70",
+      "part": "c220n",
+      "page": "BUCK",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND"
+      },
+      "x": 550,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C71",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C72",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 465,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C73",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 130,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "C74",
+      "part": "c22u25",
+      "page": "BUCK",
+      "pins": {
+        "1": "3V3",
+        "2": "GND"
+      },
+      "x": 340,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R132",
+      "part": "r100k",
+      "page": "BUCK",
+      "pins": {
+        "1": "3V3",
+        "2": "B33_FB"
+      },
+      "x": 550,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "R133",
+      "part": "r43k2",
+      "page": "BUCK",
+      "pins": {
+        "1": "B33_FB",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "U34",
+      "part": "ideal",
+      "page": "BUCK",
+      "pins": {
+        "1": "IDEAL_CAP",
+        "2": "GND",
+        "3": "5V_BUCK",
+        "4": "5V_SCREEN",
+        "5": "IDEAL_GATE",
+        "6": "5V_BUCK"
+      },
+      "x": 1030,
+      "y": 650,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "Q3",
+      "part": "mos30",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_BUCK",
+        "2": "5V_BUCK",
+        "3": "5V_BUCK",
+        "4": "IDEAL_GATE",
+        "5": "5V_SCREEN",
+        "6": "5V_SCREEN",
+        "7": "5V_SCREEN",
+        "8": "5V_SCREEN",
+        "9": "5V_SCREEN"
+      },
+      "x": 1030,
+      "y": 750,
+      "rotation": 0,
+      "note": "Library pad9 is drain thermal pad; connected to CATHODE/output",
+      "dnp": false
+    },
+    {
+      "ref": "C75",
+      "part": "c100n",
+      "page": "BUCK",
+      "pins": {
+        "1": "IDEAL_CAP",
+        "2": "5V_BUCK"
+      },
+      "x": 970,
+      "y": 545,
+      "rotation": 0,
+      "note": "",
+      "dnp": false
+    },
+    {
+      "ref": "J2",
+      "part": "screenconn",
+      "page": "BUCK",
+      "pins": {
+        "1": "5V_SCREEN",
+        "2": "GND",
+        "3": "GND"
+      },
+      "x": 1030,
+      "y": 585,
+      "rotation": 0,
+      "note": "Dedicated USB power harness to 7B; no signal header power. USB host backfeed still requires kit power-path audit",
+      "dnp": false
+    }
+  ],
+  "cautions": [
+    "Not fabrication released",
+    "Real probes and 7B not available",
+    "Hardware profiles remain disabled",
+    "S3/READY mux/ARM firmware not implemented"
+  ]
+}
