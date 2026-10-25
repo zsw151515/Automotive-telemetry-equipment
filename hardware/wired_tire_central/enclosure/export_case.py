@@ -6,12 +6,49 @@ from collections import defaultdict
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import struct
 import subprocess
 
 HERE = Path(__file__).resolve().parent
-PARTS = ("body", "rear_cover", "rear_cover_pilot", "retainer")
+PARTS = ("body", "rear_cover", "rear_cover_pilot", "rear_cover_ports", "retainer")
+
+
+def pcb_mechanical() -> tuple[str, dict]:
+    """只读取已审查的布局坐标；不能把此投影当成实物对插通过。"""
+    path = HERE.parent / 'baseboard/pcb-layout.json'
+    raw = path.read_bytes()
+    layout = json.loads(raw)
+    placements = {p['ref']: p for p in layout['placements']}
+    refs = ['J5', 'J6', 'J7', 'J8', 'J9', 'J10', 'J1']
+    labels = ['FL', 'FR', 'RL', 'RR', 'BL', 'BR', '12V']
+    source = (HERE / 'central_case.scad').read_text(encoding='utf8')
+    values = {}
+    for key in ['case_w', 'board_w', 'board_h', 'board_y']:
+        m = re.search(r'^' + key + r'\s*=\s*([0-9.]+)\s*;', source, re.M)
+        if not m:
+            raise ValueError(f'{key}: 机械投影需要明确数值参数')
+        values[key] = float(m.group(1))
+    if layout['board_mm'] != [values['board_w'], values['board_h']]:
+        raise ValueError('SCAD与实际PCB板框尺寸不一致')
+    offset = [(values['case_w']-values['board_w'])/2, values['board_y']-values['board_h']/2]
+    centres = []
+    for ref in refs:
+        p = placements[ref]
+        if p['layer'] != 2 or p['rotation'] % 360:
+            raise ValueError(f'{ref}: 连接器层/方向改变，需重新审查后盖投影')
+        x0, x1, y0, y1 = p['bounds_mm']
+        centres.append([round((x0+x1)/2+offset[0], 3), round((y0+y1)/2+offset[1], 3)])
+    windows = [[12, 12]] * 6 + [[9, 12]]
+    text = ('// 当前PCB连接器外壳包络中心投影，非厂商面板开孔规范。\n'
+            'port_centres = ' + json.dumps(centres) + ';\n'
+            'port_label = ' + json.dumps(labels) + ';\n'
+            'port_windows = ' + json.dumps(windows) + ';\n')
+    data = {'layout_sha256': hashlib.sha256(raw).hexdigest(), 'refs': refs,
+            'labels': labels, 'board_offset_mm': offset, 'centres_mm': centres,
+            'prototype_windows_mm': windows, 'physically_verified': False}
+    return text, data
 
 
 def inspect_stl(path: Path) -> dict:
@@ -83,6 +120,14 @@ def main() -> None:
     out = HERE / "exports"
     source = HERE / "central_case.scad"
     report = {"scope": "mechanical fit prototype; not physically validated", "unit": "mm"}
+    mechanical_text, mechanical_data = pcb_mechanical()
+    mechanical_file = HERE / 'pcb_mechanical.scad'
+    if args.check_only:
+        if mechanical_file.read_text(encoding='utf8') != mechanical_text:
+            raise ValueError('底板连接器位置已改变，请重新生成外壳')
+    else:
+        mechanical_file.write_text(mechanical_text, encoding='utf8', newline='\n')
+    report['pcb_projection'] = mechanical_data
     if not args.check_only:
         exe = args.openscad or shutil.which("openscad.com") or shutil.which("openscad")
         if not exe:
@@ -106,6 +151,8 @@ def main() -> None:
     report["parts"] = {part: inspect_stl(out / f"{part}.stl") for part in PARTS}
     if args.check_only:
         saved = json.loads((out / "geometry_report.json").read_text(encoding="utf-8"))
+        if saved.get('pcb_projection') != report['pcb_projection']:
+            raise ValueError('底板投影记录已过期，请重新生成外壳')
         if saved["source_sha256"] != report["source_sha256"]:
             raise ValueError("SCAD与导出记录不一致，请重新生成")
         for part in PARTS:
@@ -113,7 +160,7 @@ def main() -> None:
                 raise ValueError(f"{part}.stl 与导出记录不一致，请重新生成")
         report["matches_saved_report"] = True
     else:
-        (out / "geometry_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        (out / "geometry_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps(report, ensure_ascii=True, indent=2))
 
 

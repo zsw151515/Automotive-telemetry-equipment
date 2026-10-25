@@ -15051,7 +15051,6 @@
         },
         "gge186": {
             "props": {
-                "Unique ID": "gge186",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "638564ee6bad36a9",
@@ -15081,6 +15080,7 @@
                 "Features": "",
                 "Name": "LMR33630BDDAR",
                 "Description": "",
+                "Unique ID": "gge186",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I2",
@@ -15168,7 +15168,6 @@
         },
         "gge187": {
             "props": {
-                "Unique ID": "gge187",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "4eecf840aaa28096",
@@ -15194,6 +15193,7 @@
                 "Type": "",
                 "Name": "MPL-AL5030-2R2",
                 "Description": "",
+                "Unique ID": "gge187",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I3",
@@ -15224,7 +15224,6 @@
         },
         "gge188": {
             "props": {
-                "Unique ID": "gge188",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Name": "100nF",
@@ -15248,6 +15247,7 @@
                 "Voltage Rating": "",
                 "Temperature Coefficient": "",
                 "Description": "",
+                "Unique ID": "gge188",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I4",
@@ -15278,7 +15278,6 @@
         },
         "gge189": {
             "props": {
-                "Unique ID": "gge189",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "93bee38b8a4901fe",
@@ -15302,6 +15301,7 @@
                 "Temperature Coefficient": "",
                 "Name": "1uF",
                 "Description": "",
+                "Unique ID": "gge189",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I5",
@@ -15332,7 +15332,6 @@
         },
         "gge190": {
             "props": {
-                "Unique ID": "gge190",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "bdd99a570011a88f",
@@ -15356,6 +15355,7 @@
                 "Temperature Coefficient": "",
                 "Name": "10uF",
                 "Description": "",
+                "Unique ID": "gge190",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I6",
@@ -15386,7 +15386,6 @@
         },
         "gge191": {
             "props": {
-                "Unique ID": "gge191",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "bdd99a570011a88f",
@@ -15410,6 +15409,7 @@
                 "Temperature Coefficient": "",
                 "Name": "10uF",
                 "Description": "",
+                "Unique ID": "gge191",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I7",
@@ -15440,7 +15440,6 @@
         },
         "gge192": {
             "props": {
-                "Unique ID": "gge192",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "435ff459e4f9423f",
@@ -15464,6 +15463,7 @@
                 "Temperature Coefficient": "",
                 "Name": "220nF",
                 "Description": "",
+                "Unique ID": "gge192",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I8",
@@ -15494,7 +15494,6 @@
         },
         "gge193": {
             "props": {
-                "Unique ID": "gge193",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -15518,6 +15517,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge193",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I9",
@@ -15548,7 +15548,6 @@
         },
         "gge194": {
             "props": {
-                "Unique ID": "gge194",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -15572,6 +15571,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge194",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I10",
@@ -15602,7 +15602,6 @@
         },
         "gge195": {
             "props": {
-                "Unique ID": "gge195",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -15626,6 +15625,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge195",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I11",
@@ -15656,7 +15656,6 @@
         },
         "gge196": {
             "props": {
-                "Unique ID": "gge196",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -15680,6 +15679,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge196",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I12",
@@ -15710,7 +15710,6 @@
         },
         "gge197": {
             "props": {
-                "Unique ID": "gge197",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "3f11c3e074873da2",
@@ -15737,6 +15736,7 @@
                 "Operating Temperature": "",
                 "Name": "100kΩ",
                 "Description": "",
+                "Unique ID": "gge197",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I13",
@@ -15767,7 +15767,6 @@
         },
         "gge198": {
             "props": {
-                "Unique ID": "gge198",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "252e3495e5bd1427",
@@ -15794,6 +15793,7 @@
                 "Operating Temperature": "",
                 "Name": "24.9kΩ",
                 "Description": "",
+                "Unique ID": "gge198",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I14",
@@ -15824,7 +15824,6 @@
         },
         "gge199": {
             "props": {
-                "Unique ID": "gge199",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "638564ee6bad36a9",
@@ -15854,6 +15853,7 @@
                 "Features": "",
                 "Name": "LMR33630BDDAR",
                 "Description": "",
+                "Unique ID": "gge199",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I15",
@@ -15941,7 +15941,6 @@
         },
         "gge200": {
             "props": {
-                "Unique ID": "gge200",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "4eecf840aaa28096",
@@ -15967,6 +15966,7 @@
                 "Type": "",
                 "Name": "MPL-AL5030-2R2",
                 "Description": "",
+                "Unique ID": "gge200",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I16",
@@ -15997,7 +15997,6 @@
         },
         "gge201": {
             "props": {
-                "Unique ID": "gge201",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Name": "100nF",
@@ -16021,6 +16020,7 @@
                 "Voltage Rating": "",
                 "Temperature Coefficient": "",
                 "Description": "",
+                "Unique ID": "gge201",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I17",
@@ -16051,7 +16051,6 @@
         },
         "gge202": {
             "props": {
-                "Unique ID": "gge202",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "93bee38b8a4901fe",
@@ -16075,6 +16074,7 @@
                 "Temperature Coefficient": "",
                 "Name": "1uF",
                 "Description": "",
+                "Unique ID": "gge202",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I18",
@@ -16105,7 +16105,6 @@
         },
         "gge203": {
             "props": {
-                "Unique ID": "gge203",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "bdd99a570011a88f",
@@ -16129,6 +16128,7 @@
                 "Temperature Coefficient": "",
                 "Name": "10uF",
                 "Description": "",
+                "Unique ID": "gge203",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I19",
@@ -16159,7 +16159,6 @@
         },
         "gge204": {
             "props": {
-                "Unique ID": "gge204",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "bdd99a570011a88f",
@@ -16183,6 +16182,7 @@
                 "Temperature Coefficient": "",
                 "Name": "10uF",
                 "Description": "",
+                "Unique ID": "gge204",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I20",
@@ -16213,7 +16213,6 @@
         },
         "gge205": {
             "props": {
-                "Unique ID": "gge205",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "435ff459e4f9423f",
@@ -16237,6 +16236,7 @@
                 "Temperature Coefficient": "",
                 "Name": "220nF",
                 "Description": "",
+                "Unique ID": "gge205",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I21",
@@ -16267,7 +16267,6 @@
         },
         "gge206": {
             "props": {
-                "Unique ID": "gge206",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -16291,6 +16290,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge206",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I22",
@@ -16321,7 +16321,6 @@
         },
         "gge207": {
             "props": {
-                "Unique ID": "gge207",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -16345,6 +16344,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge207",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I23",
@@ -16375,7 +16375,6 @@
         },
         "gge208": {
             "props": {
-                "Unique ID": "gge208",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -16399,6 +16398,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge208",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I24",
@@ -16429,7 +16429,6 @@
         },
         "gge209": {
             "props": {
-                "Unique ID": "gge209",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "0063e842ef6c8686",
@@ -16453,6 +16452,7 @@
                 "Temperature Coefficient": "",
                 "Name": "22uF",
                 "Description": "",
+                "Unique ID": "gge209",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I25",
@@ -16483,7 +16483,6 @@
         },
         "gge210": {
             "props": {
-                "Unique ID": "gge210",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "3f11c3e074873da2",
@@ -16510,6 +16509,7 @@
                 "Operating Temperature": "",
                 "Name": "100kΩ",
                 "Description": "",
+                "Unique ID": "gge210",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I26",
@@ -16540,7 +16540,6 @@
         },
         "gge211": {
             "props": {
-                "Unique ID": "gge211",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "3eebe567d58bbaba",
@@ -16567,6 +16566,7 @@
                 "Operating Temperature": "",
                 "Name": "43.2kΩ",
                 "Description": "",
+                "Unique ID": "gge211",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I27",
@@ -16597,7 +16597,6 @@
         },
         "gge212": {
             "props": {
-                "Unique ID": "gge212",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "1b58356003a4d296",
@@ -16617,6 +16616,7 @@
                 "3D Model Transform": "110.73671,114.173,0,180,0,0,0.001,-0.003,0",
                 "Name": "LM74700QDBVRQ1",
                 "Description": "",
+                "Unique ID": "gge212",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I28",
@@ -16680,7 +16680,6 @@
         },
         "gge213": {
             "props": {
-                "Unique ID": "gge213",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "fafc0ef47afb34cf",
@@ -16709,6 +16708,7 @@
                 "Operating Temperature": "",
                 "Name": "CSD17578Q5A",
                 "Description": "",
+                "Unique ID": "gge213",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I29",
@@ -16796,7 +16796,6 @@
         },
         "gge214": {
             "props": {
-                "Unique ID": "gge214",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Name": "100nF",
@@ -16820,6 +16819,7 @@
                 "Voltage Rating": "",
                 "Temperature Coefficient": "",
                 "Description": "",
+                "Unique ID": "gge214",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I30",
@@ -16850,7 +16850,6 @@
         },
         "gge215": {
             "props": {
-                "Unique ID": "gge215",
                 "Add into BOM": "yes",
                 "Convert to PCB": "yes",
                 "Symbol": "80a4283d7ddca421",
@@ -16887,6 +16886,7 @@
                 "Y-Width of Bottom Edge on Board": "",
                 "Name": "XH-3A",
                 "Description": "",
+                "Unique ID": "gge215",
                 "Reuse Block": "",
                 "Group ID": "",
                 "Channel ID": "$9I31",
@@ -20697,6 +20697,18 @@
                         "default": 0.254
                     }
                 }
+            },
+            "powerWide1oz": {
+                "name": "powerWide1oz",
+                "isDefault": false,
+                "unit": "mm",
+                "strokeValue": {
+                    "common": {
+                        "min": 0.127,
+                        "max": 3.99999962,
+                        "default": 0.254
+                    }
+                }
             }
         },
         "netRule": {
@@ -20799,7 +20811,7 @@
             "3V3": {
                 "net": "3V3",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "HOST_SCK": {
@@ -21009,7 +21021,7 @@
             "5V_BUCK": {
                 "net": "5V_BUCK",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "FL_RO": {
@@ -21063,7 +21075,7 @@
             "12V_PROTECTED": {
                 "net": "12V_PROTECTED",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "FR_RO": {
@@ -21363,13 +21375,13 @@
             "12V_RAW": {
                 "net": "12V_RAW",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "MAIN_N1": {
                 "net": "MAIN_N1",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "MAIN_CAP": {
@@ -21387,7 +21399,7 @@
             "MAIN_N2": {
                 "net": "MAIN_N2",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "OVLO": {
@@ -21927,7 +21939,7 @@
             "5V_SCREEN": {
                 "net": "5V_SCREEN",
                 "ruleMap": {
-                    "TrackPhysics": ""
+                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "IDEAL_GATE": {

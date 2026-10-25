@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "checked_connector_pads": 26,
+  "checked_connector_body_bounds": 7,
+  "maximum_position_error_mm": 1.5566631007837816e-06,
+  "errors": [],
+  "scope": "Bottom connector pad/body transforms against actual CAD pads; no physical fit approval"
+}

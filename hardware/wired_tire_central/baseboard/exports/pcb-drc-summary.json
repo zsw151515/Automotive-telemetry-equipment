@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 990,
-      "groups": 196
+      "count": 234,
+      "groups": 37
     }
   ],
   "pours": [
@@ -21,8 +21,162 @@
     }
   ],
   "poured_regions": 2,
-  "ground_vias": 34,
+  "total_vias_including_module": 524,
+  "board_vias": 512,
+  "module_thermal_vias": 12,
   "reopened_after_save": true,
+  "routed_line_primitives": 2796,
+  "ordinary_signal_nets_added": 159,
+  "unconnected_groups": [
+    {
+      "net": "GND",
+      "count": 28
+    },
+    {
+      "net": "5V_BUCK",
+      "count": 3
+    },
+    {
+      "net": "12V_PROTECTED",
+      "count": 18
+    },
+    {
+      "net": "3V3",
+      "count": 92
+    },
+    {
+      "net": "MAIN_N1",
+      "count": 9
+    },
+    {
+      "net": "12V_RAW",
+      "count": 2
+    },
+    {
+      "net": "5V_SCREEN",
+      "count": 2
+    },
+    {
+      "net": "HOST_MISO_INT",
+      "count": 2
+    },
+    {
+      "net": "CS_FL",
+      "count": 2
+    },
+    {
+      "net": "P4_3V3_REF",
+      "count": 12
+    },
+    {
+      "net": "FL_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "FR_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "RL_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "RR_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "BL_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "BR_VPROBE",
+      "count": 3
+    },
+    {
+      "net": "OCP_TMR",
+      "count": 2
+    },
+    {
+      "net": "FL_USB_DP",
+      "count": 2
+    },
+    {
+      "net": "FL_USB_DM",
+      "count": 2
+    },
+    {
+      "net": "FR_USB_DP",
+      "count": 2
+    },
+    {
+      "net": "FR_USB_DM",
+      "count": 2
+    },
+    {
+      "net": "RL_USB_DP",
+      "count": 2
+    },
+    {
+      "net": "RL_USB_DM",
+      "count": 2
+    },
+    {
+      "net": "RR_USB_DP",
+      "count": 2
+    },
+    {
+      "net": "RR_USB_DM",
+      "count": 2
+    },
+    {
+      "net": "BRAKE_USB_DP",
+      "count": 2
+    },
+    {
+      "net": "BRAKE_USB_DM",
+      "count": 2
+    },
+    {
+      "net": "DGATE",
+      "count": 2
+    },
+    {
+      "net": "HGATE",
+      "count": 3
+    },
+    {
+      "net": "IDEAL_GATE",
+      "count": 2
+    },
+    {
+      "net": "UVLO",
+      "count": 3
+    },
+    {
+      "net": "UV_SW",
+      "count": 3
+    },
+    {
+      "net": "OVLO",
+      "count": 3
+    },
+    {
+      "net": "CS_PLUS",
+      "count": 2
+    },
+    {
+      "net": "ISCP",
+      "count": 2
+    },
+    {
+      "net": "OCP_ILIM",
+      "count": 2
+    },
+    {
+      "net": "IMON",
+      "count": 2
+    }
+  ],
   "routing_complete": false,
   "fabrication_released": false
 }

@@ -46,6 +46,6 @@ report={'passed':not errors,'checked_components':len(expected),'checked_pin_nets
         'netlist_sha256':hashlib.sha256(raw).hexdigest(),
         'model_sha256':hashlib.sha256((base/'schematic-model.json').read_bytes()).hexdigest(),
         'errors':errors,'scope':'CAD connectivity and catalogue metadata only; not circuit, routing or hardware approval'}
-out=base/'exports/netlist-check.json';out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n','utf8')
+out=base/'exports/netlist-check.json';out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n')
 print(json.dumps({**report,'errors':errors[:25]},ensure_ascii=True))
 raise SystemExit(0 if report['passed'] else 1)

@@ -1,8 +1,94 @@
 {
   "scope": "mechanical fit prototype; not physically validated",
   "unit": "mm",
+  "pcb_projection": {
+    "layout_sha256": "6edb790201ec6726f5a0fc7c4d1dbcdc6f0911ab8c7f9cc2e83ae8874064c6b2",
+    "refs": [
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "J9",
+      "J10",
+      "J1"
+    ],
+    "labels": [
+      "FL",
+      "FR",
+      "RL",
+      "RR",
+      "BL",
+      "BR",
+      "12V"
+    ],
+    "board_offset_mm": [
+      20.0,
+      32.5
+    ],
+    "centres_mm": [
+      [
+        34.5,
+        44.085
+      ],
+      [
+        58.5,
+        44.085
+      ],
+      [
+        82.5,
+        44.085
+      ],
+      [
+        106.5,
+        44.085
+      ],
+      [
+        130.5,
+        44.085
+      ],
+      [
+        154.5,
+        44.085
+      ],
+      [
+        26.5,
+        66.085
+      ]
+    ],
+    "prototype_windows_mm": [
+      [
+        12,
+        12
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        12,
+        12
+      ],
+      [
+        9,
+        12
+      ]
+    ],
+    "physically_verified": false
+  },
   "tool": "OpenSCAD version 2021.01",
-  "source_sha256": "30ba4ac20a42b68ea5005421081884432e1723e1e219be757dc7af4b651ba88b",
+  "source_sha256": "93b959922d4d9304e4630673520e191a6840af8fba12f421043e31f95b8858a0",
   "parts": {
     "body": {
       "triangles": 3120,
@@ -27,7 +113,7 @@
         125.0,
         57.0
       ],
-      "sha256": "32bb1189907a480ac8f78d3a32f3d829fcb5b4f49b93f4b8fe21a6de7d307659"
+      "sha256": "3a9c41b00a3e336bdcf95dc4247e57e73d63c1e1860f0639053fdadc3b202ee1"
     },
     "rear_cover": {
       "triangles": 2524,
@@ -52,14 +138,14 @@
         125.0,
         13.0
       ],
-      "sha256": "5e019799627dae21d17371b07c907e8af7d0702dad4d3677de20380fc8190a70"
+      "sha256": "d94e79a1f6383d3a0438a99202cd64690eda872360c54151f2f2ddc84fdd90a6"
     },
     "rear_cover_pilot": {
-      "triangles": 7060,
+      "triangles": 6876,
       "closed_edges": true,
       "consistent_winding": true,
       "connected_components": 1,
-      "volume_mm3": 72786.448,
+      "volume_mm3": 72780.384,
       "bounds_mm": [
         [
           0.0,
@@ -77,7 +163,32 @@
         125.0,
         13.0
       ],
-      "sha256": "e3efd240eefecfd3d449495ba746b5da3a7b16a2773b2abc848732d62d5fa9b2"
+      "sha256": "bedbdec65221167282d02a9e4b75d663c774f74e5bd7cb150a412a501417ff5f"
+    },
+    "rear_cover_ports": {
+      "triangles": 5652,
+      "closed_edges": true,
+      "consistent_winding": true,
+      "connected_components": 1,
+      "volume_mm3": 70012.383,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          190.0,
+          125.0,
+          13.0
+        ]
+      ],
+      "size_mm": [
+        190.0,
+        125.0,
+        13.0
+      ],
+      "sha256": "eb6807b2644159b1194b41cc23dfa9b67f342b73273803389874253a1d252bdd"
     },
     "retainer": {
       "triangles": 892,
@@ -102,7 +213,7 @@
         10.0,
         3.0
       ],
-      "sha256": "6a1ae153d2e1ee38289eaefdb3f47623da1cddeffe64b8166a2c66bc101f9edd"
+      "sha256": "8fdb7957b148e02314ca1b4ebd604b0233e79f4b2f18969e413da95148a7f8c3"
     }
   }
 }

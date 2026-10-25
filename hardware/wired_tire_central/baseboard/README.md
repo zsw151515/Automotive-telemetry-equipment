@@ -2,7 +2,7 @@
 
 本目录对应嘉立创EDA专业版独立工程“六接口中控底板 V0.1 工程样机”。目标是同壳安装7B套件、四路胎温RS485、两路前刹车RS485及蜂鸣报警。图纸仍处工程设计阶段；是否完成网表、布局和审查，以 `review.md` 和实际导出文件为准，不能直接用于下单。
 
-2026-10-25 阶段快照：已建立12页原理图、282个器件、150×75mm四层PCB布局及首批降压回路走线。原理图1036个已定义引脚网络、PCB1170个实体焊盘网络及器件位置已分别核对。当前PCB仍有990项未连接提示；主供电分配、信号布线和制造审查继续进行。
+2026-10-25 阶段快照：已建立12页原理图、282个器件、150×75mm四层PCB布局，并完成主供电骨架、地线扇出和首轮信号布线。原理图1036个已定义引脚网络、PCB1170个实体焊盘网络及器件位置已分别核对。原生文件有2796个走线片段、512个板上过孔及12个S3模块散热过孔。保存重开后的真实DRC仅剩234项未连接提示；电源支线、USB和剩余信号仍须完成，不能投板。
 
 ## 工程资料
 
@@ -13,6 +13,8 @@
 - `eda/`：可编辑原生工程；`exports/`：图纸、网表、布局及检查证据。文件缺失时不能视为相应阶段已完成。
 - `eda/six-port-baseboard-v01.epro2`：当前3.2客户端原生工程；`.epro`为同时核对的兼容导出。两者均包含闭合板框和两个地铜区。已保存后重新打开PCB，核对对象保留情况。
 - `check-netlist.py`、`check-pcb.py`、`check-native.py`：分别检查真实原理图网表、PCB读回数据、原生文件关键对象。检查通过不代表布线完成或实物通过。
+- `check-mechanical.py`：用真实26个连接器焊盘坐标核对底面封装变换，避免后盖定位孔按错误镜像投影。
+- `exports/protected-copper-baseline.json`：信号布线前的电源及地线基线；原生文件检查确认458个已有走线片段及277个板上过孔的位置和网络保留。
 - `footprint-fixes.md`：连接器孔径、S3地过孔及封装使用边界。
 
 可在仓库根目录复核已保存快照：
@@ -21,6 +23,7 @@
 python hardware/wired_tire_central/baseboard/check-netlist.py hardware/wired_tire_central/baseboard/exports/six-port-v01.enet
 python hardware/wired_tire_central/baseboard/check-pcb.py hardware/wired_tire_central/baseboard/exports/pcb-readback.json
 python hardware/wired_tire_central/baseboard/check-native.py
+python hardware/wired_tire_central/baseboard/check-mechanical.py
 ```
 
 ## 已选架构
@@ -42,5 +45,7 @@ P4与五个从机共用短距离SPI。SN74HCS151选择五个DMA READY电平；�
 ## 当前边界
 
 旧固件、UUID、BLE设备名、轮位、RejsaRubberTrac及DIY CAN数据布局均未在本阶段修改；未启用任何Approved硬件profile。原离线C3固件不能直接烧录到新S3节点；READY选择、ARM上电顺序和新GPIO需要后续固件移植与台架验证。
+
+主电源使用单独的 `powerWide1oz` 导线规则：仅七个供电网络允许最大4mm宽度，其他间距、孔径和最小线宽没有放宽。原理图和PCB已同步该规则。信号只布在顶层/底层，Inner1保留地平面、Inner2用于电源；159个普通网络加入本轮布线，USB和敏感电源控制线单独处理。当前最细走线约0.128mm，板上普通过孔为0.30/0.60mm；S3模块内散热孔为0.30/0.50mm。过孔在焊盘内的工艺仍需制造审查。
 
 7B及成品探头尚未到货；150×75mm板框、连接器位置和外壳开孔只能作为待装配核对的样机设计。制造前需完成布线、网络/封装/电源审查及真实DRC；上车前还需限流电源、分路故障、不同上电顺序、温升与车载瞬态测试。

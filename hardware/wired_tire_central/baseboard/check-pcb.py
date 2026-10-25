@@ -64,6 +64,6 @@ report = {
     'scope': 'Actual PCB identities, pad nets and positions only; no routing or fabrication approval',
 }
 (base / 'exports/pcb-connectivity-check.json').write_text(
-    json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf8')
+    json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf8', newline='\n')
 print(json.dumps(report, ensure_ascii=True))
 raise SystemExit(0 if report['passed'] else 1)

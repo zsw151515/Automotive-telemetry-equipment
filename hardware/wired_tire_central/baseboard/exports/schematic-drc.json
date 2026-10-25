@@ -1,1 +1,13 @@
-[]
+{
+  "success": true,
+  "result": {
+    "doc": {
+      "documentType": 1,
+      "uuid": "00a616049657d599",
+      "tabId": "00a616049657d599@cabf59e4c0fc400bb9f26d8801fd78d4",
+      "parentProjectUuid": "cabf59e4c0fc400bb9f26d8801fd78d4"
+    },
+    "check": []
+  },
+  "windowId": "8b7b096f-4a5a-4946-a65b-92b6eb87a112"
+}

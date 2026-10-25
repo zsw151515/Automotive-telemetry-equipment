@@ -1,7 +1,7 @@
 /* 7B + 六接口底板：长方形试装样壳，单位 mm。
- * 官方玻璃/孔距作为参考；底板、连接器及玻璃相对PCB位置尚待实测。
- * 不包含电子制造设计。修改参数后必须重新导出并检查。
- * part: body / rear_cover / rear_cover_pilot / retainer / assembly / exploded
+ * 官方玻璃/孔距作为参考；底板位置关联当前PCB，实际装配尚待实测。
+ * 修改参数后必须重新导出并检查。
+ * part: body / rear_cover / rear_cover_pilot / rear_cover_ports / retainer / assembly / exploded
  */
 part = "assembly";
 $fn = 48;
@@ -31,7 +31,7 @@ screen_hole_x = 156;
 screen_hole_y = 89;
 screen_hole_clearance = 4.5; // M2.5配垫片，给玻璃与PCB偏移留调整量。
 
-// 仅用于安排空间：不是已经设计完成的六接口PCB。
+// 当前PCB布局的外形与安装孔；布线/实物验证仍未完成。
 board_w = 150;
 board_h = 75;
 board_t = 1.6;
@@ -48,9 +48,8 @@ cover_screw_inset = 7.5;
 retainer_z = 24;
 retainer_t = 3;
 retainer_w = 10;
-port_y = 15;
-port_x = [23, 47, 71, 95, 119, 143, 167];
-port_label = ["T1", "T2", "T3", "T4", "B1", "B2", "P"];
+// 由 export_case.py 从底板实际布局生成；坐标以装配视图为准。
+include <pcb_mechanical.scad>
 pilot_port_d = 3; // 只定位，不代表成品连接器孔径/电气定义。
 
 glass_x = (case_w-glass_w)/2;
@@ -113,7 +112,7 @@ module body() {
 
 // 打印局部坐标：平面z=0..rear_t，柱朝+z，y与装配坐标反向。
 // 装配仅用绕x轴翻转180度的刚体变换，不能用镜像替代翻面。
-module rear_cover(with_pilots=false) {
+module rear_cover(with_pilots=false,with_ports=false) {
     difference() {
         union() {
             rounded_plate(case_w,case_h,rear_t,corner_r);
@@ -124,10 +123,15 @@ module rear_cover(with_pilots=false) {
             translate([x,y,-eps]) cylinder(d=screw_clearance,h=rear_t+2*eps);
         for(x=board_cols,y=board_rows)
             translate([x,case_h-y,rear_t+board_standoff-8]) cylinder(d=pilot_d,h=8+eps);
-        if(with_pilots) for(i=[0:len(port_x)-1]) {
-            translate([port_x[i],case_h-port_y,-eps]) cylinder(d=pilot_port_d,h=rear_t+2*eps);
+        if(with_pilots || with_ports) for(i=[0:len(port_label)-1]) {
+            p=port_centres[i];
+            if(with_pilots)
+                translate([p[0],case_h-p[1],-eps]) cylinder(d=pilot_port_d,h=rear_t+2*eps);
+            if(with_ports)
+                translate([p[0]-port_windows[i][0]/2,case_h-p[1]-port_windows[i][1]/2,-eps])
+                    cube([port_windows[i][0],port_windows[i][1],rear_t+2*eps]);
             // 文字从外面看正向；外面是本零件的z=0面。
-            translate([port_x[i],case_h-port_y-6,0.5]) rotate([180,0,0])
+            translate([p[0],case_h-p[1]-port_windows[i][1]/2-4,0.5]) rotate([180,0,0])
                 linear_extrude(height=0.5+eps)
                     text(port_label[i],size=3.5,halign="center",valign="center");
         }
@@ -175,6 +179,7 @@ module assembly(explode=0) {
 if(part=="body") body();
 else if(part=="rear_cover") rear_cover(false);
 else if(part=="rear_cover_pilot") rear_cover(true);
+else if(part=="rear_cover_ports") rear_cover(false,true);
 else if(part=="retainer") translate([-wall-0.5,retainer_w/2,0]) retainer();
 else if(part=="assembly") assembly();
 else if(part=="exploded") assembly(40);
