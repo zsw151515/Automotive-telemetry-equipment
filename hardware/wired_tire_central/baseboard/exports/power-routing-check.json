@@ -1,0 +1,100 @@
+{
+  "stage": "partial routing; no fabrication release",
+  "base_commit": "a7005c3",
+  "before_unconnected_prompts": 234,
+  "after_unconnected_prompts": 82,
+  "routed_line_primitives": 3550,
+  "board_vias": 577,
+  "added_lines": 754,
+  "added_board_vias": 65,
+  "batches": [
+    {
+      "batch": "power2wide",
+      "jobs": 13,
+      "written_operations": 296
+    },
+    {
+      "batch": "probe3",
+      "jobs": 7,
+      "written_operations": 161
+    },
+    {
+      "batch": "powerfine",
+      "jobs": 7,
+      "written_operations": 168
+    },
+    {
+      "batch": "powerdense",
+      "jobs": 2,
+      "written_operations": 34
+    },
+    {
+      "batch": "densepowervias",
+      "jobs": 1,
+      "written_operations": 3
+    },
+    {
+      "batch": "densejoin",
+      "jobs": 1,
+      "written_operations": 4
+    },
+    {
+      "batch": "criticalselected",
+      "jobs": 3,
+      "written_operations": 61
+    },
+    {
+      "batch": "groundselected",
+      "jobs": 3,
+      "written_operations": 55
+    },
+    {
+      "batch": "brancheswide",
+      "jobs": 2,
+      "written_operations": 37
+    }
+  ],
+  "filled_capped_vias_added": [
+    {
+      "name": "FILLED_R17_1",
+      "net": "3V3",
+      "x_mm": 49.400000059999996,
+      "y_mm": 60.94663491999999,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "R17.1",
+      "requires_filled_and_capped": true,
+      "primitive_id": "fddff22dd4eebd25"
+    },
+    {
+      "name": "FILLED_R32_1",
+      "net": "3V3",
+      "x_mm": 91.29663692,
+      "y_mm": 60.550000419999996,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "R32.1",
+      "requires_filled_and_capped": true,
+      "primitive_id": "418351e49aa3b62c"
+    },
+    {
+      "name": "FILLED_U25_7",
+      "net": "FL_VPROBE",
+      "x_mm": 18.3751347,
+      "y_mm": 37.44604552,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "U25.7",
+      "requires_filled_and_capped": true,
+      "primitive_id": "9dde0db7f0027941"
+    }
+  ],
+  "netlist_identity_fix": "U1 schematic Unique ID restored from gge283 to gge1; complete exported netlist equals prior checkpoint",
+  "native_sha256": "beb137c59276746eb1ad54a9706891882b7903f607915db3a324289fd6aa115e",
+  "non_connection_drc_categories": [],
+  "notes": [
+    "No MCU GPIO or firmware changes",
+    "Three new via-in-pad escapes require filled/capped manufacturing review",
+    "Virtual priority routing experiments are not applied to native CAD"
+  ]
+}

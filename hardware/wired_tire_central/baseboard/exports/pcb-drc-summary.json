@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 234,
-      "groups": 37
+      "count": 82,
+      "groups": 28
     }
   ],
   "pours": [
@@ -21,28 +21,24 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 524,
-  "board_vias": 512,
+  "total_vias_including_module": 589,
+  "board_vias": 577,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 2796,
+  "routed_line_primitives": 3550,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
     {
       "net": "GND",
-      "count": 28
-    },
-    {
-      "net": "5V_BUCK",
-      "count": 3
+      "count": 11
     },
     {
       "net": "12V_PROTECTED",
-      "count": 18
+      "count": 7
     },
     {
       "net": "3V3",
-      "count": 92
+      "count": 5
     },
     {
       "net": "MAIN_N1",
@@ -50,10 +46,6 @@
     },
     {
       "net": "12V_RAW",
-      "count": 2
-    },
-    {
-      "net": "5V_SCREEN",
       "count": 2
     },
     {
@@ -65,35 +57,19 @@
       "count": 2
     },
     {
-      "net": "P4_3V3_REF",
-      "count": 12
-    },
-    {
-      "net": "FL_VPROBE",
-      "count": 3
-    },
-    {
       "net": "FR_VPROBE",
+      "count": 2
+    },
+    {
+      "net": "P4_3V3_REF",
       "count": 3
     },
     {
-      "net": "RL_VPROBE",
-      "count": 3
+      "net": "UV_SW",
+      "count": 2
     },
     {
-      "net": "RR_VPROBE",
-      "count": 3
-    },
-    {
-      "net": "BL_VPROBE",
-      "count": 3
-    },
-    {
-      "net": "BR_VPROBE",
-      "count": 3
-    },
-    {
-      "net": "OCP_TMR",
+      "net": "OVLO",
       "count": 2
     },
     {
@@ -147,18 +123,6 @@
     {
       "net": "IDEAL_GATE",
       "count": 2
-    },
-    {
-      "net": "UVLO",
-      "count": 3
-    },
-    {
-      "net": "UV_SW",
-      "count": 3
-    },
-    {
-      "net": "OVLO",
-      "count": 3
     },
     {
       "net": "CS_PLUS",
