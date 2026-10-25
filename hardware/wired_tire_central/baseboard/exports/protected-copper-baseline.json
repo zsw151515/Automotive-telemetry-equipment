@@ -1,5 +1,5 @@
 {
-  "phase": "After manual power and GND fanout; before signal copper",
+  "phase": "Revision 2: preserve 455 original lines plus 12 local power replacement lines",
   "lines": [
     {
       "async": true,
@@ -784,19 +784,6 @@
     {
       "async": true,
       "primitiveType": "Line",
-      "net": "MAIN_CAP",
-      "layer": 1,
-      "startX": 442.6609000000001,
-      "startY": 2122.0441,
-      "endX": 444.8819,
-      "endY": 2175.1959,
-      "lineWidth": 7.874,
-      "primitiveLock": true,
-      "primitiveId": "dc2d394b9fd9336c"
-    },
-    {
-      "async": true,
-      "primitiveType": "Line",
       "net": "MAIN_N1",
       "layer": 1,
       "startX": 462.3609,
@@ -806,19 +793,6 @@
       "lineWidth": 7.874,
       "primitiveLock": true,
       "primitiveId": "ce97a0526666bdac"
-    },
-    {
-      "async": true,
-      "primitiveType": "Line",
-      "net": "MAIN_N1",
-      "layer": 1,
-      "startX": 462.3609,
-      "startY": 2147.6378,
-      "endX": 602.3622,
-      "endY": 2147.6378,
-      "lineWidth": 7.874,
-      "primitiveLock": true,
-      "primitiveId": "545d6732f4cfee39"
     },
     {
       "async": true,
@@ -1144,19 +1118,6 @@
       "lineWidth": 7.874,
       "primitiveLock": true,
       "primitiveId": "682b5f4c19a49fe0"
-    },
-    {
-      "async": true,
-      "primitiveType": "Line",
-      "net": "MAIN_N2",
-      "layer": 1,
-      "startX": 574.8031,
-      "startY": 2129.9213,
-      "endX": 574.8031,
-      "endY": 1933.0709,
-      "lineWidth": 7.874,
-      "primitiveLock": true,
-      "primitiveId": "3ec10c64ab94207f"
     },
     {
       "async": true,
@@ -5954,6 +5915,162 @@
       "lineWidth": 11.811023622047244,
       "primitiveLock": true,
       "primitiveId": "84bd48b66b42cbcd"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N1",
+      "layer": 1,
+      "startX": 462.3609,
+      "startY": 2147.6378,
+      "endX": 462.3609,
+      "endY": 2163.3858,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "445124ae51fa1c1d"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N1",
+      "layer": 2,
+      "startX": 462.3609,
+      "startY": 2163.3858,
+      "endX": 462.3609,
+      "endY": 2188.9764,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "b6bbc2360e6160a7"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N1",
+      "layer": 2,
+      "startX": 462.3609,
+      "startY": 2188.9764,
+      "endX": 602.3622,
+      "endY": 2188.9764,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "e3e7a46101fd4f1b"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N1",
+      "layer": 2,
+      "startX": 602.3622,
+      "startY": 2188.9764,
+      "endX": 602.3622,
+      "endY": 2157.4803,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "561ce2d7bec49081"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N2",
+      "layer": 1,
+      "startX": 574.8031,
+      "startY": 2129.9213,
+      "endX": 590.5512,
+      "endY": 2114.1732,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "5dc97e2469fb587d"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N2",
+      "layer": 1,
+      "startX": 590.5512,
+      "startY": 2114.1732,
+      "endX": 610.2362,
+      "endY": 2114.1732,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "0c7afd82e8b6cc16"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N2",
+      "layer": 1,
+      "startX": 610.2362,
+      "startY": 2114.1732,
+      "endX": 610.2362,
+      "endY": 2098.4252,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "76a95d3dcbabe5ab"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_N2",
+      "layer": 2,
+      "startX": 610.2362,
+      "startY": 2098.4252,
+      "endX": 574.8031,
+      "endY": 1933.0709,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "a3a8be069c03bfde"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_CAP",
+      "layer": 1,
+      "startX": 442.6609000000001,
+      "startY": 2122.0441,
+      "endX": 442.6609000000001,
+      "endY": 2149.6063,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "65929c2104e7582e"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_CAP",
+      "layer": 1,
+      "startX": 442.6609000000001,
+      "startY": 2149.6063,
+      "endX": 437.00789999999995,
+      "endY": 2155.3031,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "2c19ec60b021dbb0"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_CAP",
+      "layer": 1,
+      "startX": 437.00789999999995,
+      "startY": 2155.3031,
+      "endX": 437.00789999999995,
+      "endY": 2198.8189,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "02c62ba035952835"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "MAIN_CAP",
+      "layer": 1,
+      "startX": 437.00789999999995,
+      "startY": 2198.8189,
+      "endX": 444.8819,
+      "endY": 2206.692,
+      "lineWidth": 7.874,
+      "primitiveLock": true,
+      "primitiveId": "9413aa357a5227ed"
     }
   ],
   "vias": [
@@ -10833,7 +10950,75 @@
       },
       "primitiveLock": true,
       "primitiveId": "f9aebfdcfd693429"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "MAIN_N1",
+      "x": 462.3609,
+      "y": 2163.3858,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "b711d815899b9df1"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "MAIN_N1",
+      "x": 602.3622,
+      "y": 2157.4803,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "d9b948e04b1a21ce"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "MAIN_N2",
+      "x": 610.2362,
+      "y": 2098.4252,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "11bbe06633562d84"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "MAIN_N2",
+      "x": 574.8031,
+      "y": 1933.0709,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "0a4bc72102673ff9"
     }
   ],
-  "scope": "Prior copper whose nets, geometry and widths must be retained"
+  "scope": "Explicit local revision recorded in protected-copper-revision.json; all other prior copper retained"
 }

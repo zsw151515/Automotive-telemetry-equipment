@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 82,
-      "groups": 28
+      "count": 49,
+      "groups": 19
     }
   ],
   "pours": [
@@ -21,32 +21,24 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 589,
-  "board_vias": 577,
+  "total_vias_including_module": 612,
+  "board_vias": 600,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 3550,
+  "routed_line_primitives": 3775,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
     {
       "net": "GND",
-      "count": 11
+      "count": 6
     },
     {
       "net": "12V_PROTECTED",
-      "count": 7
+      "count": 5
     },
     {
       "net": "3V3",
       "count": 5
-    },
-    {
-      "net": "MAIN_N1",
-      "count": 9
-    },
-    {
-      "net": "12V_RAW",
-      "count": 2
     },
     {
       "net": "HOST_MISO_INT",
@@ -110,34 +102,6 @@
     },
     {
       "net": "BRAKE_USB_DM",
-      "count": 2
-    },
-    {
-      "net": "DGATE",
-      "count": 2
-    },
-    {
-      "net": "HGATE",
-      "count": 3
-    },
-    {
-      "net": "IDEAL_GATE",
-      "count": 2
-    },
-    {
-      "net": "CS_PLUS",
-      "count": 2
-    },
-    {
-      "net": "ISCP",
-      "count": 2
-    },
-    {
-      "net": "OCP_ILIM",
-      "count": 2
-    },
-    {
-      "net": "IMON",
       "count": 2
     }
   ],

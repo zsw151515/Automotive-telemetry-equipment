@@ -1,0 +1,47 @@
+{
+  "base_commit": "08aaf0e",
+  "before_unconnected_prompts": 82,
+  "after_unconnected_prompts": 49,
+  "routed_line_primitives": 3775,
+  "board_vias": 600,
+  "module_vias": 12,
+  "component_move": {
+    "ref": "C52",
+    "before_mm": [
+      11.3,
+      55.95
+    ],
+    "after_mm": [
+      11.3,
+      56.75
+    ],
+    "rotation_deg": 90
+  },
+  "removed_line_count": 5,
+  "guarded_power_lines_replaced": 3,
+  "signal_lines_replaced": 2,
+  "local_rework_operations": 247,
+  "thermal_stitch_operations": 3,
+  "thermal_stitch_persisted_segments": 6,
+  "notes": [
+    "Native editor splits each of the 3 S3 thermal stitches at an embedded ground via: 6 stored line primitives",
+    "Additional dense power/ground reroute trial failed to reconnect four signal nets and was NOT applied"
+  ],
+  "extra_filled_capped_via": {
+    "pad": "C55.1",
+    "primitive_id": "d9b948e04b1a21ce",
+    "x_mm": 15.3,
+    "y_mm": 54.800000000000004,
+    "required_process": "resin fill and copper cap; not ordinary tenting"
+  },
+  "kelvin_source": {
+    "from_pad": "R124.1",
+    "to_pad": "R119.1",
+    "constraint": "routed independently from other MAIN_N1 copper until the shunt pad"
+  },
+  "native_sha256": "5c147c53a6ddd2436d19608df382b70c7e9394c61d0a86fb3f2b5923d211fdae",
+  "remaining_nonconnection_drc": [],
+  "independent_review_complete": true,
+  "fabrication_released": false,
+  "independent_review_report": "local-checkpoint-review.md"
+}
