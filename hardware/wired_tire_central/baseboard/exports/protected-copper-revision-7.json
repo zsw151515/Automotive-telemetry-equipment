@@ -1,0 +1,84 @@
+{
+  "base_commit": "3f1718e",
+  "previous_baseline_sha256": "3212f2c4c07d2a063cb1e972a10136c8a8ba723f8feb497f5635c550c70a87a8",
+  "previous_header": {
+    "phase": "Revision6: clamp and FRoutput power endpoints",
+    "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
+    "revision_history": [
+      "protected-copper-revision.json",
+      "protected-copper-revision-3.json",
+      "protected-copper-revision-4.json",
+      "protected-copper-revision-5.json",
+      "protected-copper-revision-6.json"
+    ]
+  },
+  "removed_protected_lines": [],
+  "added_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 1200.7874,
+      "startY": 2511.8101,
+      "endX": 1177.1654,
+      "endY": 2531.4951,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "1b13b160ce54edb3"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 1200.7874,
+      "startY": 2681.1033,
+      "endX": 1224.4094,
+      "endY": 2708.6624,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "27cd2f7774e48318"
+    }
+  ],
+  "added_protected_vias": [
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1177.1654,
+      "y": 2531.4951,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "1b757de442d609c7"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1224.4094,
+      "y": 2708.6624,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "746c04fe11ee1d67"
+    }
+  ],
+  "retained_previous_lines": 623,
+  "retained_previous_board_vias": 322,
+  "reason": "Add two local ground returns for unpopulated FL USB tuning capacitors. All previous copper objects and placement retained; no removals.",
+  "fabrication_released": false
+}

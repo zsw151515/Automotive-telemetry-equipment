@@ -10,8 +10,8 @@ U1,C3,7,21,FL_DE_CMD,,3.3V,-1/未核准,本次设计候选，未启用profile
 U1,C3,8,22,FL_STRAP8,,3.3V,-1/未核准,本次设计候选，未启用profile
 U1,C3,9,23,FL_BOOT,,3.3V,-1/未核准,本次设计候选，未启用profile
 U1,C3,10,16,FL_RX,,3.3V,-1/未核准,本次设计候选，未启用profile
-U1,C3,18,26,FL_USB_DM,,3.3V,-1/未核准,本次设计候选，未启用profile
-U1,C3,19,27,FL_USB_DP,,3.3V,-1/未核准,本次设计候选，未启用profile
+U1,C3,18,26,FL_USB_DM_MCU,,3.3V,-1/未核准,本次设计候选，未启用profile
+U1,C3,19,27,FL_USB_DP_MCU,,3.3V,-1/未核准,本次设计候选，未启用profile
 U1,C3,20,30,FL_ARM,,3.3V,-1/未核准,本次设计候选，未启用profile
 U2,C3,0,12,FR_SCK,,3.3V,-1/未核准,本次设计候选，未启用profile
 U2,C3,1,13,FR_MOSI,,3.3V,-1/未核准,本次设计候选，未启用profile

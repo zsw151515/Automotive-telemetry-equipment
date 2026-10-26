@@ -36,8 +36,8 @@
         "21": "FL_DE_CMD",
         "22": "FL_STRAP8",
         "23": "FL_BOOT",
-        "26": "FL_USB_DM",
-        "27": "FL_USB_DP",
+        "26": "FL_USB_DM_MCU",
+        "27": "FL_USB_DP_MCU",
         "30": "FL_ARM",
         "1": "GND",
         "2": "GND",
@@ -4437,12 +4437,69 @@
       "rotation": 0,
       "note": "Dedicated USB power harness to 7B; no signal header power. USB host backfeed still requires kit power-path audit",
       "dnp": false
+    },
+    {
+      "ref": "R134",
+      "part": "r33",
+      "page": "FL",
+      "pins": {
+        "1": "FL_USB_DM_MCU",
+        "2": "FL_USB_DM"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB source termination33ohm",
+      "dnp": false
+    },
+    {
+      "ref": "R135",
+      "part": "r33",
+      "page": "FL",
+      "pins": {
+        "1": "FL_USB_DP_MCU",
+        "2": "FL_USB_DP"
+      },
+      "x": 550,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB source termination33ohm",
+      "dnp": false
+    },
+    {
+      "ref": "C76",
+      "part": "cUsbDnp",
+      "page": "FL",
+      "pins": {
+        "1": "FL_USB_DM",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+      "dnp": true
+    },
+    {
+      "ref": "C77",
+      "part": "cUsbDnp",
+      "page": "FL",
+      "pins": {
+        "1": "FL_USB_DP",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+      "dnp": true
     }
   ],
   "cautions": [
     "Not fabrication released",
     "Real probes and 7B not available",
     "Hardware profiles remain disabled",
-    "S3/READY mux/ARM firmware not implemented"
+    "S3/READY mux/ARM firmware not implemented",
+    "USB FL nowhas33ohmseriesR134/R135andDNP10pFC76/C77. Other4USBinterfaces stillawaitRCreserve andall5pairsunrouted. MCU GPIO unchanged."
   ]
 }

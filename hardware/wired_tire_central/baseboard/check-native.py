@@ -6,6 +6,7 @@ import json
 import zipfile
 
 base = Path(__file__).resolve().parent
+expected_components = len(json.loads((base / "schematic-model.json").read_text("utf8"))["instances"])
 errors = []
 files = {}
 legacy = base / 'eda/six-port-baseboard-v01.epro'
@@ -16,7 +17,7 @@ with zipfile.ZipFile(legacy) as z:
     rows = [json.loads(l) for l in text.splitlines() if l]
     counts = collections.Counter(r[0] for r in rows)
     outlines = [r for r in rows if r[0] == 'POLY' and r[4] == 11]
-    if counts['COMPONENT'] != 282 or counts['POUR'] != 2:
+    if counts['COMPONENT'] != expected_components or counts['POUR'] != 2:
         errors.append('legacy component/pour count incorrect')
     if len(outlines) != 1:
         errors.append('legacy must contain one closed board contour')
@@ -77,7 +78,7 @@ else:
                 active_fills += 1
             else:
                 stale_cache += 1
-    if counts['COMPONENT'] != 282 or len(pours) != 2 or active_fills != 2:
+    if counts['COMPONENT'] != expected_components or len(pours) != 2 or active_fills != 2:
         errors.append('modern component/pour/active-fill count incorrect')
     if {(d['name'], d['layerId'], d['netName']) for d in pours.values()} != {
             ('GND_L2_BASE', 15, 'GND'), ('GND_BUCK_TOP', 1, 'GND')}:

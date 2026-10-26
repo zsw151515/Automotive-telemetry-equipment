@@ -1,10 +1,10 @@
 {
   "passed": true,
-  "components": 282,
-  "physical_pads": 1170,
-  "assigned_logical_pins": 1036,
-  "readback_sha256": "dc4585a25a81bed80df9e7e980ac83a8d6044e5df250b894ebcf546ef5cae9c4",
-  "layout_sha256": "0e387a2c8fd348e564d43ad11b4e5cbaff6b2e351fb4209b016b0284051b117a",
+  "components": 286,
+  "physical_pads": 1178,
+  "assigned_logical_pins": 1044,
+  "readback_sha256": "2def555b1ca845ef623725b107741457cabdc58c91d80a07ff7caf8bd7a1daca",
+  "layout_sha256": "7c5f350d1f0871c1faa61536cbb5ba6782d7c2d58be81a204e5991dcf92b54a5",
   "errors": [],
   "scope": "Actual PCB identities, pad nets and positions only; no routing or fabrication approval"
 }

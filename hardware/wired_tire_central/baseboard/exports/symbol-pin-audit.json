@@ -1,7 +1,7 @@
 {
-  "components": 282,
+  "components": 286,
   "missing_model_pins": [],
-  "symbol_pins": 1128,
+  "symbol_pins": 1136,
   "items": {
     "U1": {
       "ref": "U1",
@@ -18611,6 +18611,150 @@
           "pinShape": "None",
           "pinType": "IN",
           "primitiveId": "1749b934b5768198-e7",
+          "noConnected": false
+        }
+      ]
+    },
+    "R134": {
+      "ref": "R134",
+      "id": "0aeb5b3961ad2d1b",
+      "pins": [
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 360,
+          "y": 465,
+          "pinNumber": "2",
+          "pinName": "2",
+          "rotation": 0,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "0aeb5b3961ad2d1b-e3",
+          "noConnected": false
+        },
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 320,
+          "y": 465,
+          "pinNumber": "1",
+          "pinName": "1",
+          "rotation": 180,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "0aeb5b3961ad2d1b-e7",
+          "noConnected": false
+        }
+      ]
+    },
+    "R135": {
+      "ref": "R135",
+      "id": "d3cb6e920b752ba5",
+      "pins": [
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 570,
+          "y": 465,
+          "pinNumber": "2",
+          "pinName": "2",
+          "rotation": 0,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "d3cb6e920b752ba5-e3",
+          "noConnected": false
+        },
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 530,
+          "y": 465,
+          "pinNumber": "1",
+          "pinName": "1",
+          "rotation": 180,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "d3cb6e920b752ba5-e7",
+          "noConnected": false
+        }
+      ]
+    },
+    "C76": {
+      "ref": "C76",
+      "id": "3acaeab8c7e7c15e",
+      "pins": [
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 745,
+          "y": 465,
+          "pinNumber": "1",
+          "pinName": "1",
+          "rotation": 180,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "3acaeab8c7e7c15e-e5",
+          "noConnected": false
+        },
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 775,
+          "y": 465,
+          "pinNumber": "2",
+          "pinName": "2",
+          "rotation": 0,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "3acaeab8c7e7c15e-e9",
+          "noConnected": false
+        }
+      ]
+    },
+    "C77": {
+      "ref": "C77",
+      "id": "78f3e9a411f1e824",
+      "pins": [
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 955,
+          "y": 465,
+          "pinNumber": "1",
+          "pinName": "1",
+          "rotation": 180,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "78f3e9a411f1e824-e5",
+          "noConnected": false
+        },
+        {
+          "async": true,
+          "primitiveType": "ComponentPin",
+          "x": 985,
+          "y": 465,
+          "pinNumber": "2",
+          "pinName": "2",
+          "rotation": 0,
+          "pinLength": 10,
+          "pinColor": null,
+          "pinShape": "None",
+          "pinType": "IN",
+          "primitiveId": "78f3e9a411f1e824-e9",
           "noConnected": false
         }
       ]

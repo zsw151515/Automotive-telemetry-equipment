@@ -3141,6 +3141,50 @@
       ],
       "physical_pads": 2,
       "npth_cutouts": 0
+    },
+    "R134": {
+      "footprint_uuid": "d0069cef5276217f",
+      "bounds_mm": [
+        -1.1566017,
+        1.1566017,
+        -0.4320032,
+        0.4320032
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "R135": {
+      "footprint_uuid": "d0069cef5276217f",
+      "bounds_mm": [
+        -1.1566017,
+        1.1566017,
+        -0.4320032,
+        0.4320032
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "C76": {
+      "footprint_uuid": "bae2ba08801e4bef",
+      "bounds_mm": [
+        -1.1000231999999999,
+        1.1000231999999999,
+        -0.4499991,
+        0.4499991
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "C77": {
+      "footprint_uuid": "bae2ba08801e4bef",
+      "bounds_mm": [
+        -1.1000231999999999,
+        1.1000231999999999,
+        -0.4499991,
+        0.4499991
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
     }
   },
   "placements": [
@@ -7655,6 +7699,70 @@
       "fixed": false,
       "part": "r10k",
       "pcb_id": "129e3f528e0ffe0f"
+    },
+    {
+      "ref": "R134",
+      "x_mm": 28.0,
+      "y_mm": 65.4,
+      "rotation": 0,
+      "layer": 1,
+      "bounds_mm": [
+        26.8433983,
+        29.1566017,
+        64.96799680000001,
+        65.8320032
+      ],
+      "fixed": false,
+      "part": "r33",
+      "pcb_id": "338e4ed96df750c0"
+    },
+    {
+      "ref": "R135",
+      "x_mm": 28.0,
+      "y_mm": 67.0,
+      "rotation": 0,
+      "layer": 1,
+      "bounds_mm": [
+        26.8433983,
+        29.1566017,
+        66.5679968,
+        67.4320032
+      ],
+      "fixed": false,
+      "part": "r33",
+      "pcb_id": "44817fc994992bfd"
+    },
+    {
+      "ref": "C76",
+      "x_mm": 30.5,
+      "y_mm": 64.5,
+      "rotation": 270,
+      "layer": 1,
+      "bounds_mm": [
+        30.0500009,
+        30.9499991,
+        63.3999768,
+        65.60002320000001
+      ],
+      "fixed": false,
+      "part": "cUsbDnp",
+      "pcb_id": "a15541b20239ede3"
+    },
+    {
+      "ref": "C77",
+      "x_mm": 30.5,
+      "y_mm": 67.4,
+      "rotation": 90,
+      "layer": 1,
+      "bounds_mm": [
+        30.0500009,
+        30.9499991,
+        66.2999768,
+        68.50002320000002
+      ],
+      "fixed": false,
+      "part": "cUsbDnp",
+      "pcb_id": "3415fe31734bad7e"
     }
   ]
 }

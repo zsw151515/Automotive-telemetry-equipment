@@ -1,5 +1,5 @@
 {
-  "phase": "Revision6: clamp and FRoutput power endpoints",
+  "phase": "Revision7: FL USB tuning capacitor ground returns",
   "lines": [
     {
       "async": true,
@@ -8099,6 +8099,32 @@
       "lineWidth": 23.622,
       "primitiveLock": true,
       "primitiveId": "70b0c99ab4b5f591"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 1200.7874,
+      "startY": 2511.8101,
+      "endX": 1177.1654,
+      "endY": 2531.4951,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "1b13b160ce54edb3"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 1200.7874,
+      "startY": 2681.1033,
+      "endX": 1224.4094,
+      "endY": 2708.6624,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "27cd2f7774e48318"
     }
   ],
   "vias": [
@@ -13743,6 +13769,40 @@
       },
       "primitiveLock": true,
       "primitiveId": "5258d577a7a9b7d9"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1177.1654,
+      "y": 2531.4951,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "1b757de442d609c7"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1224.4094,
+      "y": 2708.6624,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "746c04fe11ee1d67"
     }
   ],
   "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
@@ -13751,6 +13811,7 @@
     "protected-copper-revision-3.json",
     "protected-copper-revision-4.json",
     "protected-copper-revision-5.json",
-    "protected-copper-revision-6.json"
+    "protected-copper-revision-6.json",
+    "protected-copper-revision-7.json"
   ]
 }

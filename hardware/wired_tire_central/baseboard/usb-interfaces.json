@@ -1,0 +1,88 @@
+{
+  "groups": {
+    "FL": {
+      "mcu": "U1",
+      "header": "J11",
+      "mcu_pads": {
+        "DM": "26",
+        "DP": "27"
+      },
+      "resistors": {
+        "DM": "R134",
+        "DP": "R135"
+      },
+      "capacitors": {
+        "DM": "C76",
+        "DP": "C77"
+      }
+    },
+    "FR": {
+      "mcu": "U2",
+      "header": "J12",
+      "mcu_pads": {
+        "DM": "26",
+        "DP": "27"
+      },
+      "resistors": {
+        "DM": "R136",
+        "DP": "R137"
+      },
+      "capacitors": {
+        "DM": "C78",
+        "DP": "C79"
+      }
+    },
+    "RL": {
+      "mcu": "U3",
+      "header": "J13",
+      "mcu_pads": {
+        "DM": "26",
+        "DP": "27"
+      },
+      "resistors": {
+        "DM": "R138",
+        "DP": "R139"
+      },
+      "capacitors": {
+        "DM": "C80",
+        "DP": "C81"
+      }
+    },
+    "RR": {
+      "mcu": "U4",
+      "header": "J14",
+      "mcu_pads": {
+        "DM": "26",
+        "DP": "27"
+      },
+      "resistors": {
+        "DM": "R140",
+        "DP": "R141"
+      },
+      "capacitors": {
+        "DM": "C82",
+        "DP": "C83"
+      }
+    },
+    "BRAKE": {
+      "mcu": "U5",
+      "header": "J15",
+      "mcu_pads": {
+        "DM": "13",
+        "DP": "14"
+      },
+      "resistors": {
+        "DM": "R142",
+        "DP": "R143"
+      },
+      "capacitors": {
+        "DM": "C84",
+        "DP": "C85"
+      }
+    }
+  },
+  "series_ohm": 33,
+  "tuning_cap_pf": 10,
+  "tuning_cap_dnp": true,
+  "manufacturing_released": false
+}
