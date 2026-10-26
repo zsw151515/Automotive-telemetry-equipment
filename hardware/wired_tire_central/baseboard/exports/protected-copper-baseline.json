@@ -1,5 +1,5 @@
 {
-  "phase": "Revision5: local 2mm3V3neck for MISO access",
+  "phase": "Revision6: clamp and FRoutput power endpoints",
   "lines": [
     {
       "async": true,
@@ -1599,19 +1599,6 @@
       "lineWidth": 78.7402,
       "primitiveLock": true,
       "primitiveId": "c4fe39351e0233e3"
-    },
-    {
-      "async": true,
-      "primitiveType": "Line",
-      "net": "12V_PROTECTED",
-      "layer": 16,
-      "startX": 856.2991999999999,
-      "startY": 1358.2677,
-      "endX": 1338.5827,
-      "endY": 1358.2677,
-      "lineWidth": 78.7402,
-      "primitiveLock": true,
-      "primitiveId": "24f118cb88594623"
     },
     {
       "async": true,
@@ -7904,6 +7891,214 @@
       "lineWidth": 78.7402,
       "primitiveLock": true,
       "primitiveId": "5937a22c9f8f6b78"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 875.9843,
+      "startY": 1307.0866,
+      "endX": 875.9843,
+      "endY": 1358.2677,
+      "lineWidth": 59.0551,
+      "primitiveLock": true,
+      "primitiveId": "4510bcd58f4371ab"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 856.2991999999999,
+      "startY": 1358.2677,
+      "endX": 875.9843,
+      "endY": 1358.2677,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "cc3fcd36e63ea841"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 1238.189,
+      "startY": 1269.685,
+      "endX": 1238.189,
+      "endY": 1358.2677,
+      "lineWidth": 59.0551,
+      "primitiveLock": true,
+      "primitiveId": "c606c9590c1bf907"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 1238.189,
+      "startY": 1358.2677,
+      "endX": 1338.5827,
+      "endY": 1358.2677,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "011a32a66b146a9d"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 954.7244,
+      "startY": 1045.2756,
+      "endX": 954.7244,
+      "endY": 1358.2677,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "0d64bc8d0b7ed4c7"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 875.9843,
+      "startY": 1358.2677,
+      "endX": 954.7244,
+      "endY": 1358.2677,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "07c97704ea7b773b"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "12V_PROTECTED",
+      "layer": 16,
+      "startX": 954.7244,
+      "startY": 1358.2677,
+      "endX": 1238.189,
+      "endY": 1358.2677,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "0cf136c27bfc06ee"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1543.3071,
+      "startY": 1633.8582999999999,
+      "endX": 1531.4960999999998,
+      "endY": 1622.0472,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "36b80b10f8913d03"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1531.4960999999998,
+      "startY": 1622.0472,
+      "endX": 1531.4960999999998,
+      "endY": 1618.1102,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "c96befd17b8ed14c"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1531.4960999999998,
+      "startY": 1618.1102,
+      "endX": 1527.5591,
+      "endY": 1614.1732,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "c092bea64307a71c"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1527.5591,
+      "startY": 1614.1732,
+      "endX": 1527.5591,
+      "endY": 1385.8268,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "759650cbbd647971"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1527.5591,
+      "startY": 1385.8268,
+      "endX": 1523.622,
+      "endY": 1381.8898,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "62aa202f68afa9ae"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "startX": 1523.622,
+      "startY": 1381.8898,
+      "endX": 1523.622,
+      "endY": 1299.2126000000003,
+      "lineWidth": 15.748,
+      "primitiveLock": true,
+      "primitiveId": "efdb769f8a4cec9b"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 16,
+      "startX": 1523.622,
+      "startY": 1299.2126000000003,
+      "endX": 1523.622,
+      "endY": 1283.4646,
+      "lineWidth": 23.622,
+      "primitiveLock": true,
+      "primitiveId": "3b08bc5c22dcca20"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 16,
+      "startX": 1523.622,
+      "startY": 1283.4646,
+      "endX": 1492.1260000000002,
+      "endY": 1251.9685,
+      "lineWidth": 23.622,
+      "primitiveLock": true,
+      "primitiveId": "009e0ee70681970a"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "FR_VPROBE",
+      "layer": 16,
+      "startX": 1492.1260000000002,
+      "startY": 1251.9685,
+      "endX": 1303.1495999999997,
+      "endY": 1251.9685,
+      "lineWidth": 23.622,
+      "primitiveLock": true,
+      "primitiveId": "70b0c99ab4b5f591"
     }
   ],
   "vias": [
@@ -13140,6 +13335,414 @@
       },
       "primitiveLock": true,
       "primitiveId": "4ce85d6e94b6a88f"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 862.2047,
+      "y": 1303.1495999999997,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "bc48b1b684efd24a"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 889.7638,
+      "y": 1311.0236,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "ac915618346acc65"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 870.0787,
+      "y": 1330.7087,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "271dff489a6a10ca"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 881.8898,
+      "y": 1283.4646,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "1e127cd670076fd0"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1051.1811,
+      "y": 1299.2126000000003,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "12757d6a61e22972"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1078.7402,
+      "y": 1299.2126000000003,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "26415e00def66a85"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1106.2992,
+      "y": 1299.2126000000003,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "b5a7cd9442fac133"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 1228.3465,
+      "y": 1259.8425,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "32f2602f02630313"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 1248.0315,
+      "y": 1279.5276,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "eeaab7dde4645616"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 1255.9055,
+      "y": 1251.9685,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "2c47f3749b375f9d"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 1220.4724,
+      "y": 1287.4016000000001,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "7018102456dce0a2"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1228.3465,
+      "y": 1500,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "d3d05bef3edecc7e"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1220.4724,
+      "y": 1472.4409,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "3f2f49917f627b9d"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1220.4724,
+      "y": 1444.8819,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "6ea61d69747c0218"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 944.8819000000001,
+      "y": 1055.1181,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "7e54d0b0c68e9b73"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 964.5669,
+      "y": 1035.4331,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "263ccb9f219147ba"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 972.4409,
+      "y": 1062.9921,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "bb603550dd42f232"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "12V_PROTECTED",
+      "x": 937.0079,
+      "y": 1027.5591,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "e047e059836bb127"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1177.1654,
+      "y": 1027.5591,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "b3461e7505e733db"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1200.7874,
+      "y": 1043.3071,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "0e7e8b72a54b3275"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1224.4094,
+      "y": 1027.5591,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "a45fc951fb374e95"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 1153.5433,
+      "y": 1043.3071,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "944e6f9c1cc690f8"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "FR_VPROBE",
+      "x": 1546.2651,
+      "y": 1643.7008,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "5d8dcb184e665dbb"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "FR_VPROBE",
+      "x": 1523.622,
+      "y": 1299.2126000000003,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "5258d577a7a9b7d9"
     }
   ],
   "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
@@ -13147,6 +13750,7 @@
     "protected-copper-revision.json",
     "protected-copper-revision-3.json",
     "protected-copper-revision-4.json",
-    "protected-copper-revision-5.json"
+    "protected-copper-revision-5.json",
+    "protected-copper-revision-6.json"
   ]
 }

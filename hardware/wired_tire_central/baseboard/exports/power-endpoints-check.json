@@ -1,0 +1,396 @@
+{
+  "base_commit": "46d0a20",
+  "before_connections": 27,
+  "after_clamp_connections": 22,
+  "after_fr_output_connections": 20,
+  "routed_line_primitives": 3990,
+  "board_vias": 647,
+  "module_thermal_vias": 12,
+  "clamp_vias": [
+    {
+      "name": "CLAMP_D2_1_0",
+      "net": "12V_PROTECTED",
+      "x_mm": 21.9,
+      "y_mm": 33.1,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.1",
+      "requires_filled_capped": true,
+      "primitive_id": "bc48b1b684efd24a"
+    },
+    {
+      "name": "CLAMP_D2_1_1",
+      "net": "12V_PROTECTED",
+      "x_mm": 22.6,
+      "y_mm": 33.3,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.1",
+      "requires_filled_capped": true,
+      "primitive_id": "ac915618346acc65"
+    },
+    {
+      "name": "CLAMP_D2_1_2",
+      "net": "12V_PROTECTED",
+      "x_mm": 22.1,
+      "y_mm": 33.8,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.1",
+      "requires_filled_capped": true,
+      "primitive_id": "271dff489a6a10ca"
+    },
+    {
+      "name": "CLAMP_D2_1_3",
+      "net": "12V_PROTECTED",
+      "x_mm": 22.4,
+      "y_mm": 32.6,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.1",
+      "requires_filled_capped": true,
+      "primitive_id": "1e127cd670076fd0"
+    },
+    {
+      "name": "CLAMP_D2_2_0",
+      "net": "GND",
+      "x_mm": 26.7,
+      "y_mm": 33.0,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.2",
+      "requires_filled_capped": true,
+      "primitive_id": "12757d6a61e22972"
+    },
+    {
+      "name": "CLAMP_D2_2_1",
+      "net": "GND",
+      "x_mm": 27.4,
+      "y_mm": 33.0,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.2",
+      "requires_filled_capped": true,
+      "primitive_id": "26415e00def66a85"
+    },
+    {
+      "name": "CLAMP_D2_2_2",
+      "net": "GND",
+      "x_mm": 28.1,
+      "y_mm": 33.0,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D2.2",
+      "requires_filled_capped": true,
+      "primitive_id": "b5a7cd9442fac133"
+    },
+    {
+      "name": "CLAMP_D3_2_0",
+      "net": "12V_PROTECTED",
+      "x_mm": 31.2,
+      "y_mm": 32.0,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.2",
+      "requires_filled_capped": true,
+      "primitive_id": "32f2602f02630313"
+    },
+    {
+      "name": "CLAMP_D3_2_1",
+      "net": "12V_PROTECTED",
+      "x_mm": 31.7,
+      "y_mm": 32.5,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.2",
+      "requires_filled_capped": true,
+      "primitive_id": "eeaab7dde4645616"
+    },
+    {
+      "name": "CLAMP_D3_2_2",
+      "net": "12V_PROTECTED",
+      "x_mm": 31.9,
+      "y_mm": 31.8,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.2",
+      "requires_filled_capped": true,
+      "primitive_id": "2c47f3749b375f9d"
+    },
+    {
+      "name": "CLAMP_D3_2_3",
+      "net": "12V_PROTECTED",
+      "x_mm": 31.0,
+      "y_mm": 32.7,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.2",
+      "requires_filled_capped": true,
+      "primitive_id": "7018102456dce0a2"
+    },
+    {
+      "name": "CLAMP_D3_1_0",
+      "net": "GND",
+      "x_mm": 31.2,
+      "y_mm": 38.1,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.1",
+      "requires_filled_capped": true,
+      "primitive_id": "d3d05bef3edecc7e"
+    },
+    {
+      "name": "CLAMP_D3_1_1",
+      "net": "GND",
+      "x_mm": 31.0,
+      "y_mm": 37.4,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.1",
+      "requires_filled_capped": true,
+      "primitive_id": "3f2f49917f627b9d"
+    },
+    {
+      "name": "CLAMP_D3_1_2",
+      "net": "GND",
+      "x_mm": 31.0,
+      "y_mm": 36.7,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "D3.1",
+      "requires_filled_capped": true,
+      "primitive_id": "6ea61d69747c0218"
+    },
+    {
+      "name": "CLAMP_C54_1_0",
+      "net": "12V_PROTECTED",
+      "x_mm": 24.0,
+      "y_mm": 26.8,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.1",
+      "requires_filled_capped": true,
+      "primitive_id": "7e54d0b0c68e9b73"
+    },
+    {
+      "name": "CLAMP_C54_1_1",
+      "net": "12V_PROTECTED",
+      "x_mm": 24.5,
+      "y_mm": 26.3,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.1",
+      "requires_filled_capped": true,
+      "primitive_id": "263ccb9f219147ba"
+    },
+    {
+      "name": "CLAMP_C54_1_2",
+      "net": "12V_PROTECTED",
+      "x_mm": 24.7,
+      "y_mm": 27.0,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.1",
+      "requires_filled_capped": true,
+      "primitive_id": "bb603550dd42f232"
+    },
+    {
+      "name": "CLAMP_C54_1_3",
+      "net": "12V_PROTECTED",
+      "x_mm": 23.8,
+      "y_mm": 26.1,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.1",
+      "requires_filled_capped": true,
+      "primitive_id": "e047e059836bb127"
+    },
+    {
+      "name": "CLAMP_C54_2_0",
+      "net": "GND",
+      "x_mm": 29.9,
+      "y_mm": 26.1,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.2",
+      "requires_filled_capped": true,
+      "primitive_id": "b3461e7505e733db"
+    },
+    {
+      "name": "CLAMP_C54_2_1",
+      "net": "GND",
+      "x_mm": 30.5,
+      "y_mm": 26.5,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.2",
+      "requires_filled_capped": true,
+      "primitive_id": "0e7e8b72a54b3275"
+    },
+    {
+      "name": "CLAMP_C54_2_2",
+      "net": "GND",
+      "x_mm": 31.1,
+      "y_mm": 26.1,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.2",
+      "requires_filled_capped": true,
+      "primitive_id": "a45fc951fb374e95"
+    },
+    {
+      "name": "CLAMP_C54_2_3",
+      "net": "GND",
+      "x_mm": 29.3,
+      "y_mm": 26.5,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "C54.2",
+      "requires_filled_capped": true,
+      "primitive_id": "944e6f9c1cc690f8"
+    }
+  ],
+  "fr_output_vip": [
+    {
+      "name": "FR_OUTPUT_VIP",
+      "net": "FR_VPROBE",
+      "x_mm": 39.27513354,
+      "y_mm": 41.75,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "pad": "U26.7",
+      "requires_filled_capped": true,
+      "primitive_id": "5d8dcb184e665dbb"
+    }
+  ],
+  "fr_output_routes": [
+    {
+      "name": "P2_FR_VPROBE_1",
+      "net": "FR_VPROBE",
+      "layer": 2,
+      "width_mm": 0.4,
+      "points": [
+        [
+          39.2,
+          41.5
+        ],
+        [
+          38.9,
+          41.2
+        ],
+        [
+          38.9,
+          41.1
+        ],
+        [
+          38.8,
+          41.0
+        ],
+        [
+          38.8,
+          35.2
+        ],
+        [
+          38.7,
+          35.1
+        ],
+        [
+          38.7,
+          33.0
+        ]
+      ],
+      "source_pads": [
+        "U26.7"
+      ]
+    },
+    {
+      "name": "P2_FR_VPROBE_1",
+      "net": "FR_VPROBE",
+      "layer": 16,
+      "width_mm": 0.6,
+      "points": [
+        [
+          38.7,
+          33.0
+        ],
+        [
+          38.7,
+          32.6
+        ],
+        [
+          37.9,
+          31.8
+        ],
+        [
+          33.1,
+          31.8
+        ]
+      ],
+      "source_pads": [
+        "U26.7"
+      ]
+    }
+  ],
+  "intentional_removals": 0,
+  "component_moves": [],
+  "protected_lines": 623,
+  "protected_board_vias": 322,
+  "copper_union": {
+    "passed": true,
+    "maximum_copper_union_difference_mm2": 2.0637576519333726e-05,
+    "tolerance_mm2": 0.001,
+    "errors": [],
+    "old_lines": 3975,
+    "actual_lines": 3990,
+    "new_board_vias": 24,
+    "api_new_via_diameter_normalized_mm": 0.60000134
+  },
+  "remaining_nets": [
+    "FL_USB_DP",
+    "FL_USB_DM",
+    "FR_USB_DP",
+    "FR_USB_DM",
+    "RL_USB_DP",
+    "RL_USB_DM",
+    "RR_USB_DP",
+    "RR_USB_DM",
+    "BRAKE_USB_DP",
+    "BRAKE_USB_DM"
+  ],
+  "required_process": "Resin fill and copper cap for all listed solder-land vias. Ordinary tenting is insufficient.",
+  "limits": [
+    "Connectivity and geometry only; no pulse/thermal qualification",
+    "Parallel vias do not by themselves establish a transient current rating",
+    "FRoutput narrow escape via is at an off-grid coordinate verified against actual pads"
+  ],
+  "independent_review_complete": false,
+  "fabrication_released": false,
+  "modern_export_line_primitives": 3991,
+  "modern_export_tiny_fragment": {
+    "id": "79fae9e1a97af539",
+    "net": "HOST_MOSI",
+    "length_mm": 0.0016056697944524833,
+    "native_epro2_only": true,
+    "live_api_get_returns_empty": true,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.3205736906394646e-06,
+    "tolerance_mm2": 0.001,
+    "note": "Tiny native-export fragment retained inside existing endcap geometry; API and legacy count3990,moderncount3991. No reimport or archive rewriting used."
+  },
+  "native_exports": {
+    "eda/six-port-baseboard-v01.epro": {
+      "bytes": 464243,
+      "sha256": "b311f7a4844b1fa14313d176fd9531c7eccf1c4269a2b2bf64eebbba51756bf3"
+    },
+    "eda/six-port-baseboard-v01.epro2": {
+      "bytes": 2113646,
+      "sha256": "4da26a991741cd8cab9ff63f94843863d2d6f137f5b32d8d6e326280812f2599"
+    }
+  },
+  "verification": {
+    "netlist-check.json": true,
+    "pcb-connectivity-check.json": true,
+    "native-integrity-check.json": true,
+    "mechanical-transform-check.json": true,
+    "enclosure_five_stls": true
+  }
+}
