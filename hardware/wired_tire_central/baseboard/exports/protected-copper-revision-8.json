@@ -1,0 +1,85 @@
+{
+  "base_commit": "07d8211",
+  "previous_baseline_sha256": "de19ac83ad6b8687dd0e723ed902794b7487ccafd71daef13e1b1eb4f0da3748",
+  "previous_header": {
+    "phase": "Revision7: FL USB tuning capacitor ground returns",
+    "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
+    "revision_history": [
+      "protected-copper-revision.json",
+      "protected-copper-revision-3.json",
+      "protected-copper-revision-4.json",
+      "protected-copper-revision-5.json",
+      "protected-copper-revision-6.json",
+      "protected-copper-revision-7.json"
+    ]
+  },
+  "removed_protected_lines": [],
+  "added_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 2539.3701,
+      "startY": 2511.8101,
+      "endX": 2515.748,
+      "endY": 2531.4951,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "94bff3e5c8bc0dc3"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 2539.3701,
+      "startY": 2681.1033,
+      "endX": 2531.4961,
+      "endY": 2704.7254,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "cb8c8b8cfdaa823a"
+    }
+  ],
+  "added_protected_vias": [
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 2515.748,
+      "y": 2531.4951,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "40a795e7ed921507"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 2531.4961,
+      "y": 2704.7254,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "2777a9efb37477f0"
+    }
+  ],
+  "retained_previous_lines": 625,
+  "retained_previous_board_vias": 324,
+  "reason": "Add two FR unpopulated USB tuning-capacitor ground returns. All prior protected copper unchanged.",
+  "fabrication_released": false
+}

@@ -1,0 +1,235 @@
+{
+  "base_commit": "07d8211",
+  "scope": "FR USB circuit reserve, local source/ground wiring, R84 relocation and three restored signal nets; full FR USB pair remains unrouted",
+  "components_before": 286,
+  "components_after": 290,
+  "physical_pads_after": 1186,
+  "assigned_pin_nets_after": 1052,
+  "added_components": [
+    {
+      "ref": "R136",
+      "part": "r33",
+      "pins": {
+        "1": "FR_USB_DM_MCU",
+        "2": "FR_USB_DM"
+      },
+      "dnp": false,
+      "pcb_mm": [
+        62,
+        65.4,
+        0
+      ]
+    },
+    {
+      "ref": "R137",
+      "part": "r33",
+      "pins": {
+        "1": "FR_USB_DP_MCU",
+        "2": "FR_USB_DP"
+      },
+      "dnp": false,
+      "pcb_mm": [
+        62,
+        67,
+        0
+      ]
+    },
+    {
+      "ref": "C78",
+      "part": "cUsbDnp",
+      "pins": {
+        "1": "FR_USB_DM",
+        "2": "GND"
+      },
+      "dnp": true,
+      "pcb_mm": [
+        64.5,
+        64.5,
+        270
+      ]
+    },
+    {
+      "ref": "C79",
+      "part": "cUsbDnp",
+      "pins": {
+        "1": "FR_USB_DP",
+        "2": "GND"
+      },
+      "dnp": true,
+      "pcb_mm": [
+        64.5,
+        67.4,
+        90
+      ]
+    }
+  ],
+  "moves": [
+    {
+      "ref": "R84",
+      "before_mm": [
+        62.25,
+        66,
+        90
+      ],
+      "after_mm": [
+        64,
+        62.25,
+        0
+      ],
+      "pins_unchanged": true
+    }
+  ],
+  "gpio_changed": false,
+  "changed_source_net_names": {
+    "U2.26": [
+      "FR_USB_DM",
+      "FR_USB_DM_MCU"
+    ],
+    "U2.27": [
+      "FR_USB_DP",
+      "FR_USB_DP_MCU"
+    ]
+  },
+  "header_pin_assignments_changed": false,
+  "removed_lines": 12,
+  "removed_vias": 0,
+  "added_line_operations": 37,
+  "added_via_operations": 2,
+  "routed_line_primitives": 4242,
+  "modern_export_line_primitives": 4244,
+  "board_vias": 670,
+  "module_thermal_vias": 12,
+  "restored_nets": [
+    "HOST_MOSI",
+    "FR_ARM",
+    "FR_POWER_EN"
+  ],
+  "local_source_lengths_mm": {
+    "FR_USB_SOURCE_26": 1.5124839835861656,
+    "FR_USB_SOURCE_27": 1.5124413268004349
+  },
+  "source_length_difference_mm": 4.2656785730788016e-05,
+  "completed_usb_pairs": [
+    "FL"
+  ],
+  "pending_usb_pairs": [
+    "FR",
+    "RL",
+    "RR",
+    "BRAKE"
+  ],
+  "pending_rc_groups": [
+    "RL",
+    "RR",
+    "BRAKE"
+  ],
+  "before_connections": 16,
+  "after_connections": 18,
+  "connection_count_explanation": "Two new DNP signal pads add FR USB prompts. Source-to-series nets, new ground returns and restored signals are connected. FL pair remains connected.",
+  "new_component_bom_flags": {
+    "C78": false,
+    "C79": false,
+    "R136": true,
+    "R137": true
+  },
+  "body_check": {
+    "passed": true,
+    "bounds": {
+      "R84": [
+        62.843398300000004,
+        65.1566017,
+        61.8179968,
+        62.6820032
+      ],
+      "R136": [
+        60.843398300000004,
+        63.156601699999996,
+        64.96799680000001,
+        65.8320032
+      ],
+      "R137": [
+        60.843398300000004,
+        63.156601699999996,
+        66.5679968,
+        67.4320032
+      ],
+      "C78": [
+        64.0500009,
+        64.9499991,
+        63.3999768,
+        65.60002320000001
+      ],
+      "C79": [
+        64.0500009,
+        64.9499991,
+        66.2999768,
+        68.50002320000002
+      ]
+    },
+    "minimum_body_gap_mm": 0.24341150000000766
+  },
+  "copper_union_check": {
+    "passed": true,
+    "maximum_copper_union_difference_mm2": 1.9950042820409264e-05,
+    "tolerance_mm2": 0.001,
+    "errors": [],
+    "old_lines": 4217,
+    "actual_lines": 4242,
+    "new_board_vias": 2,
+    "api_new_via_diameter_normalized_mm": 0.60000134
+  },
+  "protected_copper": {
+    "revision": 8,
+    "lines": 627,
+    "board_vias": 326
+  },
+  "independent_review_complete": true,
+  "schematic_erc_empty": true,
+  "reopened_after_save": true,
+  "impedance_verified": false,
+  "racechrono_changed": false,
+  "fabrication_released": false,
+  "native_exports": {
+    "epro": {
+      "bytes": 480770,
+      "sha256": "faf74cb590fb9197a9b199d045d322a2b6414b5042e61947b367248cf7f85139",
+      "components": 290,
+      "pours": 2,
+      "poured_fragments": 122,
+      "routed_line_primitives": 4242,
+      "outlines": 1
+    },
+    "epro2": {
+      "bytes": 2160862,
+      "sha256": "366d336bfd182819dd4b4a2e794a204391da29c2ce968bc2d3ec4e34407bfc1e",
+      "components": 290,
+      "pours": 2,
+      "active_poured_regions": 2,
+      "orphan_fill_cache_records": 2,
+      "routed_line_primitives": 4244,
+      "board_vias": 670,
+      "minimum_track_width_mm": 0.12800076,
+      "minimum_board_via_hole_mm": 0.30000193999999997,
+      "minimum_board_via_diameter_mm": 0.6000013399999999,
+      "preserved_prior_line_objects": 627,
+      "preserved_prior_board_vias": 326,
+      "source_thermal_vias": 12
+    }
+  },
+  "enclosure_five_stls_checked": true,
+  "schematic_label_separation": "FR_USB_DP_MCU wire label moved12 schematic units downward; copper and netlist unchanged",
+  "modern_export_geometry_check": {
+    "native_epro2_only": true,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.320573732386e-06,
+    "tolerance_mm2": 0.001,
+    "note": "API/legacy4242, modern4244. Two historical tiny same-net native fragments; whole current copper union rechecked, no archive rewriting or reimport."
+  },
+  "independent_review_report": "usb-fr-rc-review.md",
+  "fresh_native_reopen_geometry_check": {
+    "passed": true,
+    "maximum_coordinate_change_mm": 1.2600000047314096e-06,
+    "angular_equivalence": "C78 270 degrees equals -90 after native reload",
+    "tolerance_mm": 2.54e-05,
+    "change": "Native serialization rounding only; copper and nets unchanged"
+  }
+}

@@ -138,5 +138,6 @@
   "historical_snapshot": true,
   "checkpoint_commit": "eb1a2d4",
   "superseded_by": "usb-fl-route-check.json",
-  "independent_review_scope": "RC checkpoint eb1a2d4 only; 0 Critical, 0 Important, 1 Minor in group coverage checker, fixed in subsequent route checkpoint"
+  "independent_review_scope": "RC checkpoint eb1a2d4 only; 0 Critical, 0 Important, 1 Minor in group coverage checker, fixed in subsequent route checkpoint",
+  "historical_checkpoint": "eb1a2d4"
 }

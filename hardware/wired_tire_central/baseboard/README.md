@@ -2,7 +2,7 @@
 
 本目录对应嘉立创EDA专业版独立工程“六接口中控底板 V0.1 工程样机”。目标是同壳安装7B套件、四路胎温RS485、两路前刹车RS485及蜂鸣报警。图纸仍处工程设计阶段；是否完成网表、布局和审查，以 `review.md` 和实际导出文件为准，不能直接用于下单。
 
-2026-10-26 阶段快照：12页原理图、286个器件、150×75mm四层PCB。原理图1044个已定义引脚网络、PCB1178个实体焊盘网络及器件位置已核对。当前API及`.epro`有4217个走线片段，`.epro2`另存两个同网极短片段，铜几何并集已核对；668个板上过孔及12个S3模块散热过孔。左前维护USB完整差分对已连接，保存重开后的真实DRC从22项降至16项，均属于其余四组USB，未报告其他类别错误。其余四路RC和差分布线、制造阻抗及实测尚未完成，不能投板。
+2026-10-26 阶段快照：12页原理图、290个器件、150×75mm四层PCB。原理图1052个已定义引脚网络、PCB1186个实体焊盘网络及器件位置已核对。当前API及`.epro`有4242个走线片段，`.epro2`另有两个历史同网极短片段；670个板上过孔及12个S3模块散热过孔。左前维护USB完整路径已连接；右前已加入33Ω串联及DNP电容预留，源端和接地已布通。保存重开DRC为其余四组USB的18项连接提示，无其他类别。其余三路RC、四组差分布线、制造阻抗及实测尚未完成，不能投板。
 
 ## 工程资料
 
@@ -14,7 +14,7 @@
 - `eda/six-port-baseboard-v01.epro2`：当前3.2客户端原生工程；`.epro`为同时核对的兼容导出。两者均包含闭合板框和两个地铜区。已保存后重新打开PCB，核对对象保留情况。
 - `check-netlist.py`、`check-pcb.py`、`check-native.py`：分别检查真实原理图网表、PCB读回数据、原生文件关键对象。检查通过不代表布线完成或实物通过。
 - `check-mechanical.py`：用真实26个连接器焊盘坐标核对底面封装变换，避免后盖定位孔按错误镜像投影。
-- `exports/protected-copper-baseline.json`：当前保护基线606条线、298个板过孔；模块内12孔另核对。明确的局部替换链见`protected-copper-revision.json`、`protected-copper-revision-3.json`与`protected-copper-revision-4.json`。
+- `exports/protected-copper-baseline.json`：当前保护基线627条线、326个板过孔；模块内12孔另核对。明确的局部替换链见`protected-copper-revision.json`、`protected-copper-revision-3.json`与`protected-copper-revision-4.json`。
 - `exports/power-routing-check.json`：08aaf0e电源支路检查点的写入批次、754段铜线/65个过孔增量及三处焊盘过孔坐标。
 - `exports/local-rework-check.json`：59c861b检查点的局部调整、信号恢复、S3热焊盘接地及49项连接提示记录。
 - `exports/left-sector-check.json`、`dense-vip-check.json`：后续左侧四元件重排、六引脚扇出、供电/地焊盘过孔和母线绕孔记录；最新数量以`pcb-drc-summary.json`为准。
@@ -66,3 +66,5 @@ P4与五个从机共用短距离SPI。SN74HCS151选择五个DMA READY电平；�
 历史RC预留检查点`eb1a2d4`仅完成左前路的33Ω串联电阻R134/R135及10pF DNP电容C76/C77预留和局部引出，当时五组完整USB差分对均未布通。该检查点增加四件后为286器件/1178实体焊盘，保留了此前282件的位置及3990段既有走线、659个含模块过孔的对象；记录见`exports/usb-fl-rc-check.json`。后续左前完整布线状态以下段及`exports/usb-fl-route-check.json`为准。
 
 左前USB布线检查点：J11原地由0°转为180°，1～6脚仍为DM/DP/GND/EN/GND/BOOT，实体朝向已改变，维护线束须按针脚编号核对。两条顶层路径各约82.66465mm，无USB换层孔；实际重建的Inner1地覆盖差分主干。U26.3新增0.30/0.60mm焊盘过孔须填孔/铜盖。详见`usb-design.md`和`exports/usb-fl-route-check.json`。
+
+右前RC及R84局部调整的当前证据见`exports/usb-fr-rc-check.json`，保护基线修订8仅加入两个电容的局部地回路。左前路径报告保留为07d8211历史检查点。

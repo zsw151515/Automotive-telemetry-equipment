@@ -180,5 +180,6 @@
       "source_thermal_vias": 12
     }
   },
-  "independent_review_report": "usb-fl-route-review.md"
+  "independent_review_report": "usb-fl-route-review.md",
+  "historical_checkpoint": "07d8211"
 }

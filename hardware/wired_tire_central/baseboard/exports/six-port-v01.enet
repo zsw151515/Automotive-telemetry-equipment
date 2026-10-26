@@ -8634,7 +8634,7 @@
                 "26": {
                     "name": "IO18",
                     "number": "26",
-                    "net": "FR_USB_DM",
+                    "net": "FR_USB_DM_MCU",
                     "props": {
                         "Pin Number": "26"
                     }
@@ -8642,7 +8642,7 @@
                 "27": {
                     "name": "IO19",
                     "number": "27",
-                    "net": "FR_USB_DP",
+                    "net": "FR_USB_DP_MCU",
                     "props": {
                         "Pin Number": "27"
                     }
@@ -9996,6 +9996,228 @@
                     "net": "FR_BOOT",
                     "props": {
                         "Pin Number": "6"
+                    }
+                }
+            }
+        },
+        "gge287": {
+            "props": {
+                "Unique ID": "gge287",
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "7d15322f838eb261",
+                "Designator": "R136",
+                "Device": "bcba23b5a5588117",
+                "LCSC Part Name": "33Ω ±1% 100mW 厚膜电阻",
+                "Supplier Part": "C23140",
+                "Manufacturer": "UNI-ROYAL(厚声)",
+                "Manufacturer Part": "0603WAF330JT5E",
+                "Supplier Footprint": "",
+                "JLCPCB Part Class": "",
+                "Datasheet": "https://item.szlcsc.com/datasheet/0603WAF330JT5E/23867.html",
+                "Supplier": "LCSC",
+                "Footprint": "d0069cef5276217f",
+                "3D Model": "fc143cca1e79419f9cd78b61e9279f08|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "R0603",
+                "3D Model Transform": "31.8897,63.7794,0,90,0,0,0,0,0",
+                "Type": "",
+                "Value": "33Ω",
+                "Tolerance": "",
+                "Power(Watts)": "",
+                "Voltage-Supply(Max)": "",
+                "Temperature Coefficient": "",
+                "Operating Temperature": "",
+                "Name": "33Ω",
+                "Description": "",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$5I71",
+                "Catalog UUID": "c1b17fa23f304726bc91c5924d9b7c0f",
+                "DNP": "",
+                "Engineering Note": "USB source termination33ohm",
+                "DeviceName": "0603WAF330JT5E",
+                "FootprintName": "R0603"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "FR_USB_DM_MCU",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "FR_USB_DM",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge288": {
+            "props": {
+                "Unique ID": "gge288",
+                "Add into BOM": "yes",
+                "Convert to PCB": "yes",
+                "Symbol": "7d15322f838eb261",
+                "Designator": "R137",
+                "Device": "bcba23b5a5588117",
+                "LCSC Part Name": "33Ω ±1% 100mW 厚膜电阻",
+                "Supplier Part": "C23140",
+                "Manufacturer": "UNI-ROYAL(厚声)",
+                "Manufacturer Part": "0603WAF330JT5E",
+                "Supplier Footprint": "",
+                "JLCPCB Part Class": "",
+                "Datasheet": "https://item.szlcsc.com/datasheet/0603WAF330JT5E/23867.html",
+                "Supplier": "LCSC",
+                "Footprint": "d0069cef5276217f",
+                "3D Model": "fc143cca1e79419f9cd78b61e9279f08|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "R0603",
+                "3D Model Transform": "31.8897,63.7794,0,90,0,0,0,0,0",
+                "Type": "",
+                "Value": "33Ω",
+                "Tolerance": "",
+                "Power(Watts)": "",
+                "Voltage-Supply(Max)": "",
+                "Temperature Coefficient": "",
+                "Operating Temperature": "",
+                "Name": "33Ω",
+                "Description": "",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$5I72",
+                "Catalog UUID": "c1b17fa23f304726bc91c5924d9b7c0f",
+                "DNP": "",
+                "Engineering Note": "USB source termination33ohm",
+                "DeviceName": "0603WAF330JT5E",
+                "FootprintName": "R0603"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "FR_USB_DP_MCU",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "FR_USB_DP",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge289": {
+            "props": {
+                "Unique ID": "gge289",
+                "Add into BOM": "no",
+                "Convert to PCB": "yes",
+                "Symbol": "24e94875db55c396",
+                "Designator": "C78",
+                "Device": "97cf4e91c8270e96",
+                "LCSC Part Name": "10pF ±5% 50V",
+                "Supplier Part": "C1634",
+                "Manufacturer": "SAMSUNG(三星)",
+                "Manufacturer Part": "CL10C100JB8NNNC",
+                "Supplier Footprint": "",
+                "JLCPCB Part Class": "",
+                "Datasheet": "https://item.szlcsc.com/datasheet/CL10C100JB8NNNC/1986.html",
+                "Supplier": "LCSC",
+                "Footprint": "bae2ba08801e4bef",
+                "3D Model": "ac125912035d415993ca9572d50418b1|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "C0603_L1.6-W0.8-H0.8",
+                "3D Model Transform": "62.992,31.496,0,0,0,0,0,0,0",
+                "Value": "10pF",
+                "Tolerance": "",
+                "Voltage Rating": "",
+                "Temperature Coefficient": "",
+                "Name": "10pF",
+                "Description": "",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$5I73",
+                "Catalog UUID": "cce6c24475c147de9dedbc04bb9e84e4",
+                "DNP": "true",
+                "Engineering Note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+                "DeviceName": "CL10C100JB8NNNC",
+                "FootprintName": "C0603"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "FR_USB_DM",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
+                    }
+                }
+            }
+        },
+        "gge290": {
+            "props": {
+                "Unique ID": "gge290",
+                "Add into BOM": "no",
+                "Convert to PCB": "yes",
+                "Symbol": "24e94875db55c396",
+                "Designator": "C79",
+                "Device": "97cf4e91c8270e96",
+                "LCSC Part Name": "10pF ±5% 50V",
+                "Supplier Part": "C1634",
+                "Manufacturer": "SAMSUNG(三星)",
+                "Manufacturer Part": "CL10C100JB8NNNC",
+                "Supplier Footprint": "",
+                "JLCPCB Part Class": "",
+                "Datasheet": "https://item.szlcsc.com/datasheet/CL10C100JB8NNNC/1986.html",
+                "Supplier": "LCSC",
+                "Footprint": "bae2ba08801e4bef",
+                "3D Model": "ac125912035d415993ca9572d50418b1|0819f05c4eef4c71ace90d822a990e87",
+                "3D Model Title": "C0603_L1.6-W0.8-H0.8",
+                "3D Model Transform": "62.992,31.496,0,0,0,0,0,0,0",
+                "Value": "10pF",
+                "Tolerance": "",
+                "Voltage Rating": "",
+                "Temperature Coefficient": "",
+                "Name": "10pF",
+                "Description": "",
+                "Reuse Block": "",
+                "Group ID": "",
+                "Channel ID": "$5I74",
+                "Catalog UUID": "cce6c24475c147de9dedbc04bb9e84e4",
+                "DNP": "true",
+                "Engineering Note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+                "DeviceName": "CL10C100JB8NNNC",
+                "FootprintName": "C0603"
+            },
+            "pinInfoMap": {
+                "1": {
+                    "name": "1",
+                    "number": "1",
+                    "net": "FR_USB_DP",
+                    "props": {
+                        "Pin Number": "1"
+                    }
+                },
+                "2": {
+                    "name": "2",
+                    "number": "2",
+                    "net": "GND",
+                    "props": {
+                        "Pin Number": "2"
                     }
                 }
             }
@@ -22002,18 +22224,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "FR_USB_DP": {
-                "net": "FR_USB_DP",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_USB_DM": {
-                "net": "FR_USB_DM",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "FR_BOOT": {
                 "net": "FR_BOOT",
                 "ruleMap": {
@@ -22088,6 +22298,30 @@
             },
             "FR_MISO_B": {
                 "net": "FR_MISO_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DM": {
+                "net": "FR_USB_DM",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DP": {
+                "net": "FR_USB_DP",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DM_MCU": {
+                "net": "FR_USB_DM_MCU",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DP_MCU": {
+                "net": "FR_USB_DP_MCU",
                 "ruleMap": {
                     "TrackPhysics": ""
                 }

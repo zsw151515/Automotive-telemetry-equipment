@@ -2,7 +2,7 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 16,
+      "count": 18,
       "groups": 8
     }
   ],
@@ -21,20 +21,20 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 680,
-  "board_vias": 668,
+  "total_vias_including_module": 682,
+  "board_vias": 670,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 4217,
+  "routed_line_primitives": 4242,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
     {
       "net": "FR_USB_DP",
-      "count": 2
+      "count": 3
     },
     {
       "net": "FR_USB_DM",
-      "count": 2
+      "count": 3
     },
     {
       "net": "RL_USB_DP",
@@ -63,7 +63,7 @@
   ],
   "routing_complete": false,
   "fabrication_released": false,
-  "modern_export_line_primitives": 4219,
+  "modern_export_line_primitives": 4244,
   "modern_export_tiny_fragments": [
     {
       "id": "79fae9e1a97af539",
@@ -78,8 +78,8 @@
   ],
   "modern_export_geometry_check": {
     "native_epro2_only": true,
-    "maximum_archive_to_api_copper_union_difference_mm2": 3.320573734144119e-06,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.320573732386e-06,
     "tolerance_mm2": 0.001,
-    "note": "API/legacy4217, modern4219. Two tiny same-net native fragments; no archive rewriting or reimport."
+    "note": "API/legacy4242, modern4244. Two historical tiny same-net native fragments; whole current copper union rechecked, no archive rewriting or reimport."
   }
 }

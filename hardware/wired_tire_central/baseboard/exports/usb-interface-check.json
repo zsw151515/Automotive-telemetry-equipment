@@ -1,7 +1,8 @@
 {
   "passed": true,
   "checked_groups": [
-    "FL"
+    "FL",
+    "FR"
   ],
   "all_groups_checked": false,
   "errors": [],

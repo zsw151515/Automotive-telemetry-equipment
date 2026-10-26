@@ -2,7 +2,7 @@
   "scope": "mechanical fit prototype; not physically validated",
   "unit": "mm",
   "pcb_projection": {
-    "layout_sha256": "f73ecd0e3a9f13be8c5dc03dcafc4c443d8f57953f583fcb1f21e516c020698e",
+    "layout_sha256": "6b53b1d9211539a0fb5bec2a6c14232ea13a9b671bd9f14d3e7c2674de83dbc0",
     "refs": [
       "J5",
       "J6",
@@ -113,7 +113,7 @@
         125.0,
         57.0
       ],
-      "sha256": "a3aada7e5b64087be7841cbb347f781be2ded3cd1b7166b42115e59cba978070"
+      "sha256": "d47b01bf979ccbc7cb4162b97936418144ee5b2e1f39bcaf4b95d4b92a32cb78"
     },
     "rear_cover": {
       "triangles": 2524,
@@ -138,7 +138,7 @@
         125.0,
         13.0
       ],
-      "sha256": "73ad399145c0121b0b7ec17c2b26cf0ceb14eec7d2de33596283d4d065628565"
+      "sha256": "770d94456a486c2706a0df715c6ff2f35c2b54a0f5f02d3d3985975d07b7990e"
     },
     "rear_cover_pilot": {
       "triangles": 6876,
@@ -163,7 +163,7 @@
         125.0,
         13.0
       ],
-      "sha256": "31e50395994c895534838ed35c27f8287aa27526089d1e937ca9882ed90193a6"
+      "sha256": "9e3185032ba5c457ea291bcea2bb553ac1dc6b095683da3b3360b8e6d81eece4"
     },
     "rear_cover_ports": {
       "triangles": 5652,
@@ -188,7 +188,7 @@
         125.0,
         13.0
       ],
-      "sha256": "216868fd5a2a0423bcaa80bd58545d01799912603b94fc5289481c02a2416f7a"
+      "sha256": "90e3387febb8c17972ed22bc7f7bc4d58537b8b2bfd46ef4ccb981ee26afc6a2"
     },
     "retainer": {
       "triangles": 892,
@@ -213,7 +213,7 @@
         10.0,
         3.0
       ],
-      "sha256": "a903e4211e151a1b2f645c7717d56717e17cd1039751382f6d3286a4562b578c"
+      "sha256": "b665c1d4dfb5fc9ad21356da02df9a0b256883133041c06ff23f272a0ee14b31"
     }
   }
 }
