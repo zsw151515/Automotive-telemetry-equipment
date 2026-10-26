@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 22,
-      "groups": 10
+      "count": 16,
+      "groups": 8
     }
   ],
   "pours": [
@@ -21,21 +21,13 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 661,
-  "board_vias": 649,
+  "total_vias_including_module": 680,
+  "board_vias": 668,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 3998,
+  "routed_line_primitives": 4217,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
-    {
-      "net": "FL_USB_DP",
-      "count": 3
-    },
-    {
-      "net": "FL_USB_DM",
-      "count": 3
-    },
     {
       "net": "FR_USB_DP",
       "count": 2
@@ -71,15 +63,23 @@
   ],
   "routing_complete": false,
   "fabrication_released": false,
-  "modern_export_line_primitives": 3999,
-  "modern_export_tiny_fragment": {
-    "id": "79fae9e1a97af539",
-    "net": "HOST_MOSI",
-    "length_mm": 0.0016056697944524833,
+  "modern_export_line_primitives": 4219,
+  "modern_export_tiny_fragments": [
+    {
+      "id": "79fae9e1a97af539",
+      "net": "HOST_MOSI",
+      "length_mm": 0.00160566979445096
+    },
+    {
+      "id": "a31ce1e546a9a9fd",
+      "net": "HOST_SCK",
+      "length_mm": 0.00034798000000080265
+    }
+  ],
+  "modern_export_geometry_check": {
     "native_epro2_only": true,
-    "live_api_get_returns_empty": true,
-    "maximum_archive_to_api_copper_union_difference_mm2": 3.3205736906394646e-06,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.320573734144119e-06,
     "tolerance_mm2": 0.001,
-    "note": "Tiny native-export fragment retained inside existing endcap geometry; API and legacy count3998,moderncount3999. No reimport or archive rewriting used."
+    "note": "API/legacy4217, modern4219. Two tiny same-net native fragments; no archive rewriting or reimport."
   }
 }

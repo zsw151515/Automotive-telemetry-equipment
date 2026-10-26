@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,json,re
 p=argparse.ArgumentParser();p.add_argument('--group',choices=['FL','FR','RL','RR','BRAKE'],action='append');a=p.parse_args();b=Path(__file__).resolve().parent
-spec=json.loads((b/'usb-interfaces.json').read_text('utf8'));data=json.loads((b/'exports/six-port-v01.enet').read_text('utf8'));parts={c['props'].get('Designator'):c for c in data['components'].values()};errors=[];selected=a.group or list(spec['groups'])
+spec=json.loads((b/'usb-interfaces.json').read_text('utf8'));data=json.loads((b/'exports/six-port-v01.enet').read_text('utf8'));parts={c['props'].get('Designator'):c for c in data['components'].values()};errors=[];selected=list(dict.fromkeys(a.group or spec['groups']))
 def net(ref,pin):return parts.get(ref,{}).get('pinInfoMap',{}).get(str(pin),{}).get('net','')
 for g in selected:
  s=spec['groups'][g]
@@ -19,5 +19,5 @@ for g in selected:
    if props.get('Add into BOM')!='no' or props.get('Convert to PCB')!='yes':errors.append(c+' must retain PCB footprint and be excluded from BOM')
  for pin,want in [(3,'GND'),(4,g+'_EN'),(5,'GND'),(6,g+'_BOOT')]:
   if net(s['header'],pin)!=want:errors.append(f'{s["header"]}.{pin} changed')
-result=dict(passed=not errors,checked_groups=selected,all_groups_checked=len(selected)==5,errors=errors,scope='Actual schematic USB circuit topology and DNP flags only; no USB routing or hardware approval')
+result=dict(passed=not errors,checked_groups=selected,all_groups_checked=set(selected)==set(spec['groups']),errors=errors,scope='Actual schematic USB circuit topology and DNP flags only; no USB routing or hardware approval')
 (b/'exports/usb-interface-check.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf8',newline='\n');print(json.dumps(result,ensure_ascii=True));raise SystemExit(bool(errors))
