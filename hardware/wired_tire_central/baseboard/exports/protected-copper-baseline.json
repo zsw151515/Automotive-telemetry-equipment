@@ -1,5 +1,5 @@
 {
-  "phase": "Revision4: local 3V3 bypasses and five logic power/GND VIPs",
+  "phase": "Revision5: local 2mm3V3neck for MISO access",
   "lines": [
     {
       "async": true,
@@ -7793,19 +7793,6 @@
       "primitiveType": "Line",
       "net": "3V3",
       "layer": 16,
-      "startX": 472.4409,
-      "startY": 2452.7559,
-      "endX": 3338.5827,
-      "endY": 2452.7559,
-      "lineWidth": 118.1102,
-      "primitiveLock": true,
-      "primitiveId": "8bc04a8c372e128c"
-    },
-    {
-      "async": true,
-      "primitiveType": "Line",
-      "net": "3V3",
-      "layer": 16,
       "startX": 3511.811,
       "startY": 2452.7559,
       "endX": 3838.5827,
@@ -7878,6 +7865,45 @@
       "lineWidth": 31.4961,
       "primitiveLock": true,
       "primitiveId": "6ae370102d1db6c9"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 472.4409,
+      "startY": 2452.7559,
+      "endX": 681.1024,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "6150e918ddecd595"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 925.1968999999999,
+      "startY": 2452.7559,
+      "endX": 3338.5827,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "6b069f9daa643e72"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 681.1024,
+      "startY": 2452.7559,
+      "endX": 925.1968999999999,
+      "endY": 2452.7559,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "5937a22c9f8f6b78"
     }
   ],
   "vias": [
@@ -13120,6 +13146,7 @@
   "revision_history": [
     "protected-copper-revision.json",
     "protected-copper-revision-3.json",
-    "protected-copper-revision-4.json"
+    "protected-copper-revision-4.json",
+    "protected-copper-revision-5.json"
   ]
 }

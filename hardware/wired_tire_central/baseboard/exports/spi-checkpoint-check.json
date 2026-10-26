@@ -1,0 +1,192 @@
+{
+  "base_commit": "9f68c27",
+  "before_connections": 31,
+  "after_connections": 27,
+  "routed_line_primitives": 3975,
+  "board_vias": 623,
+  "module_thermal_vias": 12,
+  "moves": [
+    {
+      "ref": "R3",
+      "before_mm": [
+        21.75,
+        60.75
+      ],
+      "after_mm": [
+        23.3,
+        58.0
+      ],
+      "old_rotation_deg": 0,
+      "rotation_deg": 90
+    },
+    {
+      "ref": "R5",
+      "before_mm": [
+        24.0,
+        59.25
+      ],
+      "after_mm": [
+        25,
+        59.25
+      ],
+      "old_rotation_deg": 90,
+      "rotation_deg": 90
+    }
+  ],
+  "removed_lines": 23,
+  "removed_vias": 0,
+  "operations": 90,
+  "restored_nets": [
+    "3V3",
+    "HOST_MOSI",
+    "HOST_SCK",
+    "HOST_MISO_INT",
+    "CS_FL",
+    "FL_CS_B",
+    "FL_CS"
+  ],
+  "extra_access_vias": [
+    {
+      "name": "SPI_ACCESS_R4_2",
+      "net": "HOST_MISO_INT",
+      "x_mm": 19.503364599999998,
+      "y_mm": 60.75000042,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "requires_filled_capped": true,
+      "pad": "R4.2",
+      "primitive_id": "0414783a838aa904"
+    },
+    {
+      "name": "SPI_ACCESS_U12_9",
+      "net": "CS_FL",
+      "x_mm": 21.29997264,
+      "y_mm": 59.95,
+      "hole_mm": 0.300001,
+      "diameter_mm": 0.600001,
+      "requires_filled_capped": false,
+      "pad": "U12.9",
+      "primitive_id": "6e10836261e94b60"
+    }
+  ],
+  "additional_existing_vip": {
+    "pad": "R5.1",
+    "via_id": "9e57337ec5c8e67e",
+    "requires_filled_capped": true
+  },
+  "bus_neck": {
+    "width_mm": 2,
+    "length_mm": 6.2,
+    "centre_y_mm": 62.3,
+    "copper_thickness_assumption_mm": 0.0152,
+    "estimated_additional_resistance_ohm": 0.0011896929824561405,
+    "note": "Ideal20C estimate only; manufacturer stackup/current/thermal verification pending"
+  },
+  "body_check": {
+    "errors": [],
+    "nearest_mm": {
+      "R3": [
+        [
+          0.3680018000000054,
+          "U12"
+        ],
+        [
+          0.7929918000000029,
+          "C59"
+        ],
+        [
+          0.8359936000000019,
+          "R5"
+        ],
+        [
+          2.6613951000000076,
+          "R7"
+        ]
+      ],
+      "R5": [
+        [
+          0.8359936000000019,
+          "R3"
+        ],
+        [
+          1.138397899999994,
+          "C59"
+        ],
+        [
+          1.4113951,
+          "R7"
+        ],
+        [
+          1.6929918000000015,
+          "C60"
+        ]
+      ]
+    },
+    "moved_bounds": {
+      "R3": [
+        22.867996800000004,
+        56.843398300000004,
+        23.732003199999998,
+        59.156601699999996
+      ],
+      "R5": [
+        24.5679968,
+        58.0933983,
+        25.4320032,
+        60.4066017
+      ]
+    }
+  },
+  "copper_union": {
+    "passed": true,
+    "maximum_copper_union_difference_mm2": 6.728899786146682e-05,
+    "tolerance_mm2": 0.001,
+    "errors": [],
+    "old_lines": 3912,
+    "actual_lines": 3975,
+    "new_board_vias": 7,
+    "api_new_via_diameter_normalized_mm": 0.60000134
+  },
+  "automatic_replaced_ids": [
+    {
+      "id": "7f912dd77300e86f",
+      "net": "CS_FL"
+    },
+    {
+      "id": "77bc7af656fdf1c6",
+      "net": "HOST_MOSI"
+    }
+  ],
+  "actual_pad_match_count": 1170,
+  "schematic_pinmap_changed": false,
+  "independent_review_complete": false,
+  "fabrication_released": false,
+  "modern_export_line_primitives": 3976,
+  "modern_export_tiny_fragment": {
+    "id": "79fae9e1a97af539",
+    "net": "HOST_MOSI",
+    "length_mm": 0.0016056697944524833,
+    "native_epro2_only": true,
+    "live_api_get_returns_empty": true,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.3205736906394646e-06,
+    "tolerance_mm2": 0.001,
+    "note": "Tiny native-export fragment retained inside existing endcap geometry; API and legacy count3975,moderncount3976. No reimport or archive rewriting used."
+  },
+  "native_exports": {
+    "eda/six-port-baseboard-v01.epro": {
+      "bytes": 463399,
+      "sha256": "b24eeaf7f7fc40901bdcdddb0458463c1f7757d1c0bb04f0bdf08799882c52d4"
+    },
+    "eda/six-port-baseboard-v01.epro2": {
+      "bytes": 1777741,
+      "sha256": "08947e9cdc2d05ee8c2f992f68649dedf1f99bdec620f12925c942c376988f62"
+    }
+  },
+  "verification": {
+    "netlist-check.json": true,
+    "pcb-connectivity-check.json": true,
+    "native-integrity-check.json": true,
+    "enclosure_five_stls": true,
+    "mechanical-transform-check.json": true
+  }
+}

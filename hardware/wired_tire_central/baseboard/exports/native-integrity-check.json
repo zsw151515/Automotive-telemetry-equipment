@@ -2,27 +2,27 @@
   "passed": true,
   "files": {
     "epro": {
-      "bytes": 462068,
-      "sha256": "32305fff6c5b1a8fd0aa97434f4d6604f30be1d71d47a3b59a24dd0c74e38ccb",
+      "bytes": 463399,
+      "sha256": "b24eeaf7f7fc40901bdcdddb0458463c1f7757d1c0bb04f0bdf08799882c52d4",
       "components": 282,
       "pours": 2,
-      "poured_fragments": 132,
-      "routed_line_primitives": 3912,
+      "poured_fragments": 127,
+      "routed_line_primitives": 3975,
       "outlines": 1
     },
     "epro2": {
-      "bytes": 2107814,
-      "sha256": "6992c999ee88ca954663b45d238f1c2f69b4adf591b89423afa2efb861e80bb7",
+      "bytes": 1777741,
+      "sha256": "08947e9cdc2d05ee8c2f992f68649dedf1f99bdec620f12925c942c376988f62",
       "components": 282,
       "pours": 2,
       "active_poured_regions": 2,
       "orphan_fill_cache_records": 2,
-      "routed_line_primitives": 3912,
-      "board_vias": 616,
+      "routed_line_primitives": 3976,
+      "board_vias": 623,
       "minimum_track_width_mm": 0.12800076,
       "minimum_board_via_hole_mm": 0.30000193999999997,
       "minimum_board_via_diameter_mm": 0.6000013399999999,
-      "preserved_prior_line_objects": 606,
+      "preserved_prior_line_objects": 608,
       "preserved_prior_board_vias": 298,
       "source_thermal_vias": 12
     }

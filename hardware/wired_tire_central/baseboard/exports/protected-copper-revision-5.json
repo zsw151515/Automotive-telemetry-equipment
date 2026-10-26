@@ -1,0 +1,77 @@
+{
+  "base_commit": "9f68c27",
+  "previous_baseline_sha256": "890648a5edc4d31c669bdc62d5dbd86962ba067aa9a413fae48132b9021480f7",
+  "previous_header": {
+    "phase": "Revision4: local 3V3 bypasses and five logic power/GND VIPs",
+    "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
+    "revision_history": [
+      "protected-copper-revision.json",
+      "protected-copper-revision-3.json",
+      "protected-copper-revision-4.json"
+    ]
+  },
+  "removed_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 472.4409,
+      "startY": 2452.7559,
+      "endX": 3338.5827,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "8bc04a8c372e128c"
+    }
+  ],
+  "removed_line_indices": [
+    599
+  ],
+  "added_protected_lines": [
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 472.4409,
+      "startY": 2452.7559,
+      "endX": 681.1024,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "6150e918ddecd595"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 925.1968999999999,
+      "startY": 2452.7559,
+      "endX": 3338.5827,
+      "endY": 2452.7559,
+      "lineWidth": 118.1102,
+      "primitiveLock": true,
+      "primitiveId": "6b069f9daa643e72"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "3V3",
+      "layer": 16,
+      "startX": 681.1024,
+      "startY": 2452.7559,
+      "endX": 925.1968999999999,
+      "endY": 2452.7559,
+      "lineWidth": 78.7402,
+      "primitiveLock": true,
+      "primitiveId": "5937a22c9f8f6b78"
+    }
+  ],
+  "added_protected_vias": [],
+  "retained_previous_lines": 605,
+  "retained_previous_board_vias": 298,
+  "reason": "Replace one 3mm 3V3bus section with3mm ends and6.2mm long2mm centre neck to clear MISOvia. Native editor aligned centre toY62.3; accepted by complete copper union, .16mm allpairs and nativeDRC.",
+  "fabrication_released": false
+}

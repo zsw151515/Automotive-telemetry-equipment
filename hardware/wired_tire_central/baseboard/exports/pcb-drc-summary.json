@@ -2,8 +2,8 @@
   "drc": [
     {
       "category": "Connection Error",
-      "count": 31,
-      "groups": 14
+      "count": 27,
+      "groups": 12
     }
   ],
   "pours": [
@@ -21,24 +21,16 @@
     }
   ],
   "poured_regions": 2,
-  "total_vias_including_module": 628,
-  "board_vias": 616,
+  "total_vias_including_module": 635,
+  "board_vias": 623,
   "module_thermal_vias": 12,
   "reopened_after_save": true,
-  "routed_line_primitives": 3912,
+  "routed_line_primitives": 3975,
   "ordinary_signal_nets_added": 159,
   "unconnected_groups": [
     {
       "net": "12V_PROTECTED",
       "count": 5
-    },
-    {
-      "net": "HOST_MISO_INT",
-      "count": 2
-    },
-    {
-      "net": "CS_FL",
-      "count": 2
     },
     {
       "net": "FR_VPROBE",
@@ -86,5 +78,16 @@
     }
   ],
   "routing_complete": false,
-  "fabrication_released": false
+  "fabrication_released": false,
+  "modern_export_line_primitives": 3976,
+  "modern_export_tiny_fragment": {
+    "id": "79fae9e1a97af539",
+    "net": "HOST_MOSI",
+    "length_mm": 0.0016056697944524833,
+    "native_epro2_only": true,
+    "live_api_get_returns_empty": true,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.3205736906394646e-06,
+    "tolerance_mm2": 0.001,
+    "note": "Tiny native-export fragment retained inside existing endcap geometry; API and legacy count3975,moderncount3976. No reimport or archive rewriting used."
+  }
 }

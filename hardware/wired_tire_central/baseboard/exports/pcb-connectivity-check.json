@@ -3,8 +3,8 @@
   "components": 282,
   "physical_pads": 1170,
   "assigned_logical_pins": 1036,
-  "readback_sha256": "20d08d181aa60c957c0744a4ff0859de62e298bf42b555cd43e42a29b2ee0731",
-  "layout_sha256": "06cfdc6c2a33e2d102690a74ca3a5c84576ee65821060f601305cec317541b4f",
+  "readback_sha256": "d668c9e4e924eabb13deae700638f2a3f83264c1e4fe46faa7d0362a7ad5949c",
+  "layout_sha256": "0e387a2c8fd348e564d43ad11b4e5cbaff6b2e351fb4209b016b0284051b117a",
   "errors": [],
   "scope": "Actual PCB identities, pad nets and positions only; no routing or fabrication approval"
 }

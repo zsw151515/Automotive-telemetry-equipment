@@ -20718,6 +20718,150 @@
                     "TrackPhysics": ""
                 }
             },
+            "FL_ARM": {
+                "net": "FL_ARM",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_USB_DP": {
+                "net": "FL_USB_DP",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_USB_DM": {
+                "net": "FL_USB_DM",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_BOOT": {
+                "net": "FL_BOOT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_STRAP8": {
+                "net": "FL_STRAP8",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_DE_CMD": {
+                "net": "FL_DE_CMD",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_TX": {
+                "net": "FL_TX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "READY_FL": {
+                "net": "READY_FL",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_CS": {
+                "net": "FL_CS",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_RX": {
+                "net": "FL_RX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_MOSI": {
+                "net": "FL_MOSI",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_SCK": {
+                "net": "FL_SCK",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_EN": {
+                "net": "FL_EN",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_MISO": {
+                "net": "FL_MISO",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_STRAP2": {
+                "net": "FL_STRAP2",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "3V3": {
+                "net": "3V3",
+                "ruleMap": {
+                    "TrackPhysics": "powerWide1oz"
+                }
+            },
+            "HOST_SCK": {
+                "net": "HOST_SCK",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_SCK_B": {
+                "net": "FL_SCK_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "HOST_MOSI": {
+                "net": "HOST_MOSI",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_MOSI_B": {
+                "net": "FL_MOSI_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_CS_B": {
+                "net": "FL_CS_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "CS_FL": {
+                "net": "CS_FL",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FL_MISO_B": {
+                "net": "FL_MISO_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "HOST_MISO_INT": {
+                "net": "HOST_MISO_INT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
             "B32_SW": {
                 "net": "B32_SW",
                 "ruleMap": {
@@ -20782,12 +20926,6 @@
                 "net": "BASE_3V3_PG",
                 "ruleMap": {
                     "TrackPhysics": ""
-                }
-            },
-            "3V3": {
-                "net": "3V3",
-                "ruleMap": {
-                    "TrackPhysics": "powerWide1oz"
                 }
             },
             "IDEAL_CAP": {
@@ -20904,12 +21042,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "READY_FL": {
-                "net": "READY_FL",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "MUX_Y": {
                 "net": "MUX_Y",
                 "ruleMap": {
@@ -20936,24 +21068,6 @@
             },
             "READY_BRAKE": {
                 "net": "READY_BRAKE",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "HOST_SCK": {
-                "net": "HOST_SCK",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "HOST_MOSI": {
-                "net": "HOST_MOSI",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "CS_FL": {
-                "net": "CS_FL",
                 "ruleMap": {
                     "TrackPhysics": ""
                 }
@@ -20988,12 +21102,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "HOST_MISO_INT": {
-                "net": "HOST_MISO_INT",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "FL_RO": {
                 "net": "FL_RO",
                 "ruleMap": {
@@ -21006,12 +21114,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "FL_TX": {
-                "net": "FL_TX",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "FL_A": {
                 "net": "FL_A",
                 "ruleMap": {
@@ -21020,18 +21122,6 @@
             },
             "FL_B": {
                 "net": "FL_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_DE_CMD": {
-                "net": "FL_DE_CMD",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_ARM": {
-                "net": "FL_ARM",
                 "ruleMap": {
                     "TrackPhysics": ""
                 }
@@ -21390,96 +21480,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "FL_USB_DP": {
-                "net": "FL_USB_DP",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_USB_DM": {
-                "net": "FL_USB_DM",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_BOOT": {
-                "net": "FL_BOOT",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_STRAP8": {
-                "net": "FL_STRAP8",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_CS": {
-                "net": "FL_CS",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_RX": {
-                "net": "FL_RX",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_MOSI": {
-                "net": "FL_MOSI",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_SCK": {
-                "net": "FL_SCK",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_EN": {
-                "net": "FL_EN",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_MISO": {
-                "net": "FL_MISO",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_STRAP2": {
-                "net": "FL_STRAP2",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_SCK_B": {
-                "net": "FL_SCK_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_MOSI_B": {
-                "net": "FL_MOSI_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_CS_B": {
-                "net": "FL_CS_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FL_MISO_B": {
-                "net": "FL_MISO_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "BRAKE_EN": {
                 "net": "BRAKE_EN",
                 "ruleMap": {
@@ -21678,96 +21678,6 @@
                     "TrackPhysics": ""
                 }
             },
-            "FR_USB_DP": {
-                "net": "FR_USB_DP",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_USB_DM": {
-                "net": "FR_USB_DM",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_BOOT": {
-                "net": "FR_BOOT",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_STRAP8": {
-                "net": "FR_STRAP8",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_CS": {
-                "net": "FR_CS",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_RX": {
-                "net": "FR_RX",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_MOSI": {
-                "net": "FR_MOSI",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_SCK": {
-                "net": "FR_SCK",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_EN": {
-                "net": "FR_EN",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_MISO": {
-                "net": "FR_MISO",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_STRAP2": {
-                "net": "FR_STRAP2",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_SCK_B": {
-                "net": "FR_SCK_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_MOSI_B": {
-                "net": "FR_MOSI_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_CS_B": {
-                "net": "FR_CS_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
-            "FR_MISO_B": {
-                "net": "FR_MISO_B",
-                "ruleMap": {
-                    "TrackPhysics": ""
-                }
-            },
             "RL_USB_DP": {
                 "net": "RL_USB_DP",
                 "ruleMap": {
@@ -21854,6 +21764,96 @@
             },
             "RL_MISO_B": {
                 "net": "RL_MISO_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DP": {
+                "net": "FR_USB_DP",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_USB_DM": {
+                "net": "FR_USB_DM",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_BOOT": {
+                "net": "FR_BOOT",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_STRAP8": {
+                "net": "FR_STRAP8",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_CS": {
+                "net": "FR_CS",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_RX": {
+                "net": "FR_RX",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_MOSI": {
+                "net": "FR_MOSI",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_SCK": {
+                "net": "FR_SCK",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_EN": {
+                "net": "FR_EN",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_MISO": {
+                "net": "FR_MISO",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_STRAP2": {
+                "net": "FR_STRAP2",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_SCK_B": {
+                "net": "FR_SCK_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_MOSI_B": {
+                "net": "FR_MOSI_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_CS_B": {
+                "net": "FR_CS_B",
+                "ruleMap": {
+                    "TrackPhysics": ""
+                }
+            },
+            "FR_MISO_B": {
+                "net": "FR_MISO_B",
                 "ruleMap": {
                     "TrackPhysics": ""
                 }
