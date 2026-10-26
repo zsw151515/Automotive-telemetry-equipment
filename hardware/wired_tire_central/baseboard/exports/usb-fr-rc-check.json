@@ -231,5 +231,6 @@
     "angular_equivalence": "C78 270 degrees equals -90 after native reload",
     "tolerance_mm": 2.54e-05,
     "change": "Native serialization rounding only; copper and nets unchanged"
-  }
+  },
+  "historical_checkpoint": "ef3a1b8"
 }

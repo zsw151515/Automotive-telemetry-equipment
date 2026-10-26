@@ -1,0 +1,184 @@
+{
+  "base_commit": "ef3a1b8",
+  "scope": "Complete FR maintenance USB pair, J12 relocation and eight restored signal nets; remaining three USB pairs and RC groups unfinished",
+  "components": 290,
+  "physical_pads": 1186,
+  "before_connections": 18,
+  "after_connections": 12,
+  "completed_usb_pairs": [
+    "FL",
+    "FR"
+  ],
+  "pending_usb_pairs": [
+    "RL",
+    "RR",
+    "BRAKE"
+  ],
+  "pending_rc_groups": [
+    "RL",
+    "RR",
+    "BRAKE"
+  ],
+  "routed_line_primitives": 4362,
+  "modern_export_line_primitives": 4364,
+  "board_vias": 680,
+  "module_thermal_vias": 12,
+  "planned_removed_lines": 24,
+  "removed_vias": 0,
+  "added_operations": 155,
+  "planned_added_line_operations": 145,
+  "actual_added_line_objects": 144,
+  "added_vias": 10,
+  "automatic_collinear_merge": {
+    "net": "FR_USB_DP",
+    "replaced_new_operation_ids": [
+      "cfc0b2fd1fc22622",
+      "ee50213951e42e63"
+    ],
+    "merged_id": "4bb9feee74aef7d2",
+    "old_line_objects_changed": false
+  },
+  "j12": {
+    "before_mm": [
+      54,
+      40.5,
+      0
+    ],
+    "after_mm": [
+      71,
+      68,
+      180
+    ],
+    "layer": "Bottom",
+    "pad_assignments_changed": false,
+    "before_pin_x_mm": [
+      49,
+      51,
+      53,
+      55,
+      57,
+      59
+    ],
+    "after_pin_x_mm": [
+      76,
+      74,
+      72,
+      70,
+      68,
+      66
+    ],
+    "before_pin_y_mm": 40.5,
+    "after_pin_y_mm": 68,
+    "body_bounds_mm": [
+      64.00001522,
+      78.00001262,
+      66.34003408000001,
+      71.14002448
+    ]
+  },
+  "other_components_moved": false,
+  "gpio_changed": false,
+  "schematic_netlist_changed": false,
+  "racechrono_changed": false,
+  "usb_layers": [
+    "Top"
+  ],
+  "usb_signal_vias": 0,
+  "nominal_width_mm": 0.16,
+  "nominal_pair_edge_gap_mm": 0.16,
+  "copper_measurements": {
+    "total_board_trace_lengths_mm": {
+      "DM": 16.566111368735505,
+      "DP": 16.56610938335271
+    },
+    "cad_length_difference_mm": 1.985382795055557e-06,
+    "scope": "Trace copper including MCU-to-resistor source segments; excludes resistor and module internals. CAD numeric equality is not manufacturing precision."
+  },
+  "impedance_target_ohm": 90,
+  "impedance_verified": false,
+  "ground_reference": {
+    "layer": "Inner1",
+    "actual_rebuilt_coupled_envelope_uncovered_area_mm2": 0.0,
+    "scope": "Complete .48mm coupled trunk envelope; header terminal fanouts retain necessary plated-pad antipads.",
+    "min_new_via_center_to_usb_copper_constraint_mm": 0.68
+  },
+  "restored_nets": [
+    "FR_BOOT",
+    "FR_EN",
+    "RL_POWER_EN",
+    "FR_POWER_EN",
+    "HOST_MOSI",
+    "P4_MOSI",
+    "P4_SCK",
+    "RL_DE_CMD"
+  ],
+  "obsolete_header_tail_cleanup": "Removed old EN/BOOT Bottom branches after relocating the header. Existing local MCU/pullup/filter wiring and source vias retained.",
+  "new_control_route_lengths_mm": {
+    "FR_BOOT": 8.218376618407351,
+    "FR_EN": 21.259797974644663
+  },
+  "protected_copper": {
+    "lines": 627,
+    "board_vias": 326,
+    "revision": 8,
+    "previous_geometry_preserved": true,
+    "native_api_coordinate_tolerance_mil": 0.001
+  },
+  "actual_added_copper_all_pairs": {
+    "passed": true,
+    "minimum_rule_gap_mm": 0.16,
+    "minimum_drill_edge_gap_mm": 0.3,
+    "rf_keepouts_checked": true
+  },
+  "copper_union_check": {
+    "passed": true,
+    "maximum_copper_union_difference_mm2": 3.9676720079121335e-05,
+    "tolerance_mm2": 0.001,
+    "errors": [],
+    "old_lines": 4242,
+    "actual_lines": 4362,
+    "new_board_vias": 10,
+    "api_new_via_diameter_normalized_mm": 0.60000134
+  },
+  "modern_export_geometry_check": {
+    "native_epro2_only": true,
+    "maximum_archive_to_api_copper_union_difference_mm2": 3.3205737382082056e-06,
+    "tolerance_mm2": 0.001,
+    "note": "API/legacy4362, modern4364. Two historical tiny same-net native fragments; whole current copper union rechecked, no archive rewriting or reimport."
+  },
+  "header_pad_hole_top_and_bottom_body_checks_passed": true,
+  "new_filled_capped_vias": 0,
+  "schematic_erc_empty": true,
+  "reopened_after_save": true,
+  "enclosure_five_stls_checked": true,
+  "independent_review_complete": true,
+  "fabrication_released": false,
+  "native_exports": {
+    "epro": {
+      "bytes": 482588,
+      "sha256": "dee104f8a3cef4b2c2011d0d94174bac97beb105f11069d1ac88116836b033d6",
+      "components": 290,
+      "pours": 2,
+      "poured_fragments": 122,
+      "routed_line_primitives": 4362,
+      "outlines": 1
+    },
+    "epro2": {
+      "bytes": 2165736,
+      "sha256": "a5ad06d296ae3f80ac44bb393cb8ce9aa660ed4d99df39b19f52678b6f6773f0",
+      "components": 290,
+      "pours": 2,
+      "active_poured_regions": 2,
+      "orphan_fill_cache_records": 2,
+      "routed_line_primitives": 4364,
+      "board_vias": 680,
+      "minimum_track_width_mm": 0.12800076,
+      "minimum_board_via_hole_mm": 0.30000193999999997,
+      "minimum_board_via_diameter_mm": 0.6000013399999999,
+      "preserved_prior_line_objects": 627,
+      "preserved_prior_board_vias": 326,
+      "source_thermal_vias": 12
+    }
+  },
+  "independent_review_report": "usb-fr-route-review.md"
+}
