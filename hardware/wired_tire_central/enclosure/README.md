@@ -19,7 +19,7 @@
 | [exports/rear_cover_ports.stl](exports/rear_cover_ports.stl) | 带矩形试装窗口后盖，替代前两种后盖；先核对接插件再打印 |
 | [pcb_mechanical.scad](pcb_mechanical.scad) | 从底板布局生成的连接器投影和试装窗口尺寸 |
 | [exports/retainer.stl](exports/retainer.stl) | 屏幕后固定条，打印2件 |
-| [exports/geometry_report.json](exports/geometry_report.json) | STL闭合、连通、体积、尺寸及SHA256检查记录 |
+| [exports/geometry_report.json](exports/geometry_report.json) | STL几何、底面元件与支柱间隙、输入一致性检查记录 |
 
 单位为毫米，切片按100%比例导入。主壳＋一个后盖＋两条固定条即一套。默认结构各零件均有平面落床；先检查切片层预览及实际打印机成形范围。室温试装可先用现有材料；车内高温用途的材料及散热结构在温升验证后确定。
 
@@ -40,6 +40,7 @@
 | 前窗 / 玻璃定位口 | 161 × 94 / 165.28 × 100.17 | 本次样壳假设，名义单边0.5间隙 |
 | 底板板框 / 安装孔距 | 150 × 75 / 140 × 65 | 当前PCB布局；实物待核对 |
 | 底板板厚 / 前侧元件高度 / 后侧支柱 | 1.6 / 14 / 10 | 本次空间预算；连接器及天线仍需核对 |
+| 底板支柱外径 / 元件避让余量 | 8 / 0.5 | `pcb_boss_d` 为PCB柱；与壳体其它φ10柱区分 |
 | 固定条 | 183 × 10 × 3，2件 | 本次样壳假设；两端与侧墙各留0.5间隙 |
 
 前窗沿玻璃中心开得比VA大，以容纳VA偏置。按默认尺寸、玻璃单边0.5位移及VA边缘额外0.3余量检查，四边仍露出VA；这不是实板显示/触摸验收。屏幕玻璃前方留名义0.5软垫位置，不能硬拧螺钉压玻璃。
@@ -66,8 +67,11 @@
 ```powershell
 python hardware/wired_tire_central/enclosure/export_case.py --openscad 'C:/path/to/openscad.com'
 python hardware/wired_tire_central/enclosure/export_case.py --check-only
+python -m unittest discover -s hardware/wired_tire_central/enclosure/tests -v
 ```
 
 修改 `central_case.scad` 开头参数后重新导出；`part` 可选 `body/rear_cover/rear_cover_pilot/rear_cover_ports/retainer/assembly/exploded`。导出器从底板 `pcb-layout.json` 更新连接器投影；若连接器层或方向改变，会要求重新审查。STL检查覆盖边闭合、面绕向、单一连通体、正体积及外形尺寸记录；不能证明装配干涉全部排除、切片成功或实物耐温/强度合格。
+
+导出前和 `--check-only` 均核对布局与 `baseboard/exports/pcb-readback.json` 的全部器件位置、层、方向及实体焊盘数量。所有底面元件本体、SMD焊脚和通孔焊脚必须避开φ8 PCB支柱，并留0.5mm余量；DNP预留也保留装配空间。检查使用本体保守包络和实际焊盘读回，不把薄线路或普通过孔当成立体元件。**插头、线束弯曲和应力释放尚未建模**，报告中的 `harness_unverified` 会继续保留，需到货后带线试装。
 
 本次外壳修改不改固件、引脚、BLE/RaceChrono协议和已有离线软件包。PCB当前阶段及制造限制见 `../baseboard/review.md`。

@@ -1,6 +1,49 @@
 {
   "scope": "mechanical fit prototype; not physically validated",
   "unit": "mm",
+  "pcb_bottom_clearance": {
+    "passed": true,
+    "errors": [],
+    "pillar_diameter_mm": 8.0,
+    "pillar_height_mm": 10.0,
+    "clearance_mm": 0.5,
+    "pillar_centres_pcb_mm": [
+      [
+        5.0,
+        5.0
+      ],
+      [
+        5.0,
+        70.0
+      ],
+      [
+        145.0,
+        5.0
+      ],
+      [
+        145.0,
+        70.0
+      ]
+    ],
+    "minimum_pillar_gap_mm": 1.1665872304919036,
+    "checked_bottom_refs": [
+      "J1",
+      "J11",
+      "J12",
+      "J13",
+      "J14",
+      "J15",
+      "J5",
+      "J6",
+      "J7",
+      "J8",
+      "J9",
+      "J10"
+    ],
+    "checked_lead_pads": 85,
+    "harness_unverified": true,
+    "scope": "底面本体保守包络、SMD焊脚及通孔焊脚对PCB支柱；不含插头和线束"
+  },
   "pcb_projection": {
     "layout_sha256": "974e7cd416eac0b2d03ef25128d39850dbf190ee843fa3c0d11247ab3c3da689",
     "refs": [
@@ -88,7 +131,7 @@
     "physically_verified": false
   },
   "tool": "OpenSCAD version 2021.01",
-  "source_sha256": "93b959922d4d9304e4630673520e191a6840af8fba12f421043e31f95b8858a0",
+  "source_sha256": "868cdec67da008f2830c718f44121170b5461c13b7452c10fef887b8574c93d7",
   "parts": {
     "body": {
       "triangles": 3120,

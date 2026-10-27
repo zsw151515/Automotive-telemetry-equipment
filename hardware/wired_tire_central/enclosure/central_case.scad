@@ -40,6 +40,7 @@ board_hole_x = 140;
 board_hole_y = 65;
 board_component_h = 14;
 board_standoff = 10;
+pcb_boss_d = 8; // PCB支柱外径，与底面元件装配检查共用。
 
 boss_d = 10;
 pilot_d = 2.6; // M3塑料自攻试孔；不是热熔螺母孔。
@@ -117,7 +118,7 @@ module rear_cover(with_pilots=false,with_ports=false) {
         union() {
             rounded_plate(case_w,case_h,rear_t,corner_r);
             for(x=board_cols,y=board_rows)
-                translate([x,case_h-y,rear_t-eps]) cylinder(d=8,h=board_standoff+eps);
+                translate([x,case_h-y,rear_t-eps]) cylinder(d=pcb_boss_d,h=board_standoff+eps);
         }
         for(x=case_cols,y=cover_rows)
             translate([x,y,-eps]) cylinder(d=screw_clearance,h=rear_t+2*eps);

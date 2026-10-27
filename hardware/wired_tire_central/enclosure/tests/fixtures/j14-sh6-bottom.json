@@ -1,0 +1,326 @@
+{
+  "note": "由C160405原生封装探针读回变换得到的已知干涉回归场景；不是已落板位置",
+  "layout": {
+    "board_mm": [
+      150,
+      75
+    ],
+    "mounts_mm": [
+      [
+        5,
+        5
+      ],
+      [
+        145,
+        5
+      ],
+      [
+        5,
+        70
+      ],
+      [
+        145,
+        70
+      ]
+    ],
+    "placements": [
+      {
+        "ref": "J14",
+        "x_mm": 140.5,
+        "y_mm": 66,
+        "rotation": 180,
+        "layer": 2,
+        "bounds_mm": [
+          136.4731094,
+          144.52549358038863,
+          63.395103,
+          67.691767
+        ],
+        "fixed": true,
+        "part": "usbMaintSh6",
+        "pcb_id": "50b33c0761ee8d34"
+      }
+    ],
+    "source_footprints": {
+      "J14": {
+        "physical_pads": 8,
+        "bounds_mm": [
+          -4.02549358,
+          4.0268906,
+          -2.604897,
+          1.691767
+        ]
+      }
+    }
+  },
+  "readback": {
+    "components": [
+      {
+        "ref": "J14",
+        "id": "50b33c0761ee8d34",
+        "x": 5531.496062992126,
+        "y": 2598.4251968503936,
+        "rotation": 180,
+        "layer": 2
+      }
+    ],
+    "pads": [
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "1",
+        "x": 5629.924062992127,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "RR_USB_DM",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-1"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "2",
+        "x": 5590.544062992126,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "RR_USB_DP",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-2"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "3",
+        "x": 5551.174062992127,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "GND",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-3"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "4",
+        "x": 5511.804062992127,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "RR_EN",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-4"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "5",
+        "x": 5472.434062992126,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "GND",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-5"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "6",
+        "x": 5433.064062992126,
+        "y": 2674.705196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          23.6,
+          61,
+          0
+        ],
+        "net": "RR_BOOT",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-6"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "7",
+        "x": 5381.894062992127,
+        "y": 2522.145196850394,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          59.1,
+          78.7,
+          0
+        ],
+        "net": "GND",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-7"
+      },
+      {
+        "async": true,
+        "primitiveType": "Pad",
+        "layer": 2,
+        "padNumber": "8",
+        "x": 5681.104062992126,
+        "y": 2522.1451968503934,
+        "rotation": 3.141592653589793,
+        "pad": [
+          "RECT",
+          59.1,
+          78.7,
+          0
+        ],
+        "net": "GND",
+        "hole": null,
+        "holeOffsetX": 0,
+        "holeOffsetY": 0,
+        "holeRotation": 0,
+        "metallization": true,
+        "padType": 0,
+        "specialPad": [],
+        "solderMaskAndPasteMaskExpansion": {
+          "topSolderMask": 0.2,
+          "bottomSolderMask": 0.2,
+          "topPasteMask": 0,
+          "bottomPasteMask": 0
+        },
+        "heatWelding": null,
+        "primitiveLock": false,
+        "primitiveId": "50b33c0761ee8d34-smd-8"
+      }
+    ]
+  }
+}
