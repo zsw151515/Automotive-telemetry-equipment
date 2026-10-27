@@ -1,0 +1,446 @@
+{
+  "base_commit": "a732f31",
+  "scope": "Complete RL RC circuit and USB pair with J13 relocation and eight signal-net repairs",
+  "components": 294,
+  "physical_pads": 1194,
+  "assigned_pin_nets": 1060,
+  "symbol_pins": 1152,
+  "before_connections": 12,
+  "after_connections": 8,
+  "completed_usb_pairs": [
+    "FL",
+    "FR",
+    "RL"
+  ],
+  "pending_usb_pairs": [
+    "RR",
+    "BRAKE"
+  ],
+  "pending_rc_groups": [
+    "RR",
+    "BRAKE"
+  ],
+  "added_components": [
+    {
+      "ref": "R138",
+      "part": "r33",
+      "pins": {
+        "1": "RL_USB_DM_MCU",
+        "2": "RL_USB_DM"
+      },
+      "dnp": false,
+      "pcb_mm": [
+        96,
+        65.4,
+        0
+      ]
+    },
+    {
+      "ref": "R139",
+      "part": "r33",
+      "pins": {
+        "1": "RL_USB_DP_MCU",
+        "2": "RL_USB_DP"
+      },
+      "dnp": false,
+      "pcb_mm": [
+        96,
+        67,
+        0
+      ]
+    },
+    {
+      "ref": "C80",
+      "part": "cUsbDnp",
+      "pins": {
+        "1": "RL_USB_DM",
+        "2": "GND"
+      },
+      "dnp": true,
+      "pcb_mm": [
+        98.36,
+        64.45,
+        270
+      ]
+    },
+    {
+      "ref": "C81",
+      "part": "cUsbDnp",
+      "pins": {
+        "1": "RL_USB_DP",
+        "2": "GND"
+      },
+      "dnp": true,
+      "pcb_mm": [
+        98.75,
+        67.4,
+        90
+      ]
+    }
+  ],
+  "j13": {
+    "before_mm": [
+      88,
+      44,
+      0
+    ],
+    "after_mm": [
+      105.25,
+      68,
+      180
+    ],
+    "layer": "Bottom",
+    "pad_assignments_changed": false,
+    "old_pin_x_mm": [
+      83,
+      85,
+      87,
+      89,
+      91,
+      93
+    ],
+    "new_pin_x_mm": [
+      110.25,
+      108.25,
+      106.25,
+      104.25,
+      102.25,
+      100.25
+    ],
+    "new_pin_y_mm": 68
+  },
+  "other_existing_components_moved": false,
+  "gpio_changed": false,
+  "racechrono_changed": false,
+  "source_net_renames": {
+    "U3.26": [
+      "RL_USB_DM",
+      "RL_USB_DM_MCU"
+    ],
+    "U3.27": [
+      "RL_USB_DP",
+      "RL_USB_DP_MCU"
+    ]
+  },
+  "usb_layers": [
+    "Top"
+  ],
+  "usb_signal_vias": 0,
+  "nominal_width_mm": 0.16,
+  "nominal_pair_edge_gap_mm": 0.16,
+  "impedance_target_ohm": 90,
+  "impedance_verified": false,
+  "actual_measurements": {
+    "lines": 4496,
+    "board_vias": 687,
+    "removed_lines": 48,
+    "removed_vias": 4,
+    "new_line_objects": 182,
+    "new_vias": 11,
+    "usb_lengths_mm": {
+      "DM": 16.82419474696225,
+      "DP": 16.82419286491044
+    },
+    "usb_delta_mm": 1.8820518086215543e-06,
+    "usb_coupled_reference_uncovered_area_mm2": 0.0,
+    "mosi_reference_uncovered": [
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 1,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      },
+      {
+        "layer": 16,
+        "missing": 0.0
+      }
+    ],
+    "mosi_length_mm": 59.56833289594545,
+    "protected_previous_lines_preserved": 627,
+    "protected_previous_board_vias_preserved": 326,
+    "protected_revision": 9,
+    "normal_reference_exclusion_via_radius_mm": 0.65816,
+    "normal_reference_exclusion_own_j3_5_radius_mm": 1.12016,
+    "reference_exclusion_circle_quadrant_segments": 256
+  },
+  "planned_line_operations": 182,
+  "planned_via_operations": 11,
+  "restored_nets": [
+    "CS_FL",
+    "CS_FR",
+    "P4_CS_BRAKE",
+    "P4_MOSI",
+    "P4_SCK",
+    "RL_ARM",
+    "RL_BOOT",
+    "RL_EN"
+  ],
+  "mosi_layers": [
+    "Top",
+    "Inner2"
+  ],
+  "mosi_new_vias": 3,
+  "mosi_old_copper_fully_removed": true,
+  "normal_mosi_reference_exclusions": "Normal own via antipads radius0.65816mm and J3.5 own PTH radius1.12016mm, using256 segments per quadrant. Measured native contour radii0.6581405/1.1201405mm; foreign retained holes remain checked.",
+  "new_filled_capped_vias": 0,
+  "protected_revision": 9,
+  "protected_total_lines": 629,
+  "protected_board_vias": 328,
+  "copper_union_check": {
+    "passed": true,
+    "maximum_copper_union_difference_mm2": 4.3775271639491344e-05,
+    "tolerance_mm2": 0.001,
+    "errors": [],
+    "old_lines": 4362,
+    "actual_lines": 4496,
+    "new_board_vias": 7,
+    "api_new_via_diameter_normalized_mm": 0.60000134
+  },
+  "native_exports": {
+    "epro": {
+      "bytes": 486676,
+      "sha256": "74907fc68ccfe0f6aa390f2ba8f60a3a6dc914c469f1b1d554627774805577ec",
+      "components": 294,
+      "pours": 2,
+      "poured_fragments": 124,
+      "routed_line_primitives": 4496,
+      "outlines": 1
+    },
+    "epro2": {
+      "bytes": 2177419,
+      "sha256": "5d49508ca03613d314ba304eaa79a8811b4a77da844d449a7d21c7074ce92bab",
+      "components": 294,
+      "pours": 2,
+      "active_poured_regions": 2,
+      "orphan_fill_cache_records": 2,
+      "routed_line_primitives": 4498,
+      "board_vias": 687,
+      "minimum_track_width_mm": 0.12800076,
+      "minimum_board_via_hole_mm": 0.30000193999999997,
+      "minimum_board_via_diameter_mm": 0.6000013399999999,
+      "preserved_prior_line_objects": 629,
+      "preserved_prior_board_vias": 328,
+      "source_thermal_vias": 12
+    }
+  },
+  "layout_sha256": "974e7cd416eac0b2d03ef25128d39850dbf190ee843fa3c0d11247ab3c3da689",
+  "model_sha256": "7a400e56da4f7e99a539a1a670c0d7c52c7a535de7e568e2deb395e8193ea7f1",
+  "readback_sha256": "6acb5bfa3c7148794130440dc95540ef1b92295ee37c7c98438a1223188d7ef3",
+  "independent_review_complete": true,
+  "fabrication_released": false,
+  "independent_review": {
+    "critical": 0,
+    "important": 0,
+    "unresolved_minor": 0,
+    "minimum_new_foreign_copper_gap_mm": 0.15999968,
+    "minimum_new_drill_edge_gap_mm": 0.475864,
+    "read_only": true,
+    "scope": "RL checkpoint only, not manufacturing release"
+  }
+}

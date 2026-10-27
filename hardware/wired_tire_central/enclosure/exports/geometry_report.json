@@ -2,7 +2,7 @@
   "scope": "mechanical fit prototype; not physically validated",
   "unit": "mm",
   "pcb_projection": {
-    "layout_sha256": "77ddd3f7828b7fe3208463ce3aa2bea76922c6b5a6a6c72422a619b24e195899",
+    "layout_sha256": "974e7cd416eac0b2d03ef25128d39850dbf190ee843fa3c0d11247ab3c3da689",
     "refs": [
       "J5",
       "J6",

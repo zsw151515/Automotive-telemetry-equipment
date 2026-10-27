@@ -1,5 +1,5 @@
 {
-  "phase": "Revision8: FR USB tuning capacitor ground returns",
+  "phase": "Revision9: RL USB tuning capacitor ground returns",
   "lines": [
     {
       "async": true,
@@ -8151,6 +8151,32 @@
       "lineWidth": 9.8425,
       "primitiveLock": true,
       "primitiveId": "cb8c8b8cfdaa823a"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 3872.4409000000005,
+      "startY": 2509.8416,
+      "endX": 3848.4252000000006,
+      "endY": 2531.4951,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "913ea04260be0e97"
+    },
+    {
+      "async": true,
+      "primitiveType": "Line",
+      "net": "GND",
+      "layer": 1,
+      "startX": 3887.7953,
+      "startY": 2681.1033,
+      "endX": 3887.7953,
+      "endY": 2704.7254,
+      "lineWidth": 9.8425,
+      "primitiveLock": true,
+      "primitiveId": "1c3aa44a67a3f900"
     }
   ],
   "vias": [
@@ -13863,6 +13889,40 @@
       },
       "primitiveLock": true,
       "primitiveId": "2777a9efb37477f0"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 3848.4252000000006,
+      "y": 2531.4951,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "275c1147c1bbead8"
+    },
+    {
+      "async": true,
+      "primitiveType": "Via",
+      "net": "GND",
+      "x": 3887.7953,
+      "y": 2704.7254,
+      "holeDiameter": 12,
+      "diameter": 24,
+      "viaType": 0,
+      "designRuleBlindViaName": "",
+      "solderMaskExpansion": {
+        "topSolderMask": -1000,
+        "bottomSolderMask": -1000
+      },
+      "primitiveLock": true,
+      "primitiveId": "ab5ec60ae910065e"
     }
   ],
   "scope": "Prior copper retained except explicit revisions 2/3; protected new local controller and ground routes",
@@ -13873,6 +13933,7 @@
     "protected-copper-revision-5.json",
     "protected-copper-revision-6.json",
     "protected-copper-revision-7.json",
-    "protected-copper-revision-8.json"
+    "protected-copper-revision-8.json",
+    "protected-copper-revision-9.json"
   ]
 }

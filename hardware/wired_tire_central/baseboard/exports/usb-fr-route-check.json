@@ -180,5 +180,7 @@
       "source_thermal_vias": 12
     }
   },
-  "independent_review_report": "usb-fr-route-review.md"
+  "independent_review_report": "usb-fr-route-review.md",
+  "historical_checkpoint": "a732f31",
+  "current_status_note": "Historical complete-FR checkpoint. Current native counts and hashes are recorded in usb-rl-route-check.json; complete FL/FR copper is preserved."
 }

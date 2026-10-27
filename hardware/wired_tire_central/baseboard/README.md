@@ -2,7 +2,7 @@
 
 本目录对应嘉立创EDA专业版独立工程“六接口中控底板 V0.1 工程样机”。目标是同壳安装7B套件、四路胎温RS485、两路前刹车RS485及蜂鸣报警。图纸仍处工程设计阶段；是否完成网表、布局和审查，以 `review.md` 和实际导出文件为准，不能直接用于下单。
 
-2026-10-27 阶段快照：12页原理图、290个器件、150×75mm四层PCB。1052个已定义引脚网络、1186个实体焊盘网络及位置已核对。当前API及`.epro`有4362个走线片段，`.epro2`另有两个历史同网极短片段；680个板上过孔及12个S3模块散热孔。左前与右前维护USB完整路径已连接；J12移至底面(71,68)mm、180°，针脚网络保持。保存重开DRC只剩左后/右后/刹车六个USB网络共12项连接提示，无其他类别。三组RC及差分布线、制造阻抗和实测尚未完成，不能投板。
+2026-10-27 阶段快照：12页原理图、294个器件、150×75mm四层PCB。1060个已定义引脚网络、1194个实体焊盘网络及位置已核对。当前API及`.epro`有4496个走线片段，`.epro2`另有两个历史同网极短片段；687个板上过孔及12个S3模块散热孔。左前、右前、左后维护USB完整路径已连接；J13移至底面(105.25,68)mm、180°，针脚网络保持。保存重开DRC只剩右后/刹车四个USB网络共8项连接提示，无其他类别。剩余两组RC及差分布线、制造阻抗和实测尚未完成，不能投板。
 
 ## 工程资料
 
@@ -14,7 +14,7 @@
 - `eda/six-port-baseboard-v01.epro2`：当前3.2客户端原生工程；`.epro`为同时核对的兼容导出。两者均包含闭合板框和两个地铜区。已保存后重新打开PCB，核对对象保留情况。
 - `check-netlist.py`、`check-pcb.py`、`check-native.py`：分别检查真实原理图网表、PCB读回数据、原生文件关键对象。检查通过不代表布线完成或实物通过。
 - `check-mechanical.py`：用真实26个连接器焊盘坐标核对底面封装变换，避免后盖定位孔按错误镜像投影。
-- `exports/protected-copper-baseline.json`：当前保护基线627条线、326个板过孔；模块内12孔另核对。明确的局部替换链见`protected-copper-revision.json`、`protected-copper-revision-3.json`与`protected-copper-revision-4.json`。
+- `exports/protected-copper-baseline.json`：当前保护基线629条线、328个板过孔；模块内12孔另核对。明确的局部替换链见`protected-copper-revision.json`、`protected-copper-revision-3.json`与`protected-copper-revision-4.json`。
 - `exports/power-routing-check.json`：08aaf0e电源支路检查点的写入批次、754段铜线/65个过孔增量及三处焊盘过孔坐标。
 - `exports/local-rework-check.json`：59c861b检查点的局部调整、信号恢复、S3热焊盘接地及49项连接提示记录。
 - `exports/left-sector-check.json`、`dense-vip-check.json`：后续左侧四元件重排、六引脚扇出、供电/地焊盘过孔和母线绕孔记录；最新数量以`pcb-drc-summary.json`为准。
@@ -49,7 +49,7 @@ P4与五个从机共用短距离SPI。SN74HCS151选择五个DMA READY电平；�
 
 旧固件、UUID、BLE设备名、轮位、RejsaRubberTrac及DIY CAN数据布局均未在本阶段修改；未启用任何Approved硬件profile。原离线C3固件不能直接烧录到新S3节点；READY选择、ARM上电顺序和新GPIO需要后续固件移植与台架验证。
 
-主电源使用单独的 `powerWide1oz` 导线规则：仅七个供电网络允许最大4mm宽度，其他间距、孔径和最小线宽没有放宽。原理图和PCB已同步该规则。普通信号布在顶层/底层，Inner1保留地平面、Inner2用于电源及本轮局部栅极控制走线；159个普通网络已加入布线，USB单独处理。当前最细走线约0.128mm，板上普通过孔为0.30/0.60mm；S3模块内散热孔为0.30/0.50mm。过孔在焊盘内的工艺仍需制造审查。
+主电源使用单独的 `powerWide1oz` 导线规则：仅七个供电网络允许最大4mm宽度，其他间距、孔径和最小线宽没有放宽。原理图和PCB已同步该规则。普通信号主要使用顶层/底层，Inner1保留地平面；Inner2包含电源、局部栅极控制，以及左后USB调整涉及的MOSI和启动/复位信号段；159个普通网络已加入布线，USB单独处理。当前最细走线约0.128mm，板上普通过孔为0.30/0.60mm；S3模块内散热孔为0.30/0.50mm。过孔在焊盘内的工艺仍需制造审查。
 
 3V3主支路采用外层0.5mm、内层0.8mm，细间距器件的局部引出采用0.25mm。R17.1、R32.1和U25.7新增焊盘过孔，设计按树脂塞孔及铜盖电镀填平要求继续审查，普通盖油不能替代。该要求尚未转换为厂家确认的制造工艺；不作为普通盖油板下单。
 
@@ -70,3 +70,5 @@ P4与五个从机共用短距离SPI。SN74HCS151选择五个DMA READY电平；�
 右前RC及R84局部调整的当前证据见`exports/usb-fr-rc-check.json`，保护基线修订8仅加入两个电容的局部地回路。左前路径报告保留为07d8211历史检查点。
 
 右前完整USB路径和维护排针新位置见`exports/usb-fr-route-check.json`及`usb-design.md`；右前RC报告为ef3a1b8历史快照。新位置使USB铜长度约16.57mm，移除旧复位/启动末端分支并恢复八组普通信号，未改变原理图、GPIO或固件。
+
+左后完整USB、四个RC器件和J13新位置见`exports/usb-rl-route-check.json`及`usb-design.md`。左后USB铜长约16.824mm；SPI MOSI以约59.568mm的Top/Inner2路径重布并保持参考地，原有该网铜线全部移除，避免无负载残支。

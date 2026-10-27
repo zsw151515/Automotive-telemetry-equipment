@@ -38,8 +38,8 @@ U3,C3,7,21,RL_DE_CMD,,3.3V,-1/未核准,本次设计候选，未启用profile
 U3,C3,8,22,RL_STRAP8,,3.3V,-1/未核准,本次设计候选，未启用profile
 U3,C3,9,23,RL_BOOT,,3.3V,-1/未核准,本次设计候选，未启用profile
 U3,C3,10,16,RL_RX,,3.3V,-1/未核准,本次设计候选，未启用profile
-U3,C3,18,26,RL_USB_DM,,3.3V,-1/未核准,本次设计候选，未启用profile
-U3,C3,19,27,RL_USB_DP,,3.3V,-1/未核准,本次设计候选，未启用profile
+U3,C3,18,26,RL_USB_DM_MCU,,3.3V,-1/未核准,本次设计候选，未启用profile
+U3,C3,19,27,RL_USB_DP_MCU,,3.3V,-1/未核准,本次设计候选，未启用profile
 U3,C3,20,30,RL_ARM,,3.3V,-1/未核准,本次设计候选，未启用profile
 U4,C3,0,12,RR_SCK,,3.3V,-1/未核准,本次设计候选，未启用profile
 U4,C3,1,13,RR_MOSI,,3.3V,-1/未核准,本次设计候选，未启用profile

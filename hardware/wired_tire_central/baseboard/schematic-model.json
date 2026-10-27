@@ -672,8 +672,8 @@
         "21": "RL_DE_CMD",
         "22": "RL_STRAP8",
         "23": "RL_BOOT",
-        "26": "RL_USB_DM",
-        "27": "RL_USB_DP",
+        "26": "RL_USB_DM_MCU",
+        "27": "RL_USB_DP_MCU",
         "30": "RL_ARM",
         "1": "GND",
         "2": "GND",
@@ -4542,6 +4542,62 @@
       "page": "FR",
       "pins": {
         "1": "FR_USB_DP",
+        "2": "GND"
+      },
+      "x": 970,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+      "dnp": true
+    },
+    {
+      "ref": "R138",
+      "part": "r33",
+      "page": "RL",
+      "pins": {
+        "1": "RL_USB_DM_MCU",
+        "2": "RL_USB_DM"
+      },
+      "x": 340,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB source termination33ohm",
+      "dnp": false
+    },
+    {
+      "ref": "R139",
+      "part": "r33",
+      "page": "RL",
+      "pins": {
+        "1": "RL_USB_DP_MCU",
+        "2": "RL_USB_DP"
+      },
+      "x": 550,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB source termination33ohm",
+      "dnp": false
+    },
+    {
+      "ref": "C80",
+      "part": "cUsbDnp",
+      "page": "RL",
+      "pins": {
+        "1": "RL_USB_DM",
+        "2": "GND"
+      },
+      "x": 760,
+      "y": 465,
+      "rotation": 0,
+      "note": "USB tuning10pF reserve; DNP initially; do not fit without signal-integrity validation",
+      "dnp": true
+    },
+    {
+      "ref": "C81",
+      "part": "cUsbDnp",
+      "page": "RL",
+      "pins": {
+        "1": "RL_USB_DP",
         "2": "GND"
       },
       "x": 970,

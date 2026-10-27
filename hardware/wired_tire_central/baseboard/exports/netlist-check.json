@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "checked_components": 290,
-  "checked_pin_nets": 1052,
-  "netlist_sha256": "1c634099786cf376bf12328b649f0bed58c236a2f2b603749b843520ed2e8a27",
-  "model_sha256": "79ed09a12dc1a134a62aa7d1e694db0dff4e4ecf09045ad0f53179828c9f351e",
+  "checked_components": 294,
+  "checked_pin_nets": 1060,
+  "netlist_sha256": "30941e7c231ba0594fcb56fc1306c7bc855c7aaac8dcc6030f22afe79158bc73",
+  "model_sha256": "7a400e56da4f7e99a539a1a670c0d7c52c7a535de7e568e2deb395e8193ea7f1",
   "errors": [],
   "scope": "CAD connectivity and catalogue metadata only; not circuit, routing or hardware approval"
 }

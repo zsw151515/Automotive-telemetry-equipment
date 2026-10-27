@@ -2,7 +2,8 @@
   "passed": true,
   "checked_groups": [
     "FL",
-    "FR"
+    "FR",
+    "RL"
   ],
   "all_groups_checked": false,
   "errors": [],

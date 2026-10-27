@@ -3229,6 +3229,50 @@
       ],
       "physical_pads": 2,
       "npth_cutouts": 0
+    },
+    "R138": {
+      "footprint_uuid": "d0069cef5276217f",
+      "bounds_mm": [
+        -1.1566017,
+        1.1566017,
+        -0.4320032,
+        0.4320032
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "R139": {
+      "footprint_uuid": "d0069cef5276217f",
+      "bounds_mm": [
+        -1.1566017,
+        1.1566017,
+        -0.4320032,
+        0.4320032
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "C80": {
+      "footprint_uuid": "bae2ba08801e4bef",
+      "bounds_mm": [
+        -1.1000231999999999,
+        1.1000231999999999,
+        -0.4499991,
+        0.4499991
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
+    },
+    "C81": {
+      "footprint_uuid": "bae2ba08801e4bef",
+      "bounds_mm": [
+        -1.1000231999999999,
+        1.1000231999999999,
+        -0.4499991,
+        0.4499991
+      ],
+      "physical_pads": 2,
+      "npth_cutouts": 0
     }
   },
   "placements": [
@@ -3698,15 +3742,15 @@
     },
     {
       "ref": "J13",
-      "x_mm": 88,
-      "y_mm": 44,
-      "rotation": 0,
+      "x_mm": 105.25,
+      "y_mm": 68,
+      "rotation": 180,
       "layer": 2,
       "bounds_mm": [
-        80.9999886,
-        94.99998599999999,
-        40.8599758,
-        45.6599662
+        98.25001326,
+        112.25001066,
+        66.34003469999999,
+        71.1400251
       ],
       "fixed": true,
       "part": "progconn",
@@ -7871,6 +7915,70 @@
       "fixed": true,
       "part": "cUsbDnp",
       "pcb_id": "f4cb862fc9111997"
+    },
+    {
+      "ref": "R138",
+      "x_mm": 96,
+      "y_mm": 65.4,
+      "rotation": 0,
+      "layer": 1,
+      "bounds_mm": [
+        94.8433983,
+        97.1566017,
+        64.96799680000001,
+        65.8320032
+      ],
+      "fixed": true,
+      "part": "r33",
+      "pcb_id": "e33b32ed31b48d2b"
+    },
+    {
+      "ref": "R139",
+      "x_mm": 96,
+      "y_mm": 67,
+      "rotation": 0,
+      "layer": 1,
+      "bounds_mm": [
+        94.8433983,
+        97.1566017,
+        66.5679968,
+        67.4320032
+      ],
+      "fixed": true,
+      "part": "r33",
+      "pcb_id": "4a83608ca36c76b6"
+    },
+    {
+      "ref": "C80",
+      "x_mm": 98.36,
+      "y_mm": 64.45,
+      "rotation": 270,
+      "layer": 1,
+      "bounds_mm": [
+        97.9100009,
+        98.8099991,
+        63.3499768,
+        65.5500232
+      ],
+      "fixed": true,
+      "part": "cUsbDnp",
+      "pcb_id": "be60d6d773ca116b"
+    },
+    {
+      "ref": "C81",
+      "x_mm": 98.75,
+      "y_mm": 67.4,
+      "rotation": 90,
+      "layer": 1,
+      "bounds_mm": [
+        98.3000009,
+        99.1999991,
+        66.2999768,
+        68.50002320000002
+      ],
+      "fixed": true,
+      "part": "cUsbDnp",
+      "pcb_id": "dd43aac81da4fa33"
     }
   ]
 }
